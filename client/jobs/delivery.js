@@ -8,7 +8,7 @@ Template.delivery.helpers({
 	deliveryMode:function(){
 		var id = FlowRouter.getParam('id');
 		var id1 = DeliveryDetails.findOne({JobId:id});
-		console.log(id1._id);
+		//console.log(id1);
 		if(typeof id1 == 'undefined')
 			return true;
 		else
