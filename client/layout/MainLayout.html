@@ -1,0 +1,12 @@
+
+<template name = "MainLayout">
+	
+	<header>
+		<h1>Shanti Shipping</h1>
+		{{> loginButtons}}
+	</header>
+	{{> SideNav}}
+	<main class="main-layout">
+	{{> Template.dynamic template = main}}
+	</main>
+</template>

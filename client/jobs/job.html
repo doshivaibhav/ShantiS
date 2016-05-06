@@ -1,0 +1,31 @@
+<template name = "job">
+	<h1>{{jobs.JobNo}}</h1>
+	<ul>
+	<li><b>Job No. </b>{{jobs.JobNo}}</li>
+			<li><b>Importer M/s. </b>{{jobs.ImporterName}}</li>
+			<li><b>Party's Job No. </b>{{jobs.PartyJobNo}}</li>
+			<li><b>Port </b>{{jobs.Port}}</li>
+			<li><b>Mail/Courier </b>{{jobs.Doc.Rec}}</li>
+			<li><b>Date Recieved </b>{{jobs.Doc.RecDate}}</li>
+			<li><b>Description  </b>{{jobs.BE.Desc}}</li>
+			<li><b>Type of Cargo LCL/20 Ft/ 40 Ft. </b>{{jobs.BLDetails.TypeOfCargo}}</li>
+			<li><b>No of Packages </b>{{jobs.BLDetails.PkgNo}}</li>
+			<li><b>Gross Wt. </b>{{jobs.BLDetails.GrossWt}}</li>
+			<li><b>CBM </b>{{jobs.BLDetails.CBM}}</li>
+			<li><b>Port Of Loading </b>{{jobs.BLDetails.LoadPort}}</li>
+			<li><b>MBL No. </b>{{jobs.BLDetails.MBLNo}}</li>
+			<li><b>HBL No. </b>{{jobs.BLDetails.HBLNo}}</li>
+			<li><b>Vessel In B/L Copy </b>{{jobs.BLDetails.VesselBL}}</li>
+			<li><b>Voyage </b>{{jobs.BLDetails.Voyage}}</li><br>
+	</ul>
+	{{#if docMode}}
+<!--<a href="/{{jid}}/orDoc">Original Document Recieved? | </a>-->
+<button class="btn btn-default" name="btnDocRec" id="btnDocRec">Original Document Recieved?</button>
+	{{else}}
+<p style="color:green"><b>Original Document Recieved</b></p>
+{{/if}}
+<br><button class="btn btn-default" name="btnShip" id="btnShip">Insert Shipping Details</button>
+<br><button class="btn btn-default" name="btnYard" id="btnYard">Insert Yard Details</button>
+<br><button class="btn btn-default" name="btnDocDocks" id="btnDocDocks">Documents Checked by Docks </button>
+<br><button class="btn btn-default" name="btnDelivery" id="btnDelivery">Delivery Details </button>
+</template>

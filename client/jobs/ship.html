@@ -1,0 +1,9 @@
+<template name = "ship">
+<h1>Enter Shipping Details</h1>
+	{{#if shipMode}}
+    {{> quickForm collection="ShippingDetails" id="shipDetailsInsert" type="insert"}}
+    {{else}}
+    {{> quickForm collection="ShippingDetails" id="shipDetailsUpdate" type="update" doc=deliveryId}}
+{{/if}}    
+	
+</template>

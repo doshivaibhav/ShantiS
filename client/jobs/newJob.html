@@ -1,0 +1,70 @@
+<template name = "newJob">
+	<div class="new-job-container">
+	<!--	<form>
+		<ul>
+			<li>Job No. <input type="text" name="JobNo"></li>
+			<li>Importer M/s. <input type="text" name="ImporterName"></li>
+			<li>Party's Job No. <input type="text" name ="PartyJobNo"></li>
+			<li>Port <input type="text" name="Port"></li>
+			<li>Mail/Courier <input type="text" name="MC"></li>
+			<li>Date Recieved <input type="date" name="MCDate"></li>
+			<li>Description <input type="text" name = "Description"></li>
+			<li>Type of Cargo LCL/20 Ft/ 40 Ft. <input type="text" name="TypeCargo"></li>
+			<li>No of Packages <input type="text" name="PkgNo"></li>
+			<li>Gross Wt. <input type="text" name="GrossWt"></li>
+			<li>CBM <input type="text" name="CBM"></li>
+			<li>Port Of Loading <input type="text" name="LoadPort"></li>
+			<li>MBL No. <input type="text" name="MBLNo"></li>
+			<li>HBL No. <input type="text" name="HBLNo"></li>
+			<li>Vessel In B/L Copy <input type="text" name="VesselBL"></li>
+			<li>Voyage <input type="text" name="Voyage"></li><br>
+			<li><input type="submit" value="Create Job"></li>
+		</ul>
+		</form> -->
+		<!--{{#autoForm collection=Collection.Jobs id="insertNewJob" type="insert"}}
+  		
+  	<fieldset>
+    <legend>Create New Job</legend>
+    
+    <div class="form-group {{#if afFieldIsInvalid name='JobNo'}}has-error{{/if}}">
+    <label class="control-label">{{afFieldLabelText name='JobNo'}}</label>
+    {{> afFieldInput name='JobNo'}}
+    {{#if afFieldIsInvalid name='JobNo'}}
+    <span class="help-block">{{{afFieldMessage name='JobNo'}}}</span>
+    {{/if}}
+  </div>
+
+    {{> afQuickField name="Port"}}
+    {{> afQuickField name="PartyJob"}}
+
+    {{> afQuickField name="ImporterName"}}
+    {{> afQuickField name="Doc.Rec"}}
+    {{> afQuickField name="Doc.RecDate"}}
+    {{> afQuickField name="BE.Desc"}}
+    {{> afQuickField name="BLDetails.TypeOfCargo"}}
+    {{> afQuickField name="BLDetails.PkgNo"}}
+    {{> afQuickField name="BLDetails.GrossWt"}}
+    {{> afQuickField name="BLDetails.CBM"}}
+    {{> afQuickField name="BLDetails.LoadPort"}}
+    {{> afQuickField name="BLDetails.MBLNo"}}
+    {{> afQuickField name="BLDetails.HBLNo"}}
+    {{> afQuickField name="BLDetails.Container"}}
+    {{> afQuickField name="BLDetails.VesselBL"}}
+    {{> afQuickField name="BLDetails.Voyage"}}
+    
+  </fieldset>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-default">Reset Form</button>
+  </div>
+
+
+
+  {{/autoForm}}
+-->
+{{> quickForm collection="JobCreation" id="newJobInsert" type="insert" }}
+<!--"fields="JobNo,Port,PartyJob,ImporterName,Doc.Rec,Doc.RecDate,BE.Desc,BLDetails.TypeOfCargo,BLDetails.PkgNo,BLDetails.GrossWt,BLDetails.CBM,BLDetails.LoadPort,BLDetails.MBLNo,BLDetails.HBLNo,BLDetails.Container,BLDetails.VesselBL,BLDetails.Voyage class = "newJF"}}
+-->
+	</div>
+</template>

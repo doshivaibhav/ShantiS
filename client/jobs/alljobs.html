@@ -1,0 +1,21 @@
+<template name = "alljobs">
+<table class="table table-hover">
+	<thead>
+		<tr>
+		<th>Job No.</th>
+		<th>Port</th>
+		<th>Importer Name</th>
+		</tr>
+	</thead>
+
+	<tbody>
+	{{#if Template.subscriptionsReady}}
+		{{#each alljobs}}
+			{{> rowjobs}}
+		{{/each}}
+		{{else}}
+		<p>Loading...</p>
+		{{/if}}
+	</tbody>
+</table>
+</template>
