@@ -303,11 +303,11 @@ JobId:{
   	type:"hidden",
   },
 },
-	PQRIRONo:{type:String,label:"PQR IRO No.",defaultValue:""},
+	/*PQRIRONo:{type:String,label:"PQR IRO No.",defaultValue:""},
 	DateIRO:{type:String, label:"Date of IRO",autoform: {
       afFieldInput: {
         type: "date"
-      }}},
+      }}},*/
 	ShipCoName:{type:String, label:"Shipping Company Name",defaultValue:""},
 	companyPh:{type:String, label:"Phone Number",defaultValue:""},
 	companyEmail:{type:String, label:"Company Email of Contact",defaultValue:"", optional:true},
@@ -317,8 +317,8 @@ JobId:{
       afFieldInput: {
         type: "date"
       }}},
-	WorkingTimeFrom:{type:Number,label:"Working Time from",defaultValue:0},
-	WorkingTimeTo:{type:Number,label:"Working Time To",defaultValue:0},
+	FreeDaysFrom:{type:Number,label:"Working Time from",defaultValue:0},
+	FreeDaysTo:{type:Number,label:"Working Time To",defaultValue:0},
 	WorkingSat:{type:Boolean,label:"Saturday Working?",defaultValue:0},
 	FreightCharges:{type:Number, label:"Freight Charges Rs.",defaultValue:0},
 	Bond:{type:Boolean, label:"Rs 100/- Bond",defaultValue:0},
