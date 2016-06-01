@@ -5,9 +5,14 @@ ShippingDetails = new Mongo.Collection('shippingDetails');
 YardDetails = new Mongo.Collection('yardDetails');
 DocDocks = new Mongo.Collection('docDocks');
 DeliveryDetails = new Mongo.Collection('deliveryDetails');
+Ports = new Mongo.Collection('ports');
 
-
-
+PortsSchema = new SimpleSchema({
+	name:{
+		type:String,
+		label:"Port Name",
+	}
+});
 
 
 
@@ -485,7 +490,10 @@ jobCreationSchema = new SimpleSchema({
 	Port:{
 		type: String,
 		label: "Port Name",
-		defaultValue:""
+		allowedValues:function(){
+			return Ports.find({});
+		},
+
 	},
 
 	PartyJob:{
@@ -594,6 +602,7 @@ ShippingDetails.attachSchema(ShippingSchema);
 YardDetails.attachSchema(YardSchema);
 DocDocks.attachSchema(DocDocksSchema);
 DeliveryDetails.attachSchema(DeliverySchema);
+Ports.attachSchema(PortsSchema);
 
 Jobs.allow({
 	insert: function(userId,doc){
@@ -659,5 +668,11 @@ DeliveryDetails.allow({
 		console.log("Running");
 		return !!userId;
 	}
+});
+Ports.allow({
+	insert: function(userId,doc){
+		console.log("Running");
+		return !!userId;
+	},
 });
 
