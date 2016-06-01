@@ -270,11 +270,11 @@ updatedBy:{
 });
 
 StampDutySchema = new SimpleSchema({
-	StampDuty:{type:String,label:"Shipping Co./BPT/Bank",defaultValue:""},
-	SurRel:{type:String,label:"B/L Surrender/Telex Release",defaultValue:""},
+	StampDuty:{type:String,label:"Shipping Co./BPT/Bank",allowedValues: ['Shipping co.', 'BPT' , 'Bank' , 'GRAS Online']},
+	SurRel:{type:String,label:"B/L Type",allowedValues: ['Surrender', 'Telex' , 'OBL']},
 	Amount:{type:Number,label:"0.1% Stamp Duty Rs.",defaultValue:0},
 	GRNNo:{type:String,label:"GRN No.",defaultValue:""},
-	Date:{type:String,label:"Date of Update",autoform: {
+	Date:{type:String,label:"Date of Paymnet",autoform: {
       afFieldInput: {
         type: "date"
       }}},
@@ -320,23 +320,21 @@ JobId:{
 
 	JNPTIGM:{type:JNPTIGMSchema, label:"JNPT IGM",},
 	MumbaiIGM:{type:MumbaiIGMSchema, label:"Mumbai IGM"},
-	
+	DO:{type:DOSchema, label:"Delivery Order (DO)"},
+	FreightCharges:{type:Number, label:"Freight Charges Rs.",defaultValue:0},
+	NextAgent:{type:NextAgentSchema, label:"Next Agent"},
+	DaysFree:{type:Boolean,label:"14 days Free",defaultValue:0},
 	FreeDaysFrom:{type:Number,label:"Free Days from",defaultValue:0},
 	FreeDaysTo:{type:Number,label:"Free Days Till",defaultValue:0},
 	WorkingSat:{type:Boolean,label:"Saturday Working?",defaultValue:0},
-	FreightCharges:{type:Number, label:"Freight Charges Rs.",defaultValue:0},
+	
 	Bond:{type:Boolean, label:"Rs 100/- Bond",defaultValue:0},
 	LetterHead:{type:Boolean,label: "Letter Head",defaultValue:0},
 	Insurance:{type:Boolean,label:"Insurance",defaultValue:0},
 	BlankCheque:{type:Boolean, label:"BLANK Cheque",defaultValue:0},
 	BankVer:{type:Boolean,label:"Bank Verification",defaultValue:0},
 	NOCLetter:{type:Boolean,label:"NOC Letter",defaultValue:0},
-	DaysFree:{type:Boolean,label:"14 days Free",defaultValue:0},
 	
-	
-	
-	NextAgent:{type:NextAgentSchema, label:"Next Agent"},
-	DO:{type:DOSchema, label:"Delivery Order (DO)"},
 	StampDuty:{type:StampDutySchema,label:"Stamp Duty Details"},
 	updatedBy:{type:String,
 		label:"Prepared By",
@@ -365,14 +363,20 @@ YardSchema = new SimpleSchema({
   },
 },
 	YardName:{type:String,label:"Yard Name",defaultValue:""},
-	PhNo:{type:String,label:"Phone Number",defaultValue:""},
+	PhNo:{type:String,label:"Contact Number",defaultValue:""},
 	JobOrder:{type:Boolean,label:"Job Order",defaultValue:0},
-	ContainerArr:{type:String,label:"Container Arrived On",defaultValue:""},
-	ContainerDes:{type:String,label:"Container Destuffed On",defaultValue:""},
-	Containerhold:{type:String,label:"Container Hold",defaultValue:""},
+	ContainerArr:{type:String,label:"Container Arrived On",autoform: {
+      afFieldInput: {
+        type: "date"
+      }}},	
+	ContainerDes:{type:String,label:"Container Destuffed On",autoform: {
+      afFieldInput: {
+        type: "date"
+      }}},	
+	Containerhold:{type:String,label:"Container Hold",allowedValues: ['Yes', 'No']},
 	YardPersonName:{type:String,label:"Yard Person's Name",defaultValue:""},
 	YardCharges:{type:Number,label:"Yard Charges Rs.",defaultValue:0},
-	ValidTill:{type:String,label:"Valid Till",autoform: {
+	ValidTill:{type:String,label:"Yard Charges Valid Till",autoform: {
       afFieldInput: {
         type: "date"
       }}},
@@ -412,13 +416,14 @@ DocDocksSchema = new SimpleSchema({
       afFieldInput: {
         type: "date"
       }}},
-	PknListBy:{type:String, label:"Packing List Checked By",defaultValue:""},
+	/*PknListBy:{type:String, label:"Packing List Checked By",defaultValue:""},*/
 	WLRO:{type:Boolean,label:"WLRO",defaultValue:0},
+	/*ExamOrderBy:{type:String,label:"Examination Order Checked By",defaultValue:""},*/
 	ExamOrderOn:{type:String,label:"Examination Order checked On",autoform: {
       afFieldInput: {
         type: "date"
       }}},
-	ExamOrderBy:{type:String,label:"Examination Order Checked By",defaultValue:""},
+	
 	updatedBy:{type:String,
 		label:"Prepared By",
 		autoValue:function(){
