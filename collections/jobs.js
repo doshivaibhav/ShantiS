@@ -56,7 +56,7 @@ DocSchema = new SimpleSchema({
 	Rec:{
 			type:String,
 			label:"Mail/Courier",
-			defaultValue:"",
+			allowedValues: ['Mail', 'Courier']
 		},
 		RecDate:{
 			type:Date,
@@ -99,8 +99,8 @@ BESchema = new SimpleSchema({
 BLSchema = new SimpleSchema({
 	TypeOfCargo:{
 		type:String,
-		label:"Type of Cargo LCL/20Ft./40Ft.",
-		defaultValue:""
+		label:"Type of Cargo",
+		allowedValues: ['LCL', '20" FCL' , '40" FCL']
 	},
 
 		PkgNo:{
@@ -132,6 +132,20 @@ BLSchema = new SimpleSchema({
 			label:"MBL No.",
 			defaultValue:""
 		},
+		MBLDate:{
+			type:String,
+			label:"MBL Date",
+			defaultValue:function(){
+			return new Date();
+		},
+			autoform: {
+      		afFieldInput: {
+        	type: "date"
+      		}
+    	}	
+		},			
+
+
 
 		HBLNo:{
 			type:String,
@@ -139,6 +153,19 @@ BLSchema = new SimpleSchema({
 			optional: true,
 			defaultValue:""
 		},
+		HBLDate:{
+			type:String,
+			label:"HBL Date",
+			defaultValue:function(){
+			return new Date();
+		},
+			autoform: {
+      		afFieldInput: {
+        	type: "date"
+      		}
+    	}	
+		},			
+		
 
 		Container:{
 			type:[ContainerSchema],
@@ -147,7 +174,7 @@ BLSchema = new SimpleSchema({
 
 		VesselBL:{
 			type:String,
-			label:"Vessel B/L",
+			label:"Vessel in B/L",
 			defaultValue:""
 		},
 
@@ -484,12 +511,12 @@ jobCreationSchema = new SimpleSchema({
 	},
 	Doc:{
 		type:DocSchema,
-		label:"Document Details"
+		label:"Copy Document Details"
 	},
-	BE:{
+	/*BE:{
 		type:BESchema,
 		label:"BE Details"	
-	},
+	},*/
 
 	BLDetails:{
 		type:BLSchema,
