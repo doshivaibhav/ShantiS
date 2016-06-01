@@ -15,6 +15,7 @@ ContainerSchema = new SimpleSchema({
 	containerNo:{
 		type:String,
 		label:"Container",
+		max: 11,
 		defaultValue:""
 	}
 });
@@ -104,22 +105,25 @@ BLSchema = new SimpleSchema({
 	},
 
 		PkgNo:{
-			type:String,
+			type:Number,
 			label:"No. Of Packages",
+			//max: 4,
 			defaultValue:""
 		},
 
 		GrossWt:{
-			type:String,
-			label:"Gross Weight",
+			type:Number,
+			label:"Gross Weight (Kgs)",
+			//max: 5,
 			defaultValue:""
 		},
 
 		CBM:{
-			type:String,
+			type:Number,
 			label:"CBM",
+			//max: 7,
 			defaultValue:""
-		},
+		},	
 
 		LoadPort:{
 			type:String,
@@ -127,9 +131,30 @@ BLSchema = new SimpleSchema({
 			defaultValue:""
 		},
 
+		HBLNo:{
+			type:String,
+			label:"HBL No.",
+			optional: true,
+			max: 20,
+			defaultValue:""
+		},
+		HBLDate:{
+			type:String,
+			label:"HBL Date",
+			defaultValue:function(){
+			return new Date();
+		},
+			autoform: {
+      		afFieldInput: {
+        	type: "date"
+      		}
+    	}	
+		},		
+
 		MBLNo:{
 			type:String,
 			label:"MBL No.",
+			max: 20,
 			defaultValue:""
 		},
 		MBLDate:{
@@ -146,27 +171,6 @@ BLSchema = new SimpleSchema({
 		},			
 
 
-
-		HBLNo:{
-			type:String,
-			label:"HBL No.",
-			optional: true,
-			defaultValue:""
-		},
-		HBLDate:{
-			type:String,
-			label:"HBL Date",
-			defaultValue:function(){
-			return new Date();
-		},
-			autoform: {
-      		afFieldInput: {
-        	type: "date"
-      		}
-    	}	
-		},			
-		
-
 		Container:{
 			type:[ContainerSchema],
 			label:"Container(s)"
@@ -175,12 +179,14 @@ BLSchema = new SimpleSchema({
 		VesselBL:{
 			type:String,
 			label:"Vessel in B/L",
+			max: 50,
 			defaultValue:""
 		},
 
 		Voyage:{
 			type:String,
 			label:"Voyage",
+			max: 5,
 			defaultValue:""
 		},
 
@@ -324,8 +330,15 @@ JobId:{
 	FreightCharges:{type:Number, label:"Freight Charges Rs.",defaultValue:0},
 	NextAgent:{type:NextAgentSchema, label:"Next Agent"},
 	DaysFree:{type:Boolean,label:"14 days Free",defaultValue:0},
-	FreeDaysFrom:{type:Number,label:"Free Days from",defaultValue:0},
-	FreeDaysTo:{type:Number,label:"Free Days Till",defaultValue:0},
+	FreeDaysFrom:{type:String,label:"Free Days from",autoform: {
+      afFieldInput: {
+        type: "date"
+      }}},
+	FreeDaysTo:{type:String,label:"Free Days Till",autoform: {
+      afFieldInput: {
+        type: "date"
+      }}},
+
 	WorkingSat:{type:Boolean,label:"Saturday Working?",defaultValue:0},
 	
 	Bond:{type:Boolean, label:"Rs 100/- Bond",defaultValue:0},
@@ -472,9 +485,9 @@ DeliverySchema = new SimpleSchema({
 
 jobCreationSchema = new SimpleSchema({
 	JobNo:{
-		type: String,
+		type: Number,
 		label: "Job No",
-		defaultValue:""
+		defaultValue:"",
 	},
 
 	DateOfCreation:{
@@ -490,12 +503,14 @@ jobCreationSchema = new SimpleSchema({
 	Port:{
 		type: String,
 		label: "Port Name",
+		max: 15,
 		defaultValue:""
 	},
 
 	PartyJob:{
 		type:String,
 		label:"Party's Job No.",
+		max: 10,
 		optional:true,
 		defaultValue:""
 	},
@@ -516,6 +531,7 @@ jobCreationSchema = new SimpleSchema({
 	ImporterName:{
 		type:String,
 		label:"Importer M/s.",
+		max: 100,
 		defaultValue:""
 	},
 	Doc:{
