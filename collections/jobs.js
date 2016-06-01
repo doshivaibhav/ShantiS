@@ -495,7 +495,9 @@ jobCreationSchema = new SimpleSchema({
 	Port:{
 		type: String,
 		label: "Port Name",
-		defaultValue:""
+		allowedValues:function(){
+			return Ports.find({});
+		};
 	},
 
 	PartyJob:{
