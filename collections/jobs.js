@@ -317,8 +317,12 @@ JobId:{
       afFieldInput: {
         type: "date"
       }}},
-	FreeDaysFrom:{type:Number,label:"Working Time from",defaultValue:0},
-	FreeDaysTo:{type:Number,label:"Working Time To",defaultValue:0},
+
+	JNPTIGM:{type:JNPTIGMSchema, label:"JNPT IGM",},
+	MumbaiIGM:{type:MumbaiIGMSchema, label:"Mumbai IGM"},
+	
+	FreeDaysFrom:{type:Number,label:"Free Days from",defaultValue:0},
+	FreeDaysTo:{type:Number,label:"Free Days Till",defaultValue:0},
 	WorkingSat:{type:Boolean,label:"Saturday Working?",defaultValue:0},
 	FreightCharges:{type:Number, label:"Freight Charges Rs.",defaultValue:0},
 	Bond:{type:Boolean, label:"Rs 100/- Bond",defaultValue:0},
@@ -329,8 +333,8 @@ JobId:{
 	NOCLetter:{type:Boolean,label:"NOC Letter",defaultValue:0},
 	DaysFree:{type:Boolean,label:"14 days Free",defaultValue:0},
 	
-	JNPTIGM:{type:JNPTIGMSchema, label:"JNPT IGM",},
-	MumbaiIGM:{type:MumbaiIGMSchema, label:"Mumbai IGM"},
+	
+	
 	NextAgent:{type:NextAgentSchema, label:"Next Agent"},
 	DO:{type:DOSchema, label:"Delivery Order (DO)"},
 	StampDuty:{type:StampDutySchema,label:"Stamp Duty Details"},
