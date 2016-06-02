@@ -29,5 +29,3 @@ return PartyMasterDetails.find({});
 Meteor.publish('ports',function(){
 return Ports.find({});
 });
-
-

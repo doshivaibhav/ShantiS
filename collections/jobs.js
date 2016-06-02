@@ -6,6 +6,7 @@ YardDetails = new Mongo.Collection('yardDetails');
 DocDocks = new Mongo.Collection('docDocks');
 DeliveryDetails = new Mongo.Collection('deliveryDetails');
 Ports = new Mongo.Collection('ports');
+PartyMasterDetails = new Mongo.Collection('partyMasterDetails');
 
 PortsSchema = new SimpleSchema({
 	name:{
@@ -110,23 +111,23 @@ BLSchema = new SimpleSchema({
 	},
 
 		PkgNo:{
-			type:Number,
+			type:String,
 			label:"No. Of Packages",
-			//max: 4,
+			max: 4,
 			defaultValue:""
 		},
 
 		GrossWt:{
-			type:Number,
+			type:String,
 			label:"Gross Weight (Kgs)",
-			//max: 5,
+			max: 5,
 			defaultValue:""
 		},
 
 		CBM:{
-			type:Number,
+			type:String,
 			label:"CBM",
-			//max: 7,
+			max: 7,
 			defaultValue:""
 		},	
 
@@ -253,7 +254,7 @@ MumbaiIGMSchema = new SimpleSchema({
 });
 
 DOSchema = new SimpleSchema({
-Charges:{type:Number,label:"D/O Charges Rs.",defaultValue:0},
+Charges:{type:String,label:"D/O Charges Rs.", max: 7, defaultValue:0},
 InFavourOf:{type:String,label:"In favour of",defaultValue:""},
 ValidTill:{type:String, label:"Valid Till",autoform: {
       afFieldInput: {
@@ -283,7 +284,7 @@ updatedBy:{
 StampDutySchema = new SimpleSchema({
 	StampDuty:{type:String,label:"Shipping Co./BPT/Bank",allowedValues: ['Shipping co.', 'BPT' , 'Bank' , 'GRAS Online']},
 	SurRel:{type:String,label:"B/L Type",allowedValues: ['Surrender', 'Telex' , 'OBL']},
-	Amount:{type:Number,label:"0.1% Stamp Duty Rs.",defaultValue:0},
+	Amount:{type:String,label:"0.1% Stamp Duty Rs.",defaultValue:0},
 	GRNNo:{type:String,label:"GRN No.",defaultValue:""},
 	Date:{type:String,label:"Date of Paymnet",autoform: {
       afFieldInput: {
@@ -332,7 +333,7 @@ JobId:{
 	JNPTIGM:{type:JNPTIGMSchema, label:"JNPT IGM",},
 	MumbaiIGM:{type:MumbaiIGMSchema, label:"Mumbai IGM"},
 	DO:{type:DOSchema, label:"Delivery Order (DO)"},
-	FreightCharges:{type:Number, label:"Freight Charges Rs.",defaultValue:0},
+	FreightCharges:{type:String, label:"Freight Charges Rs.",defaultValue:0},
 	NextAgent:{type:NextAgentSchema, label:"Next Agent"},
 	DaysFree:{type:Boolean,label:"14 days Free",defaultValue:0},
 	FreeDaysFrom:{type:String,label:"Free Days from",autoform: {
@@ -393,7 +394,7 @@ YardSchema = new SimpleSchema({
       }}},	
 	Containerhold:{type:String,label:"Container Hold",allowedValues: ['Yes', 'No']},
 	YardPersonName:{type:String,label:"Yard Person's Name",defaultValue:""},
-	YardCharges:{type:Number,label:"Yard Charges Rs.",defaultValue:0},
+	YardCharges:{type:String,label:"Yard Charges Rs.",defaultValue:0},
 	ValidTill:{type:String,label:"Yard Charges Valid Till",autoform: {
       afFieldInput: {
         type: "date"
@@ -488,10 +489,23 @@ DeliverySchema = new SimpleSchema({
 	
 });
 
+PartyMasterSchema = new SimpleSchema({
+	ClientName:{type:String,label:"Client Name", max: 50, defaultValue:""},
+	Telephone:{type:String,label:"Telephone No.",defaultValue:0},
+	Mobile:{type:String,label:"Mobile",defaultValue:0},
+	Email:{type:String,label:"Email ID", max: 30, defaultValue:""},
+	BankName:{type:String,label:"Bank Name", max: 50, defaultValue:""},
+	BankBranch:{type:String,label:"Bank Branch", max: 50, defaultValue:""},
+	AcNo:{type:String,label:"A/C No", max: 15, defaultValue:""},
+	AccountType:{type:String,label:"Account Type", allowedValues: ['Savings', 'Current']},
+	Ifsc:{type:String,label:"IFSC Code", max: 15, defaultValue:""}
+});
+
 jobCreationSchema = new SimpleSchema({
 	JobNo:{
-		type: Number,
+		type: String,
 		label: "Job No",
+		max: 4,
 		defaultValue:"",
 	},
 
@@ -508,7 +522,9 @@ jobCreationSchema = new SimpleSchema({
 	Port:{
 		type: String,
 		label: "Port Name",
-},
+		max: 15,
+		defaultValue:""
+	},
 
 	PartyJob:{
 		type:String,
@@ -552,6 +568,13 @@ jobCreationSchema = new SimpleSchema({
 	},
 });
 
+
+PartySchema = new SimpleSchema({
+	Create:{
+		type: PartyMasterSchema,
+		label:"Creation of Party Master"
+}
+}),
 JobSchema = new SimpleSchema({
 
 	Create:{
@@ -612,6 +635,7 @@ JobSchema = new SimpleSchema({
 });
 */
 Jobs.attachSchema( JobSchema );
+PartyMasterDetails.attachSchema(PartyMasterSchema);
 JobCreation.attachSchema(jobCreationSchema);
 OriginalDoc.attachSchema(OriginalDocSchema);
 ShippingDetails.attachSchema(ShippingSchema);
@@ -626,6 +650,15 @@ Jobs.allow({
 		return !!userId;
 	}
 });
+
+
+PartyMasterDetails.allow({
+	insert: function(userId,doc){
+		console.log("Running");
+		return true;
+	},		
+});
+
 JobCreation.allow({
 	insert: function(userId,doc){
 		console.log("Running");
