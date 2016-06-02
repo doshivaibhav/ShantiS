@@ -21,33 +21,28 @@
 			<li><input type="submit" value="Create Job"></li>
 		</ul>
 		</form> -->
-		<!--{{#autoForm collection=Collection.Jobs id="insertNewJob" type="insert"}}
+		{{#autoForm collection="JobCreation" id="insertNewJob" type="insert"}}
   		
   	<fieldset>
     <legend>Create New Job</legend>
     
-    <div class="form-group {{#if afFieldIsInvalid name='JobNo'}}has-error{{/if}}">
-    <label class="control-label">{{afFieldLabelText name='JobNo'}}</label>
-    {{> afFieldInput name='JobNo'}}
-    {{#if afFieldIsInvalid name='JobNo'}}
-    <span class="help-block">{{{afFieldMessage name='JobNo'}}}</span>
-    {{/if}}
-  </div>
+    {{> afQuickField name ='JobNo'}}
 
-    {{> afQuickField name="Port"}}
-    {{> afQuickField name="PartyJob"}}
+    {{> afQuickField name='Port' options=port}}
+    {{> afQuickField name='PartyJob'}}
 
-    {{> afQuickField name="ImporterName"}}
-    {{> afQuickField name="Doc.Rec"}}
-    {{> afQuickField name="Doc.RecDate"}}
-    {{> afQuickField name="BE.Desc"}}
-    {{> afQuickField name="BLDetails.TypeOfCargo"}}
+    {{> afQuickField name='ImporterName'}}
+    {{> afQuickField name='Doc.Rec' options=MC}}
+    {{> afQuickField name='Doc.RecDate'}}
+    {{> afQuickField name="BLDetails.TypeOfCargo" options = TOC}}
     {{> afQuickField name="BLDetails.PkgNo"}}
     {{> afQuickField name="BLDetails.GrossWt"}}
     {{> afQuickField name="BLDetails.CBM"}}
     {{> afQuickField name="BLDetails.LoadPort"}}
     {{> afQuickField name="BLDetails.MBLNo"}}
+    {{> afQuickField name="BLDetails.MBLDate"}}
     {{> afQuickField name="BLDetails.HBLNo"}}
+    {{> afQuickField name="BLDetails.HBLDate"}}
     {{> afQuickField name="BLDetails.Container"}}
     {{> afQuickField name="BLDetails.VesselBL"}}
     {{> afQuickField name="BLDetails.Voyage"}}
@@ -62,9 +57,8 @@
 
 
   {{/autoForm}}
--->
+<!--
 {{> quickForm collection="JobCreation" id="newJobInsert" type="insert" }}
-<!--"fields="JobNo,Port,PartyJob,ImporterName,Doc.Rec,Doc.RecDate,BE.Desc,BLDetails.TypeOfCargo,BLDetails.PkgNo,BLDetails.GrossWt,BLDetails.CBM,BLDetails.LoadPort,BLDetails.MBLNo,BLDetails.HBLNo,BLDetails.Container,BLDetails.VesselBL,BLDetails.Voyage class = "newJF"}}
 -->
 	</div>
 </template>

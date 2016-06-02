@@ -2,6 +2,7 @@ Template.alljobs.onCreated(function(){
 var self =this;
 self.autorun(function(){
 	self.subscribe('jobCreation');
+	self.subscribe('ports');
 });
 });
 /*Template.newJob.events({
@@ -43,7 +44,26 @@ self.autorun(function(){
 		});
 	}
 });*/
-
+Template.newJob.helpers({
+	MC:
+		function()
+		{
+			return [{label:'Mail',value:'Mail'},{label:'Courier',value:'Courier'}]
+		},
+	TOC:function(){
+		return [{label:'LCL',value:'LCL'},{label:'20" FCL',value:'20" FCL'},{label:'40" FCL',value:'40" FCL'}]
+	},
+	port:function(){
+		var portCol = Ports.find({});
+			var portarr = [];
+			portCol.forEach(function(obj){
+				portarr.push({label:obj.name,value:obj.name});
+			})
+			//console.log(portarr);
+			return portarr;
+	},
+	
+});
 //AutoForm.hooks({ newJobInsert: { before: { insert: function(doc) { console.log(doc); } }, after: { insert: function(error, result) { console.log('Occured error: ' + error); } }, beginSubmit: function() { console.log('begin submit'); }, onSuccess: function(formType, result) { console.log("Insert succeeded"); console.log('Result ' + result); }, onError: function(formType, error) { console.log('Error!!!'); console.log(error); } } }); 
 AutoForm.addHooks('customerItem', {
   onSubmit: function (insertDoc, updateDoc, currentDoc) {
