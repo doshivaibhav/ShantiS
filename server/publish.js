@@ -23,7 +23,11 @@ return DocDocks.find({});
 Meteor.publish('deliveryDetails',function(){
 return DeliveryDetails.find({});
 });
+Meteor.publish('partyMasterDetails',function(){
+return PartyMasterDetails.find({});
+});
 Meteor.publish('ports',function(){
 return Ports.find({});
 });
+
 
