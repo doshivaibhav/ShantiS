@@ -7,6 +7,7 @@ DocDocks = new Mongo.Collection('docDocks');
 DeliveryDetails = new Mongo.Collection('deliveryDetails');
 Ports = new Mongo.Collection('ports');
 
+
 PortsSchema = new SimpleSchema({
 	name:{
 		type:String,
@@ -496,8 +497,11 @@ jobCreationSchema = new SimpleSchema({
 		type: String,
 		label: "Port Name",
 		allowedValues:function(){
-			return Ports.find({});
-		};
+			
+			//console.log(portarr);
+			//return portarr;
+
+		}
 	},
 
 	PartyJob:{
