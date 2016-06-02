@@ -24,6 +24,6 @@ Meteor.publish('deliveryDetails',function(){
 return DeliveryDetails.find({});
 });
 Meteor.publish('ports',function(){
-return DeliveryDetails.find({});
+return Ports.find({});
 });
 
