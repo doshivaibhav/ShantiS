@@ -17,7 +17,28 @@ Template.delivery.helpers({
 	deliveryId:function(){
 		var id = FlowRouter.getParam('id');
 		id1 = DeliveryDetails.findOne({JobId:id});
-		console.log(id1._id)
-		return id1._id;
+		//console.log(id1._id)
+		return id1;
 	},
+	/*selectDoc:function(){
+		var id = FlowRouter.getParam('id');
+		id1 = DeliveryDetails.findOne({JobId:id});
+		return id1;
+	}*/
 });
+
+/*Template.delivery.events({
+'click submit':function(){
+		DeliveryDetails.update(this.id,{$set:{
+			JobId:function()
+			{
+				return FlowRouter.getParam('id');
+			},
+			updatedBy:function()
+			{
+				return Meteor.UserId;
+			},
+		}
+});
+	}
+});*/
