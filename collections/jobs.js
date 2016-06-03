@@ -7,6 +7,8 @@ DocDocks = new Mongo.Collection('docDocks');
 DeliveryDetails = new Mongo.Collection('deliveryDetails');
 Ports = new Mongo.Collection('ports');
 PartyMasterDetails = new Mongo.Collection('partyMasterDetails');
+ShippingMasterDetails = new Mongo.Collection('shippingMasterDetails');
+YardMasterDetails = new Mongo.Collection('yardMasterDetails');
 
 PortsSchema = new SimpleSchema({
 	name:{
@@ -501,6 +503,32 @@ PartyMasterSchema = new SimpleSchema({
 	Ifsc:{type:String,label:"IFSC Code", max: 15, defaultValue:""}
 });
 
+ShippingMasterSchema = new SimpleSchema({
+	ScoName:{type:String,label:"Shipping Company Name", max: 50, defaultValue:""},
+	ScoTelephone:{type:String,label:"S.CO Telephone No.", max: 10, defaultValue:0},
+	ScoLocated:{type:String,label:"S.CO Location", max: 50, defaultValue:""},
+	ScoMobile:{type:String,label:"S.CO Mobile No.", max: 10, defaultValue:0},
+	ScoEmail:{type:String,label:"S.CO Email ID", max: 30, defaultValue:""},
+	ScoBankName:{type:String,label:"S.CO Bank Name", max: 50, defaultValue:""},
+	ScoBankBranch:{type:String,label:"S.CO Bank Branch", max: 50, defaultValue:""},
+	ScoAcNo:{type:String,label:"S.CO A/C No", max: 20, defaultValue:""},
+	ScoAccountType:{type:String,label:"S.CO Account Type", allowedValues: ['Savings', 'Current']},
+	ScoIfsc:{type:String,label:"S.CO IFSC Code", max: 15, defaultValue:""}
+});
+
+YardMasterSchema = new SimpleSchema({
+	YrdName:{type:String,label:"CFS Name", max: 50, defaultValue:""},
+	YrdTelephone:{type:String,label:"CFS Telephone No.", max: 10, defaultValue:0},
+	YrdLocation:{type:String,label:"CFS Location", max: 50, allowedValues: ['JNPT/Nhavasheva', 'Panvel'] },
+	/*ScoMobile:{type:String,label:"S.CO Mobile No.", max: 10, defaultValue:0},*/
+	YrdEmail:{type:String,label:"CFS Email ID", max: 30, defaultValue:""},
+	YrdBankName:{type:String,label:"CFS Bank Name", max: 50, defaultValue:""},
+	YrdBankBranch:{type:String,label:"CFS Bank Branch", max: 50, defaultValue:""},
+	YrdAcNo:{type:String,label:"CFS A/C No", max: 20, defaultValue:""},
+	YrdAccountType:{type:String,label:"CFS Account Type", allowedValues: ['Savings', 'Current']},
+	YrdIfsc:{type:String,label:"CFS IFSC Code", max: 15, defaultValue:""}
+});
+
 jobCreationSchema = new SimpleSchema({
 	JobNo:{
 		type: String,
@@ -575,6 +603,21 @@ PartySchema = new SimpleSchema({
 		label:"Creation of Party Master"
 }
 }),
+
+MasterShippingSchema = new SimpleSchema({
+	Create:{
+		type: ShippingMasterSchema,
+		label:"Creation of Shipping Master"
+}
+}),
+
+MasterYardSchema = new SimpleSchema({
+	Create:{
+		type: YardMasterSchema,
+		label:"Creation of Yard Master"
+}
+}),
+
 JobSchema = new SimpleSchema({
 
 	Create:{
@@ -636,6 +679,8 @@ JobSchema = new SimpleSchema({
 */
 Jobs.attachSchema( JobSchema );
 PartyMasterDetails.attachSchema(PartyMasterSchema);
+ShippingMasterDetails.attachSchema(ShippingMasterSchema);
+YardMasterDetails.attachSchema(YardMasterSchema);
 JobCreation.attachSchema(jobCreationSchema);
 OriginalDoc.attachSchema(OriginalDocSchema);
 ShippingDetails.attachSchema(ShippingSchema);
@@ -658,6 +703,21 @@ PartyMasterDetails.allow({
 		return true;
 	},		
 });
+
+YardMasterDetails.allow({
+	insert: function(userId,doc){
+		console.log("Running");
+		return true;
+	},		
+});
+
+ShippingMasterDetails.allow({
+	insert: function(userId,doc){
+		console.log("Running");
+		return true;
+	},		
+});
+
 
 JobCreation.allow({
 	insert: function(userId,doc){
