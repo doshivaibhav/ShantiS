@@ -1,5 +1,9 @@
 <template name = "docDocks">
 
 <h1>Enter Docks Document Details</h1>
-    {{> quickForm collection="DocDocks" id="docDocksForm" type="insert"}}
+{{#if docksMode}}
+    {{> quickForm collection="DocDocks" id="docDocksFormInsert" type="insert"}}
+{{else}}
+{{> quickForm collection="DocDocks" id="docDocksFormUpdate" type="update" doc=docksId}}
+{{/if}}
 </template>
