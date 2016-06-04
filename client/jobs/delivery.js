@@ -51,3 +51,9 @@ deliveryDetailsUpdate:hooksObject
 });*/
 
 
+AutoForm.addHooks('deliveryDetailsUpdate',{
+	onSuccess:function(id,doc)
+	{
+		Meteor.call('updateDeliveryDoc',id);
+	}
+})

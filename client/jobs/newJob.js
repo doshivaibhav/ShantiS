@@ -68,10 +68,10 @@ Template.newJob.helpers({
 
 
 //AutoForm.hooks({ newJobInsert: { before: { insert: function(doc) { console.log(doc); } }, after: { insert: function(error, result) { console.log('Occured error: ' + error); } }, beginSubmit: function() { console.log('begin submit'); }, onSuccess: function(formType, result) { console.log("Insert succeeded"); console.log('Result ' + result); }, onError: function(formType, error) { console.log('Error!!!'); console.log(error); } } }); 
-AutoForm.addHooks('customerItem', {
+/*AutoForm.addHooks('customerItem', {
   onSubmit: function (insertDoc, updateDoc, currentDoc) {
     console.log(arguments);
     return false;
   }
 });
-SimpleSchema.debug = true;
+SimpleSchema.debug = true;*/
