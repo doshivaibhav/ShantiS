@@ -42,3 +42,17 @@ Template.delivery.helpers({
 });
 	}
 });*/
+
+/*var hooksObject = {
+	onSuccess:function(){
+		var id = FlowRouter.getParam('id');
+		id1 = DeliveryDetails.update({JobId:id},{$set:{updatedBy:function(){return Meteor.userId();}}});
+
+	}
+}
+
+Autoform.hooks({
+deliveryDetailsUpdate:hooksObject
+});*/
+
+

@@ -323,8 +323,6 @@ JobId:{
         type: "date"
       }}},*/
 	ShipCoName:{type:String, label:"Shipping Company Name",defaultValue:""},
-	companyPh:{type:String, label:"Phone Number",defaultValue:""},
-	companyEmail:{type:String, label:"Company Email of Contact",defaultValue:"", optional:true},
 	LocatedAt:{type:String, label:"Located At Mumbai/Andheri/JNPT",defaultValue:""},
 	VesselName:{type:String, label:"Vessel Name",defaultValue:""},
 	ETA:{type:String,label:"Estimated Time of Arrival (ETA)",autoform: {
@@ -347,14 +345,6 @@ JobId:{
         type: "date"
       }}},
 
-	WorkingSat:{type:Boolean,label:"Saturday Working?",defaultValue:0},
-	
-	Bond:{type:Boolean, label:"Rs 100/- Bond",defaultValue:0},
-	LetterHead:{type:Boolean,label: "Letter Head",defaultValue:0},
-	Insurance:{type:Boolean,label:"Insurance",defaultValue:0},
-	BlankCheque:{type:Boolean, label:"BLANK Cheque",defaultValue:0},
-	BankVer:{type:Boolean,label:"Bank Verification",defaultValue:0},
-	NOCLetter:{type:Boolean,label:"NOC Letter",defaultValue:0},
 	
 	StampDuty:{type:StampDutySchema,label:"Stamp Duty Details"},
 	updatedBy:{type:String,
@@ -394,7 +384,7 @@ YardSchema = new SimpleSchema({
       afFieldInput: {
         type: "date"
       }}},	
-	Containerhold:{type:String,label:"Container Hold",allowedValues: ['Yes', 'No']},
+	Containerhold:{type:String,label:"Container Hold",allowedValues: ['Yes', 'No'],optional:true},
 	YardPersonName:{type:String,label:"Yard Person's Name",defaultValue:""},
 	YardCharges:{type:String,label:"Yard Charges Rs.",defaultValue:0},
 	ValidTill:{type:String,label:"Yard Charges Valid Till",autoform: {
@@ -493,6 +483,7 @@ DeliverySchema = new SimpleSchema({
 
 PartyMasterSchema = new SimpleSchema({
 	ClientName:{type:String,label:"Client Name", max: 50, defaultValue:""},
+	IECCode:{type:String,label:"IEC NO.",max:10,defaultValue:""},
 	Telephone:{type:String,label:"Telephone No.",defaultValue:0},
 	Mobile:{type:String,label:"Mobile",defaultValue:0},
 	Email:{type:String,label:"Email ID", max: 30, defaultValue:""},
@@ -501,6 +492,7 @@ PartyMasterSchema = new SimpleSchema({
 	AcNo:{type:String,label:"A/C No", max: 15, defaultValue:""},
 	AccountType:{type:String,label:"Account Type", allowedValues: ['Savings', 'Current']},
 	Ifsc:{type:String,label:"IFSC Code", max: 15, defaultValue:""}
+
 });
 
 ShippingMasterSchema = new SimpleSchema({
@@ -513,7 +505,15 @@ ShippingMasterSchema = new SimpleSchema({
 	ScoBankBranch:{type:String,label:"S.CO Bank Branch", max: 50, defaultValue:""},
 	ScoAcNo:{type:String,label:"S.CO A/C No", max: 20, defaultValue:""},
 	ScoAccountType:{type:String,label:"S.CO Account Type", allowedValues: ['Savings', 'Current']},
-	ScoIfsc:{type:String,label:"S.CO IFSC Code", max: 15, defaultValue:""}
+	ScoIfsc:{type:String,label:"S.CO IFSC Code", max: 15, defaultValue:""},
+	WorkingSat:{type:Boolean,label:"Saturday Working?",defaultValue:0},
+	Bond:{type:Boolean, label:"Rs 100/- Bond",defaultValue:0},
+	LetterHead:{type:Boolean,label: "Letter Head",defaultValue:0},
+	Insurance:{type:Boolean,label:"Insurance",defaultValue:0},
+	BlankCheque:{type:Boolean, label:"BLANK Cheque",defaultValue:0},
+	BankVer:{type:Boolean,label:"Bank Verification",defaultValue:0},
+	NOCLetter:{type:Boolean,label:"NOC Letter",defaultValue:0},
+	
 });
 
 YardMasterSchema = new SimpleSchema({
