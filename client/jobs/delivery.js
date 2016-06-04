@@ -20,11 +20,6 @@ Template.delivery.helpers({
 		//console.log(id1._id)
 		return id1;
 	},
-	/*selectDoc:function(){
-		var id = FlowRouter.getParam('id');
-		id1 = DeliveryDetails.findOne({JobId:id});
-		return id1;
-	}*/
 });
 
 /*Template.delivery.events({
@@ -56,3 +51,9 @@ deliveryDetailsUpdate:hooksObject
 });*/
 
 
+AutoForm.addHooks('deliveryDetailsUpdate',{
+	onSuccess:function(id,doc)
+	{
+		Meteor.call('updateDeliveryDoc',id);
+	}
+})

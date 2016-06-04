@@ -2,7 +2,7 @@
 
 <h1>Enter Delivery Details</h1>
 {{#if deliveryMode}}
-    {{> quickForm collection="DeliveryDetails" id="deilveryDetailsInsert" type="insert"}}
+    {{> quickForm collection="DeliveryDetails" id="deliveryDetailsInsert" type="insert"}}
    {{else}}
 	{{> quickForm collection="DeliveryDetails" id="deliveryDetailsUpdate" type="update" doc=deliveryId}}
 <!--	<form>

@@ -20,6 +20,6 @@ Template.ship.helpers({
 		var id = FlowRouter.getParam('id');
 		var id1 = ShippingDetails.findOne({JobId:id});
 		console.log(id1._id)
-		return id1._id;
+		return id1;
 	},
 });
