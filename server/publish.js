@@ -26,6 +26,12 @@ return DeliveryDetails.find({});
 Meteor.publish('partyMasterDetails',function(){
 return PartyMasterDetails.find({});
 });
+Meteor.publish('shippingMasterDetails',function(){
+return ShippingMasterDetails.find({});
+});
+Meteor.publish('yardMasterDetails',function(){
+return YardMasterDetails.find({});
+});
 Meteor.publish('ports',function(){
 return Ports.find({});
 });

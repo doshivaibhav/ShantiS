@@ -33,30 +33,30 @@ Template.job.events({
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/orDoc"
+		window.location = "/"+id+"/orDoc";	
 	},
 	'click #btnShip':function(e)
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/ship"
+		window.location = "/"+id+"/ship";
 	},
 	'click #btnYard':function(e)
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/yard"
+		window.location = "/"+id+"/yard";
 	},
 	'click #btnDocDocks':function(e)
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/checked"
+		window.location = "/"+id+"/checked";
 	},
 	'click #btnDelivery':function(e)
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/delivery"
+		window.location = "/"+id+"/delivery";
 	},
 });
