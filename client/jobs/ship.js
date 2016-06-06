@@ -2,6 +2,7 @@ Template.ship.onCreated(function(){
 var self =this;
 self.autorun(function(){
 	self.subscribe('shippingDetails');
+	self.subscribe('shippingMasterDetails');
 });
 });
 
@@ -20,6 +21,15 @@ Template.ship.helpers({
 		var id1 = ShippingDetails.findOne({JobId:id});
 		console.log(id1._id)
 		return id1;
+	},
+	shipPartyName:function(){
+		var shipCol = ShippingMasterDetails.find({},{fields:{ScoName:1}});
+			var shiparr = [];
+			shipCol.forEach(function(obj){
+				shiparr.push({label:obj.ScoName,value:obj.ScoName});
+			})
+			//console.log(portarr);
+			return shiparr;
 	},
 });
 
