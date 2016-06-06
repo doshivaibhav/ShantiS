@@ -10,6 +10,9 @@ PartyMasterDetails = new Mongo.Collection('partyMasterDetails');
 ShippingMasterDetails = new Mongo.Collection('shippingMasterDetails');
 YardMasterDetails = new Mongo.Collection('yardMasterDetails');
 BeDetails = new Mongo.Collection('beDetails');
+StampDutyDetails = new Mongo.Collection('stampDutyDetails');
+IGMDetails = new Mongo.Collection('iGMDetails');
+
 PortsSchema = new SimpleSchema({
 	name:{
 		type:String,
@@ -82,6 +85,20 @@ DocSchema = new SimpleSchema({
 });
 
 BESchema = new SimpleSchema({
+	JobId:{
+	type:String,
+	autoValue:function(events,template)
+	{
+		if(Meteor.isClient)
+		{var id = FlowRouter.getParam('id');
+		console.log(id);
+		return id;
+		}
+	},
+  autoform:{
+  	type:"hidden",
+  },
+},
 	Desc:{
 		type:String,
 		label:"Product Description",
@@ -219,7 +236,21 @@ NextAgentSchema = new SimpleSchema({
 	LocatedAt:{type:String,label:"Located At Mumbai/Andheri/JNPT",defaultValue:""}
 	
 });
-JNPTIGMSchema = new SimpleSchema({
+IGMSchema = new SimpleSchema({
+	JobId:{
+	type:String,
+	autoValue:function(events,template)
+	{
+		if(Meteor.isClient)
+		{var id = FlowRouter.getParam('id');
+		console.log(id);
+		return id;
+		}
+	},
+  autoform:{
+  	type:"hidden",
+  },
+},
 	IGMNo:{type:String,label:"IGM No.",defaultValue:""},
 	Date:{type:String,label:"Date of Entry",autoform: {
       afFieldInput: {
@@ -231,6 +262,17 @@ JNPTIGMSchema = new SimpleSchema({
         type: "date"
       }}},
 	DestuffingYard:{type:String,label:"Destuffing Yard",defaultValue:""},
+	MumbaiIGMNo:{type:String,label:"Mumbai IGM No",defaultValue:"",optional:true},
+	MumbaiDate:{type:String,label:"Date",optional:true,autoform: {
+      afFieldInput: {
+        type: "date",
+      }}},
+	MumbaiItemNo:{type:String,label:"Item No",optional:true,defaultValue:""},
+	MumbaiInwardDate:{type:String,label:"Inward Date",optional:true,autoform: {
+      afFieldInput: {
+        type: "date"
+      }}},
+
 	updatedBy:{
 		type:String,
 		label:"Prepared By",
@@ -245,16 +287,6 @@ JNPTIGMSchema = new SimpleSchema({
 
 
 MumbaiIGMSchema = new SimpleSchema({
-	IGMNo:{type:String,label:"Mumbai IGM No",defaultValue:""},
-	Date:{type:String,label:"Date",autoform: {
-      afFieldInput: {
-        type: "date"
-      }}},
-	ItemNo:{type:String,label:"Item No",defaultValue:""},
-	InwardDate:{type:String,label:"Inward Date",autoform: {
-      afFieldInput: {
-        type: "date"
-      }}}
 });
 
 DOSchema = new SimpleSchema({
@@ -286,6 +318,20 @@ updatedBy:{
 });
 
 StampDutySchema = new SimpleSchema({
+	JobId:{
+	type:String,
+	autoValue:function(events,template)
+	{
+		if(Meteor.isClient)
+		{var id = FlowRouter.getParam('id');
+		console.log(id);
+		return id;
+  }
+		},
+  autoform:{
+  	type:"hidden",
+  },
+},
 	StampDuty:{type:String,label:"Shipping Co./BPT/Bank",allowedValues: ['Shipping co.', 'BPT' , 'Bank' , 'GRAS Online']},
 	SurRel:{type:String,label:"B/L Type",allowedValues: ['Surrender', 'Telex' , 'OBL']},
 	Amount:{type:String,label:"0.1% Stamp Duty Rs.",defaultValue:0},
@@ -332,8 +378,6 @@ JobId:{
         type: "date"
       }}},
 
-	JNPTIGM:{type:JNPTIGMSchema, label:"JNPT IGM",},
-	MumbaiIGM:{type:MumbaiIGMSchema, label:"Mumbai IGM"},
 	DO:{type:DOSchema, label:"Delivery Order (DO)"},
 	FreightCharges:{type:String, label:"Freight Charges Rs.",defaultValue:0},
 	NextAgent:{type:NextAgentSchema, label:"Next Agent"},
@@ -346,9 +390,6 @@ JobId:{
       afFieldInput: {
         type: "date"
       }}},
-
-	
-	StampDuty:{type:StampDutySchema,label:"Stamp Duty Details"},
 	updatedBy:{type:String,
 		label:"Prepared By",
 		autoValue:function(){
@@ -687,6 +728,7 @@ JobSchema = new SimpleSchema({
 */
 Jobs.attachSchema( JobSchema );
 BeDetails.attachSchema(BESchema);
+StampDutyDetails.attachSchema(StampDutySchema);
 PartyMasterDetails.attachSchema(PartyMasterSchema);
 ShippingMasterDetails.attachSchema(ShippingMasterSchema);
 YardMasterDetails.attachSchema(YardMasterSchema);
@@ -697,9 +739,14 @@ YardDetails.attachSchema(YardSchema);
 DocDocks.attachSchema(DocDocksSchema);
 DeliveryDetails.attachSchema(DeliverySchema);
 Ports.attachSchema(PortsSchema);
+IGMDetails.attachSchema(IGMSchema);
 
 Jobs.allow({
 	insert: function(userId,doc){
+		console.log("Running");
+		return !!userId;
+	},
+	update: function(userId,doc){
 		console.log("Running");
 		return !!userId;
 	}
@@ -708,7 +755,33 @@ BeDetails.allow({
 	insert: function(userId,doc){
 		console.log("Running");
 		return true;
-	},		
+	},
+	update: function(userId,doc){
+		console.log("Running");
+		return !!userId;
+	}		
+});
+
+IGMDetails.allow({
+	insert: function(userId,doc){
+		console.log("Running");
+		return true;
+	},
+	update: function(userId,doc){
+		console.log("Running");
+		return !!userId;
+	}		
+});
+
+StampDutyDetails.allow({
+	insert: function(userId,doc){
+		console.log("Running");
+		return true;
+	},
+	update: function(userId,doc){
+		console.log("Running");
+		return !!userId;
+	}
 });
 
 PartyMasterDetails.allow({

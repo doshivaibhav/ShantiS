@@ -1,0 +1,8 @@
+<template name= "stampduty">
+	<h1>Enter Stamp Duty Details</h1>
+{{#if stampMode}}
+    {{> quickForm collection="StampDutyDetails" id="stampDutyFormInsert" type="insert"}}
+{{else}}
+{{> quickForm collection="StampDutyDetails" id="stampDutyFormUpdate" type="update" doc=stampId}}
+{{/if}}
+</template>

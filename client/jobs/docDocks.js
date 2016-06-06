@@ -21,3 +21,9 @@ Template.docDocks.helpers({
 		return id1;
 	},
 });
+AutoForm.addHooks('docDocksFormUpdate',{
+	onSuccess:function(id,doc)
+	{
+		Meteor.call('updateDockDocsDoc',id);
+	}
+})
