@@ -22,3 +22,9 @@ Template.yard.helpers({
 		return id1;
 	},
 });
+AutoForm.addHooks('yardDetailsUpdate',{
+	onSuccess:function(id,doc)
+	{
+		Meteor.call('yardDetailsUpdateMethod',id);
+	}
+})

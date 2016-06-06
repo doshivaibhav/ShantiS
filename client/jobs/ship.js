@@ -1,4 +1,3 @@
-
 Template.ship.onCreated(function(){
 var self =this;
 self.autorun(function(){
@@ -23,3 +22,10 @@ Template.ship.helpers({
 		return id1;
 	},
 });
+
+AutoForm.addHooks('shipDetailsUpdate',{
+	onSuccess:function(id,doc)
+	{
+		Meteor.call('shipDetailsUpdateMethod',id);
+	}
+})

@@ -14,6 +14,11 @@ Meteor.publish('shippingDetails',function(){
 return ShippingDetails.find({});
 });
 
+
+Meteor.publish('iGMDetails',function(){
+return IGMDetails.find({});
+});
+
 Meteor.publish('yardDetails',function(){
 return YardDetails.find({});
 });
@@ -34,6 +39,9 @@ return YardMasterDetails.find({});
 });
 Meteor.publish('beDetails',function(){
 return BeDetails.find({});
+});
+Meteor.publish('stampDutyDetails',function(){
+return StampDutyDetails.find({});
 });
 Meteor.publish('ports',function(){
 return Ports.find({});

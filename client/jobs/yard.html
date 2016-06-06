@@ -2,8 +2,8 @@
 
 <h1>Enter Yard Details</h1>
 {{#if yardMode}}
-    {{> quickForm collection="YardDetails" id="yardDetails" type="insert"}}
+    {{> quickForm collection="YardDetails" id="yardDetailsInsert" type="insert"}}
 {{else}}
-	{{> quickForm collection="YardDetails" id="yardDetails" type="update" doc=yardId}}
+	{{> quickForm collection="YardDetails" id="yardDetailsUpdate" type="update" doc=yardId}}
 	{{/if}}
 </template>
