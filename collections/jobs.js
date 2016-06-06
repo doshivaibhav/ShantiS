@@ -9,7 +9,7 @@ Ports = new Mongo.Collection('ports');
 PartyMasterDetails = new Mongo.Collection('partyMasterDetails');
 ShippingMasterDetails = new Mongo.Collection('shippingMasterDetails');
 YardMasterDetails = new Mongo.Collection('yardMasterDetails');
-
+BeDetails = new Mongo.Collection('beDetails');
 PortsSchema = new SimpleSchema({
 	name:{
 		type:String,
@@ -84,25 +84,27 @@ DocSchema = new SimpleSchema({
 BESchema = new SimpleSchema({
 	Desc:{
 		type:String,
-		label:"Description",
+		label:"Product Description",
 		defaultValue:""
 	},
 	No:{
 		type:String,
-		label:"B/E No.",
+		label:"BOE No.",
 		defaultValue:""
 	},
-
-	Date:{
-		type:String,
-		label:"B/E Date.",
-		defaultValue:"",
-		autoform: {
-      afFieldInput: {
-        type: "date"
-      }
-    }
-	}
+	Date:{type:String,label:"B/E Date.",defaultValue:"",
+	autoform: { afFieldInput: 
+		{ type: "date"
+	}}
+	},
+	
+	AV:{type:String,label:"A/V Rs.", max: 10, defaultValue:""},
+	Duty:{type:String,label:"Duty Rs.", max: 9, defaultValue:""},
+	BndLic:{type:String,label:"Bond Amt. / Licence Amt. Rs.", max: 9, defaultValue:""},
+	TotalRs:{type:String,label:"Total Rs.", max: 9, defaultValue:"function by hook"},
+	Octroi:{type:String,label:"Octroi %", max: 3, defaultValue:""},
+	OctAmt:{type:String,label:"Octroi Amt. Rs.", max: 3, defaultValue:"function by hook"},
+	Insurance:{type:String,label:"Insurance", allowedValues:['By SSAPL','By Party']}
 });
 
 BLSchema = new SimpleSchema({
@@ -597,7 +599,7 @@ jobCreationSchema = new SimpleSchema({
 });
 
 
-PartySchema = new SimpleSchema({
+/*PartySchema = new SimpleSchema({
 	Create:{
 		type: PartyMasterSchema,
 		label:"Creation of Party Master"
@@ -617,7 +619,13 @@ MasterYardSchema = new SimpleSchema({
 		label:"Creation of Yard Master"
 }
 }),
-
+BOESchema = new SimpleSchema({
+	Create:{
+		type: BESchema,
+		label:"Creation of BOE"
+}
+}),
+*/
 JobSchema = new SimpleSchema({
 
 	Create:{
@@ -678,6 +686,7 @@ JobSchema = new SimpleSchema({
 });
 */
 Jobs.attachSchema( JobSchema );
+BeDetails.attachSchema(BESchema);
 PartyMasterDetails.attachSchema(PartyMasterSchema);
 ShippingMasterDetails.attachSchema(ShippingMasterSchema);
 YardMasterDetails.attachSchema(YardMasterSchema);
@@ -695,7 +704,12 @@ Jobs.allow({
 		return !!userId;
 	}
 });
-
+BeDetails.allow({
+	insert: function(userId,doc){
+		console.log("Running");
+		return true;
+	},		
+});
 
 PartyMasterDetails.allow({
 	insert: function(userId,doc){

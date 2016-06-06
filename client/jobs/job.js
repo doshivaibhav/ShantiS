@@ -47,6 +47,13 @@ Template.job.events({
 		e.preventDefault();
 		window.location = "/"+id+"/yard";
 	},
+	'click #btnBe':function(e)
+	{
+		var id = FlowRouter.getParam('id');
+		e.preventDefault();
+		console.log('hi');
+		window.location = "/"+id+"/boe";
+	},
 	'click #btnDocDocks':function(e)
 	{
 		var id = FlowRouter.getParam('id');
