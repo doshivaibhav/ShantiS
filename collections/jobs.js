@@ -229,13 +229,6 @@ BLSchema = new SimpleSchema({
 		}
 });
 
-NextAgentSchema = new SimpleSchema({
-	Name:{type:String,label:"Next Agent Name",defaultValue:""},
-	PhNo:{type:String,label:"Phone Number",defaultValue:0},
-	Email:{type:String,label:"Email ID",defaultValue:""},
-	LocatedAt:{type:String,label:"Located At Mumbai/Andheri/JNPT",defaultValue:""}
-	
-});
 IGMSchema = new SimpleSchema({
 	JobId:{
 	type:String,
@@ -351,20 +344,20 @@ StampDutySchema = new SimpleSchema({
 });
 
 ShippingSchema = new SimpleSchema({
-JobId:{
-	type:String,
-	autoValue:function(events,template)
-	{
-		if(Meteor.isClient)
-		{var id = FlowRouter.getParam('id');
-		console.log(id);
-		return id;
-  }
-		},
-  autoform:{
-  	type:"hidden",
-  },
-},
+	JobId:{
+		type:String,
+		autoValue:function(events,template)
+		{
+			if(Meteor.isClient)
+			{var id = FlowRouter.getParam('id');
+			console.log(id);
+			return id;
+	  }
+			},
+	  autoform:{
+	  	type:"hidden",
+	  },
+	},
 	/*PQRIRONo:{type:String,label:"PQR IRO No.",defaultValue:""},
 	DateIRO:{type:String, label:"Date of IRO",autoform: {
       afFieldInput: {
@@ -380,7 +373,7 @@ JobId:{
 
 	DO:{type:DOSchema, label:"Delivery Order (DO)"},
 	FreightCharges:{type:String, label:"Freight Charges Rs.",defaultValue:0},
-	NextAgent:{type:NextAgentSchema, label:"Next Agent"},
+	NextAgent:{type:String, label:"Next Agent",defaultValue:""},
 	DaysFree:{type:Boolean,label:"14 days Free",defaultValue:0},
 	FreeDaysFrom:{type:String,label:"Free Days from",autoform: {
       afFieldInput: {
