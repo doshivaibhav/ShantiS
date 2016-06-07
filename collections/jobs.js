@@ -416,7 +416,6 @@ YardSchema = new SimpleSchema({
   },
 },
 	YardName:{type:String,label:"Yard Name",defaultValue:""},
-	PhNo:{type:String,label:"Contact Number",defaultValue:""},
 	JobOrder:{type:Boolean,label:"Job Order",defaultValue:0},
 	ContainerArr:{type:String,label:"Container Arrived On",autoform: {
       afFieldInput: {
