@@ -230,6 +230,9 @@ BLSchema = new SimpleSchema({
 		}
 });
 
+
+
+
 IGMSchema = new SimpleSchema({
 	JobId:{
 	type:String,
@@ -280,8 +283,10 @@ IGMSchema = new SimpleSchema({
 });
 
 
-MumbaiIGMSchema = new SimpleSchema({
-});
+/*PGASchema = new SimpleSchema({
+PGASEL:{type:String,label:"Select Partner Government Agency",
+allowedValues: ['FSSAI','PQ','FSSAI & PQ','ADC','WLRO','TEXTILE']},
+});*/
 
 DOSchema = new SimpleSchema({
 SurRel:{type:String,label:"B/L Type",allowedValues: ['Surrender', 'Telex' , 'OBL']},
@@ -630,6 +635,7 @@ jobCreationSchema = new SimpleSchema({
 		max: 100,
 		defaultValue:""
 	},
+
 	Doc:{
 		type:DocSchema,
 		label:"Copy Document Details"
@@ -643,6 +649,13 @@ jobCreationSchema = new SimpleSchema({
 		type:BLSchema,
 		label:"B/L Details"
 	},
+
+	PGASEL:{type:String,label:"Select Partner Government Agency",
+		allowedValues: ['FSSAI','PQ','FSSAI & PQ','ADC','WLRO','TEXTILE']},	
+	/*PGA:{
+		type:PGASchema,
+		label:"Select PGA"
+	},*/	
 });
 
 
