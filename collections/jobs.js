@@ -9,6 +9,7 @@ Ports = new Mongo.Collection('ports');
 PartyMasterDetails = new Mongo.Collection('partyMasterDetails');
 ShippingMasterDetails = new Mongo.Collection('shippingMasterDetails');
 YardMasterDetails = new Mongo.Collection('yardMasterDetails');
+TransportMasterDetails = new Mongo.Collection('transportMasterDetails');
 BeDetails = new Mongo.Collection('beDetails');
 StampDutyDetails = new Mongo.Collection('stampDutyDetails');
 IGMDetails = new Mongo.Collection('iGMDetails');
@@ -283,6 +284,7 @@ MumbaiIGMSchema = new SimpleSchema({
 });
 
 DOSchema = new SimpleSchema({
+SurRel:{type:String,label:"B/L Type",allowedValues: ['Surrender', 'Telex' , 'OBL']},
 Charges:{type:String,label:"D/O Charges Rs.", max: 7, defaultValue:0},
 InFavourOf:{type:String,label:"In favour of",defaultValue:""},
 ValidTill:{type:String, label:"Valid Till",autoform: {
@@ -326,7 +328,7 @@ StampDutySchema = new SimpleSchema({
   },
 },
 	StampDuty:{type:String,label:"Shipping Co./BPT/Bank",allowedValues: ['Shipping co.', 'BPT' , 'Bank' , 'GRAS Online']},
-	SurRel:{type:String,label:"B/L Type",allowedValues: ['Surrender', 'Telex' , 'OBL']},
+	//SurRel:{type:String,label:"B/L Type",allowedValues: ['Surrender', 'Telex' , 'OBL']},
 	Amount:{type:String,label:"0.1% Stamp Duty Rs.",defaultValue:0},
 	GRNNo:{type:String,label:"GRN No.",defaultValue:""},
 	Date:{type:String,label:"Date of Paymnet",autoform: {
@@ -370,8 +372,6 @@ ShippingSchema = new SimpleSchema({
       afFieldInput: {
         type: "date"
       }}},
-
-	DO:{type:DOSchema, label:"Delivery Order (DO)"},
 	FreightCharges:{type:String, label:"Freight Charges Rs.",defaultValue:0},
 	NextAgent:{type:String, label:"Next Agent",defaultValue:""},
 	DaysFree:{type:Boolean,label:"14 days Free",defaultValue:0},
@@ -383,6 +383,7 @@ ShippingSchema = new SimpleSchema({
       afFieldInput: {
         type: "date"
       }}},
+    DO:{type:DOSchema, label:"Delivery Order (DO)"},
 	updatedBy:{type:String,
 		label:"Prepared By",
 		autoValue:function(){
@@ -565,6 +566,18 @@ YardMasterSchema = new SimpleSchema({
 	YrdIfsc:{type:String,label:"CFS IFSC Code", max: 15, defaultValue:""}
 });
 
+TransportMasterSchema = new SimpleSchema({
+	TransName:{type:String,label:"Transporter Name", max: 50, defaultValue:""},
+	Transtelephone:{type:String,label:"Transporter Telephone No.", max: 12, defaultValue:0},
+	TransMobile:{type:String,label:"Transporter Mobile No.", max: 10, defaultValue:0},
+	TransEmail:{type:String,label:"Transporter Email ID", max: 30, defaultValue:""},
+	TransBankName:{type:String,label:"Transporter Bank Name", max: 50, defaultValue:""},
+	TransBankBranch:{type:String,label:"Transporter Branch", max: 50, defaultValue:""},
+	TransAcNo:{type:String,label:"Transporter A/C No", max: 20, defaultValue:""},
+	TransAccountType:{type:String,label:"Transporter Account Type", allowedValues: ['Savings', 'Current']},
+	TransIfsc:{type:String,label:"S.CO IFSC Code", max: 15, defaultValue:""},
+});
+
 jobCreationSchema = new SimpleSchema({
 	JobNo:{
 		type: String,
@@ -725,6 +738,7 @@ StampDutyDetails.attachSchema(StampDutySchema);
 PartyMasterDetails.attachSchema(PartyMasterSchema);
 ShippingMasterDetails.attachSchema(ShippingMasterSchema);
 YardMasterDetails.attachSchema(YardMasterSchema);
+TransportMasterDetails.attachSchema(TransportMasterSchema);
 JobCreation.attachSchema(jobCreationSchema);
 OriginalDoc.attachSchema(OriginalDocSchema);
 ShippingDetails.attachSchema(ShippingSchema);
@@ -785,6 +799,13 @@ PartyMasterDetails.allow({
 });
 
 YardMasterDetails.allow({
+	insert: function(userId,doc){
+		console.log("Running");
+		return true;
+	},		
+});
+
+TransportMasterDetails.allow({
 	insert: function(userId,doc){
 		console.log("Running");
 		return true;
