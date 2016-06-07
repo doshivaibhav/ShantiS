@@ -37,6 +37,9 @@ return ShippingMasterDetails.find({});
 Meteor.publish('yardMasterDetails',function(){
 return YardMasterDetails.find({});
 });
+Meteor.publish('transportMasterDetails',function(){
+return TransportMasterDetails.find({});
+});
 Meteor.publish('beDetails',function(){
 return BeDetails.find({});
 });
