@@ -46,16 +46,14 @@ self.autorun(function(){
 });*/
 
 Template.newJob.helpers({
-	MC:
-		function()
-		{
+	MC:function(){
 			return [{label:'Mail',value:'Mail'},{label:'Courier',value:'Courier'}]
 		},
 	TOC:function(){
 		return [{label:'LCL',value:'LCL'},{label:'20" FCL',value:'20" FCL'},{label:'40" FCL',value:'40" FCL'}]
 	},
 	port:function(){
-		var portCol = Ports.find({});
+		var portCol = Ports.find({},{fields:{name:1}});
 			var portarr = [];
 			portCol.forEach(function(obj){
 				portarr.push({label:obj.name,value:obj.name});

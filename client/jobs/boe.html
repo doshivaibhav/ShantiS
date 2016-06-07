@@ -1,5 +1,9 @@
 <template name = "boe">
 
 <h1>Enter BOE Details</h1>
-    {{> quickForm collection="BeDetails" id="beDetails" type="insert"}}
+    {{#if boeMode}}
+    {{> quickForm collection="BeDetails" id="beDetailsInsert" type="insert"}}
+{{else}}
+{{> quickForm collection="BeDetails" id="beDetailsUpdate" type="update" doc=boeId}}
+{{/if}}
 </template>
