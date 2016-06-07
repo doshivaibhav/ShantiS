@@ -32,4 +32,35 @@
 <br><button class="btn btn-default" name="btnStampDuty" id="btnStampDuty">Stamp Duty</button>
 <br><button class="btn btn-default" name="btnDocDocks" id="btnDocDocks">Documents Checked by Docks </button>
 <br><button class="btn btn-default" name="btnDelivery" id="btnDelivery">Delivery Details </button>
+
+<!--{{#if (jobs.PGASEL) == FSSAI}}
+	<br><button class="btn btn-default" name="btnFSSAI" id="btnFSSAI">ENTER FSSAI DETAILS</button>
+{{/if}}
+
+{{#if ((jobs.PGASEL) == ('PQ')) }}
+	<br><button class="btn btn-default" name="btnPQ" id="btnFSSAI">ENTER PQ DETAILS</button>
+{{/if}}	
+
+{{#if ((jobs.PGASEL) == ('FSSAI & PQ')) }}
+	<br><button class="btn btn-default" name="btnFSSAI" id="btnFSSAI">ENTER FSSAI DETAILS</button>
+	<br><button class="btn btn-default" name="btnPQ" id="btnPQ">ENTER PQ DETAILS</button>
+{{/if}}
+
+{{#if ((jobs.PGASEL) == ('ADC')) }}
+	<br><button class="btn btn-default" name="btnADC" id="btnADC">ENTER ADC DETAILS</button>
+{{/if}}
+
+{{#if ((jobs.PGASEL) == ('WLRO')) }}
+	<br><button class="btn btn-default" name="btnADC" id="btnADC">ENTER WLRO DETAILS</button>
+{{/if}}
+
+{{#if ((jobs.PGASEL) == ('TEXTILE')) }}	
+	<br><button class="btn btn-default" name="btnTXT" id="btnTXT">ENTER WLRO DETAILS</button>
+{{/if}}
+
+{{else}}
+<p style="color:green"><b>NO PGA INVOLVED</b></p>
+{{/if}}-->
+
+
 </template>
