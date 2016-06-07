@@ -84,5 +84,27 @@ Template.job.events({
 		e.preventDefault();
 		window.location = "/"+id+"/iGMDetails";
 	
-	}
+	},
+
+	'click #btnFSSAI':function(e)
+	{
+		var id = FlowRouter.getParam('id');
+		e.preventDefault();
+		//console.log('hi');
+		window.location = "/"+id+"/fssai";
+	},
+	
+	'click #btnPQ':function(e)
+	{
+		var id = FlowRouter.getParam('id');
+		e.preventDefault();
+		window.location = "/"+id+"/pq";
+	},
+	
+	'click #btnTXT':function(e)
+	{
+		var id = FlowRouter.getParam('id');
+		e.preventDefault();
+		window.location = "/"+id+"/textile";
+	},
 });
