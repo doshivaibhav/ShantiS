@@ -63,7 +63,7 @@ Template.newJob.helpers({
 	},
 	poptions:function(){
 	return [{label:'FSSAI',value:'FSSAI'},{label:'PQ',value:'PQ'},{label:'FSSAI & PQ',value:'FSSAI & PQ'},
-	{label:'ADC',value:'ADC'},{label:'WLRO',value:'WLRO'},{label:'TEXTILE',value:'TEXTILE'}]
+	{label:'ADC',value:'ADC'},{label:'WLRO',value:'WLRO'},{label:'TEXTILE',value:'TEXTILE'},{label:'N/A',value:'N/A'}]
 	}
 	
 });
