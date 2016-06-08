@@ -2,7 +2,24 @@
 
 <h1>Enter BOE Details</h1>
     {{#if boeMode}}
-    {{> quickForm collection="BeDetails" id="beDetailsInsert" type="insert"}}
+    <!--{{> quickForm collection="BeDetails" id="beDetailsInsert" type="insert"}}-->
+    {{#autoForm collection="BeDetails" id="beDetailsInsert" type="insert"}}
+
+		    {{> afQuickField name='Desc' options=port}}
+		    {{> afQuickField name='No'}}
+			{{> afQuickField name="Date"}}
+		    {{> afQuickField name="AV"}}
+		    {{> afQuickField name="Duty" options=shipPartyName}}
+		    {{> afQuickField name="BndLic"}}
+		    {{> afQuickField name="TotalRs"}}
+		    {{> afQuickField name="Octroi"}}
+		    {{> afQuickField name="OctAmt"}}
+		    {{> afQuickField name="Insurance"}}
+	<div class="form-group">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-default">Reset Form</button>
+  </div>
+    {{/autoForm}}
 {{else}}
 {{> quickForm collection="BeDetails" id="beDetailsUpdate" type="update" doc=boeId}}
 {{/if}}
