@@ -49,3 +49,12 @@ return StampDutyDetails.find({});
 Meteor.publish('ports',function(){
 return Ports.find({});
 });
+Meteor.publish('fssaiDetails',function(){
+return FssaiDetails.find({});
+});
+Meteor.publish('pqDetails',function(){
+return PqDetails.find({});
+});
+Meteor.publish('textDetails',function(){
+return TextDetails.find({});
+});

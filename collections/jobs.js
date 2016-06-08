@@ -13,6 +13,9 @@ TransportMasterDetails = new Mongo.Collection('transportMasterDetails');
 BeDetails = new Mongo.Collection('beDetails');
 StampDutyDetails = new Mongo.Collection('stampDutyDetails');
 IGMDetails = new Mongo.Collection('iGMDetails');
+FssaiDetails = new Mongo.Collection('fssaiDetails');
+PqDetails = new Mongo.Collection('pqDetails');
+TextDetails = new Mongo.Collection('textDetails');
 
 PortsSchema = new SimpleSchema({
 	name:{
@@ -230,8 +233,135 @@ BLSchema = new SimpleSchema({
 		}
 });
 
+FssaiSchema = new SimpleSchema({
+	JobId:{
+	type:String,
+	autoValue:function(events,template)
+	{
+		if(Meteor.isClient)
+		{var id = FlowRouter.getParam('id');
+		console.log(id);
+		return id;
+		}
+	},
+  autoform:{
+  	type:"hidden",
+  },
+},	
+	AppNo:{type:String,label:"FSSAI Application No.", max: 30, defaultValue:""},
+	AppDate:{type:String,label:"FSSAI Application Date", autoform: {
+      afFieldInput: {
+        type: "date"
+      }}},
+    AptDate:{type:String,label:"FSSAI Appointment Date", autoform: {
+      afFieldInput: {
+        type: "date"
+      }}}, 
+    Fssichrgs:{type:String,label:"FSSAI Charges", max: 30, defaultValue:""},
+    SampleFwd:{type:String,label:"FSSAI Sample Forwarding Date", autoform: {
+      afFieldInput: {
+        type: "date"
+      }}},
+    FssaiRpt:{type:String,label:"FSSAI Report Date", autoform: {
+      afFieldInput:{
+        type: "date"
+      }}},
+    FssaiSts:{type:String,label:"FSSAI Report Status", allowedValues:['Pass','Fail']},  
+	updatedBy:{
+	type:String,
+	label:"Prepared By",
+	autoValue:function(){
+		return this.userId
+	},
+	autoform:{
+	type:"hidden"
+		}
+	}
+});
 
+PqSchema = new SimpleSchema({
+	JobId:{
+	type:String,
+	autoValue:function(events,template)
+	{
+		if(Meteor.isClient)
+		{var id = FlowRouter.getParam('id');
+		console.log(id);
+		return id;
+		}
+	},
+  autoform:{
+  	type:"hidden",
+  },
+},	
+	IroNo:{type:String,label:"PQ IRO No.", max: 30, defaultValue:""},
+	IroAppDate:{type:String,label:"IRO Application Date", autoform: {
+      afFieldInput: {
+        type: "date"
+      }}},
+    IroAptDate:{type:String,label:"PQ Appointment Date", autoform: {
+      afFieldInput: {
+        type: "date"
+      }}}, 
+    Irochrgs:{type:String,label:"PQ Charges Rs.", max: 30, defaultValue:""},
+    IroRpt:{type:String,label:"PQ Report Date", autoform: {
+      afFieldInput:{
+        type: "date"
+      }}},
+    IroSts:{type:String,label:"PQ Report Status", allowedValues:['Pass','Fail']},
+ 	updatedBy:{
+	type:String,
+	label:"Prepared By",
+	autoValue:function(){
+		return this.userId
+	},
+	autoform:{
+	type:"hidden"
+		}
+	}
+});
 
+TxtSchema = new SimpleSchema({
+	JobId:{
+	type:String,
+	autoValue:function(events,template)
+	{
+		if(Meteor.isClient)
+		{var id = FlowRouter.getParam('id');
+		console.log(id);
+		return id;
+		}
+	},
+  autoform:{
+  	type:"hidden",
+  },
+},	
+	TxtSampNo:{type:String,label:"Textile Sample No.", max: 30, defaultValue:""},
+	TxtAppDate:{type:String,label:"Sample Draw Date", autoform: {
+      afFieldInput: {
+        type: "date"
+      }}},
+    TxtRcdDate:{type:String,label:"Sample Received Date", autoform: {
+      afFieldInput: {
+        type: "date"
+      }}}, 
+    Txtchrgs:{type:String,label:"Textiles Committee Charges Rs.", max: 30, defaultValue:""},
+    TxtRpt:{type:String,label:"Textile Report Date", autoform: {
+      afFieldInput:{
+        type: "date"
+      }}},
+    TxtSts:{type:String,label:"Textile Report Status", allowedValues:['Pass','Fail']},
+ 	updatedBy:{
+	type:String,
+	label:"Prepared By",
+	autoValue:function(){
+		return this.userId
+	},
+	autoform:{
+	type:"hidden"
+		}
+	}
+});
 
 IGMSchema = new SimpleSchema({
 	JobId:{
@@ -650,7 +780,7 @@ jobCreationSchema = new SimpleSchema({
 	},
 
 	PGASEL:{type:String,label:"Select Partner Government Agency",
-		allowedValues: ['FSSAI','PQ','FSSAI & PQ','ADC','WLRO','TEXTILE']},	
+		allowedValues: ['FSSAI','PQ','FSSAI - PQ','ADC','WLRO','TEXTILE']},	
 	/*PGA:{
 		type:PGASchema,
 		label:"Select PGA"
@@ -759,6 +889,9 @@ DocDocks.attachSchema(DocDocksSchema);
 DeliveryDetails.attachSchema(DeliverySchema);
 Ports.attachSchema(PortsSchema);
 IGMDetails.attachSchema(IGMSchema);
+FssaiDetails.attachSchema(FssaiSchema);
+PqDetails.attachSchema(PqSchema);
+TextDetails.attachSchema(TxtSchema);
 
 Jobs.allow({
 	insert: function(userId,doc){
@@ -792,6 +925,37 @@ IGMDetails.allow({
 	}		
 });
 
+FssaiDetails.allow({
+	insert: function(userId,doc){
+		console.log("Running");
+		return true;
+	},
+	update: function(userId,doc){
+		console.log("Running");
+		return !!userId;
+	}		
+}),
+
+TextDetails.allow({
+	insert: function(userId,doc){
+		console.log("Running");
+		return true;
+	},
+	update: function(userId,doc){
+		console.log("Running");
+		return !!userId;
+	}		
+}),
+PqDetails.allow({
+	insert: function(userId,doc){
+		console.log("Running");
+		return true;
+	},
+	update: function(userId,doc){
+		console.log("Running");
+		return !!userId;
+	}		
+}),
 StampDutyDetails.allow({
 	insert: function(userId,doc){
 		console.log("Running");

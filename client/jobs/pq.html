@@ -1,9 +1,9 @@
 <template name = "pq">
 
 <h1>Enter PQ Details</h1>
-    <!--{{#if pqMode}}
+    {{#if pqMode}}
     {{> quickForm collection="PqDetails" id="pqDetailsInsert" type="insert"}}
 {{else}}
-{{> quickForm collection="PqDetails" id="pqDetailsUpdate" type="update" doc=boeId}}
-{{/if}}-->
+{{> quickForm collection="PqDetails" id="pqDetailsUpdate" type="update" doc=pqId}}
+{{/if}}
 </template>
