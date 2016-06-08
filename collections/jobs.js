@@ -733,7 +733,7 @@ jobCreationSchema = new SimpleSchema({
 	Port:{
 		type: String,
 		label: "Port Name",
-		max: 15,
+		max: 30,
 		defaultValue:""
 	},
 
