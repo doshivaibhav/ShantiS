@@ -1,7 +1,8 @@
 Template.pq.onCreated(function(){
 var self =this;
 self.autorun(function(){
-	self.subscribe('pqDetails');
+	var id = FlowRouter.getParam('id');
+	self.subscribe('pqDetails',id);
 });
 });
 
@@ -27,6 +28,8 @@ AutoForm.addHooks('pqDetailsUpdate',{
 	{
 		Meteor.call('pqDetailsUpdateMethod',id);
 		alert('Data Updated');
+		window.history.back();
+		
 	}
 });
 
@@ -38,6 +41,8 @@ AutoForm.addHooks('pqDetailsInsert', {
 	onSuccess:function(id,doc)
 	{
 		alert('Data Inserted');
+		window.history.back();
+		
 	}
 });
 SimpleSchema.debug = true;

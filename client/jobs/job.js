@@ -3,12 +3,17 @@ Template.job.onCreated(function(){
 	
 var self =this;
 self.autorun(function(){
+	var id = FlowRouter.getParam('id');
 	self.subscribe('jobCreation');
-	self.subscribe('shippingDetails');
-	self.subscribe('originalDoc');
-	self.subscribe('yardDetails');
-	self.subscribe('docDocks');
-	self.subscribe('deliveryDetails');
+	self.subscribe('shippingDetails',id);
+	self.subscribe('originalDoc',id);
+	self.subscribe('yardDetails',id);
+	self.subscribe('docDocks',id);
+	self.subscribe('deliveryDetails',id);
+	self.subscribe('stampDutyDetails',id);
+	self.subscribe('iGMDetails',id);
+	self.subscribe('beDetails',id);
+	
 });
 });
 Template.job.helpers({
@@ -57,7 +62,7 @@ Template.job.helpers({
 		if(Session.get('PGASELVAL')=='TEXTILE')
 				{return true;}
 			return false;
-	}
+	},
 });
 
 Template.job.events({
@@ -108,7 +113,12 @@ Template.job.events({
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/stampduty";
+		var id = FlowRouter.getParam('id');
+		var id1 = BeDetails.findOne({JobId:id});
+		if(typeof id1 == 'undefined')
+			alert("Please Fill BE Details First");
+		else
+			window.location = "/"+id+"/stampduty";
 	},
 	'click #btnIGM':function(e)
 	{

@@ -1,7 +1,8 @@
 Template.textile.onCreated(function(){
 var self =this;
 self.autorun(function(){
-	self.subscribe('textDetails');
+	var id = FlowRouter.getParam('id');
+	self.subscribe('textDetails',id);
 });
 });
 

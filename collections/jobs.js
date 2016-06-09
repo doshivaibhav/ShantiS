@@ -119,13 +119,23 @@ BESchema = new SimpleSchema({
 	}}
 	},
 	
-	AV:{type:String,label:"A/V Rs.", max: 10, defaultValue:""},
-	Duty:{type:String,label:"Duty Rs.", max: 9, defaultValue:""},
-	BndLic:{type:String,label:"Bond Amt. / Licence Amt. Rs.", max: 9, defaultValue:""},
+	AV:{type:String,label:"A/V Rs.", max: 10, defaultValue:"0.00"},
+	Duty:{type:String,label:"Duty Rs.", max: 9, defaultValue:"0.00"},
+	BndLic:{type:String,label:"Bond Amt. / Licence Amt. Rs.", max: 9, defaultValue:"0.00"},
 	TotalRs:{type:String,label:"Total Rs.", max: 9, defaultValue:"function by hook"},
 	Octroi:{type:String,label:"Octroi %", max: 3, defaultValue:""},
-	OctAmt:{type:String,label:"Octroi Amt. Rs.", max: 3, defaultValue:"function by hook"},
-	Insurance:{type:String,label:"Insurance", allowedValues:['By SSAPL','By Party']}
+	OctAmt:{type:String,label:"Octroi Amt. Rs.", max: 6, defaultValue:"function by hook"},
+	Insurance:{type:String,label:"Insurance", allowedValues:['By SSAPL','By Party']},
+	updatedBy:{
+			type:String,
+		label:"Prepared By",
+		autoValue:function(){
+			return this.userId
+		},
+		autoform:{
+			type:"hidden"
+		}
+		}
 });
 
 BLSchema = new SimpleSchema({
@@ -555,7 +565,12 @@ YardSchema = new SimpleSchema({
       afFieldInput: {
         type: "date"
       }}},	
-	Containerhold:{type:String,label:"Container Hold",allowedValues: ['Yes', 'No'],optional:true},
+	Containerhold:{type:String,label:"Container Hold",allowedValues: ['Yes', 'No'],optional:true,
+	autoform:{
+		type:"select-radio-inline",
+		options:[{label:'Yes',value:'Yes'},{label:'No',value:'No'}]
+	}
+	},
 	YardPersonName:{type:String,label:"Yard Person's Name",defaultValue:""},
 	YardCharges:{type:String,label:"Yard Charges Rs.",defaultValue:0},
 	ValidTill:{type:String,label:"Yard Charges Valid Till",autoform: {
@@ -780,7 +795,9 @@ jobCreationSchema = new SimpleSchema({
 	},
 
 	PGASEL:{type:String,label:"Select Partner Government Agency",
-		allowedValues: ['FSSAI','PQ','FSSAI - PQ','ADC','WLRO','TEXTILE']},	
+		allowedValues: ['N/A','FSSAI','PQ','FSSAI - PQ','ADC','WLRO','TEXTILE'],
+		defaultValue:"N/A"
+	},	
 	/*PGA:{
 		type:PGASchema,
 		label:"Select PGA"

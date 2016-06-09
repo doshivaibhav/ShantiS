@@ -1,7 +1,8 @@
 Template.fssai.onCreated(function(){
 var self =this;
 self.autorun(function(){
-	self.subscribe('fssaiDetails');
+	var id = FlowRouter.getParam('id');
+	self.subscribe('fssaiDetails',id);
 });
 });
 

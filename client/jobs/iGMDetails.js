@@ -1,7 +1,8 @@
 Template.stampduty.onCreated(function(){
 var self =this;
 self.autorun(function(){
-	self.subscribe('iGMDetails');
+	var id = FlowRouter.getParam('id');
+	self.subscribe('iGMDetails',id);
 });
 });
 
@@ -26,5 +27,22 @@ AutoForm.addHooks('iGMDetailsUpdate',{
 	onSuccess:function(id,doc)
 	{
 		Meteor.call('iGMDetailsUpdateMethod',id);
+		alert('Data Updated');
+		window.history.back();
+		
 	}
-})
+});
+
+AutoForm.addHooks('iGMDetailsInsert', {
+  	onSubmit: function (insertDoc, updateDoc, currentDoc) {
+    console.log(arguments);
+    return false;
+  },
+	onSuccess:function(id,doc)
+	{
+		alert('Data Inserted');
+		window.history.back();
+		
+	}
+});
+SimpleSchema.debug = true;
