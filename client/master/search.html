@@ -1,0 +1,14 @@
+<template name="search">
+	Search Here: {{> EasySearch.Input index=partyIndex }}
+<br><br>
+    <ul class="list-group">
+        {{#EasySearch.Each index=partyIndex }}
+            <li class="list-group-item"><b>{{ClientName}} - </b>{{Telephone}}</li>
+        {{/EasySearch.Each}}
+    </ul>
+    {{> EasySearch.LoadMore index=partyIndex}}
+
+  {{#EasySearch.IfNoResults index=partyIndex}}
+    <div class="no-results">No results found!</div>
+  {{/EasySearch.IfNoResults}}
+</template>

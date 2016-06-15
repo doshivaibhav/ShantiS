@@ -1079,3 +1079,8 @@ Ports.allow({
 	},
 });
 
+PartyMasterIndex = new EasySearch.Index({
+	collection: PartyMasterDetails,
+	fields:['ClientName','Telephone'],
+	engine:new EasySearch.Minimongo(),
+});
