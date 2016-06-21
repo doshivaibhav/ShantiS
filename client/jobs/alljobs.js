@@ -7,6 +7,6 @@ self.autorun(function(){
 });
 Template.alljobs.helpers({
     alljobs:()=>{
-		return JobCreation.find({});
+		return JobCreation.find({},{sort:{DateOfCreation:-1}});
 	}
 });

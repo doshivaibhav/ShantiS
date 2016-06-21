@@ -1,10 +1,6 @@
-Template.search.onCreated(function(){
-var self =this;
-self.autorun(function(){
-  self.subscribe('partyMasterDetails');
-});
-});
-
 Template.search.helpers({
-  partyIndex: () => PartyMasterIndex
+  activeIfTemplateIs: function (template) {
+    var currentRoute = FlowRouter.getRouteName();
+    return currentRoute && template === currentRoute ? 'active' : '';
+  }
 });

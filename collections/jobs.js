@@ -681,6 +681,13 @@ PartyMasterSchema = new SimpleSchema({
 
 });
 
+
+PartyMasterIndex = new EasySearch.Index({
+	collection: PartyMasterDetails,
+	fields:['ClientName','Telephone','Mobile','Email'],
+	engine:new EasySearch.Minimongo(),
+});
+
 ShippingMasterSchema = new SimpleSchema({
 	ScoName:{type:String,label:"Shipping Company Name", max: 50, defaultValue:""},
 	ScoTelephone:{type:String,label:"S.CO Telephone No.", max: 10, defaultValue:0},
@@ -702,6 +709,13 @@ ShippingMasterSchema = new SimpleSchema({
 	
 });
 
+
+ShippingMasterIndex = new EasySearch.Index({
+	collection: ShippingMasterDetails,
+	fields:['ScoName','ScoTelephone','ScoMobile','ScoEmail'],
+	engine:new EasySearch.Minimongo(),
+});
+
 YardMasterSchema = new SimpleSchema({
 	YrdName:{type:String,label:"CFS Name", max: 50, defaultValue:""},
 	YrdTelephone:{type:String,label:"CFS Telephone No.", max: 10, defaultValue:0},
@@ -715,6 +729,13 @@ YardMasterSchema = new SimpleSchema({
 	YrdIfsc:{type:String,label:"CFS IFSC Code", max: 15, defaultValue:""}
 });
 
+
+YardMasterIndex = new EasySearch.Index({
+	collection: YardMasterDetails,
+	fields:['YrdName','YrdTelephone','YrdEmail'],
+	engine:new EasySearch.Minimongo(),
+});
+
 TransportMasterSchema = new SimpleSchema({
 	TransName:{type:String,label:"Transporter Name", max: 50, defaultValue:""},
 	Transtelephone:{type:String,label:"Transporter Telephone No.", max: 12, defaultValue:0},
@@ -725,6 +746,13 @@ TransportMasterSchema = new SimpleSchema({
 	TransAcNo:{type:String,label:"Transporter A/C No", max: 20, defaultValue:""},
 	TransAccountType:{type:String,label:"Transporter Account Type", allowedValues: ['Savings', 'Current']},
 	TransIfsc:{type:String,label:"S.CO IFSC Code", max: 15, defaultValue:""},
+});
+
+
+TransportMasterIndex = new EasySearch.Index({
+	collection: TransportMasterDetails,
+	fields:['TransName','Transtelephone','TransMobile','TransEmail'],
+	engine:new EasySearch.Minimongo(),
 });
 
 jobCreationSchema = new SimpleSchema({
@@ -1077,10 +1105,4 @@ Ports.allow({
 		console.log("Running");
 		return !!userId;
 	},
-});
-
-PartyMasterIndex = new EasySearch.Index({
-	collection: PartyMasterDetails,
-	fields:['ClientName','Telephone'],
-	engine:new EasySearch.Minimongo(),
 });

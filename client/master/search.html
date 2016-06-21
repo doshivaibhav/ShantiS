@@ -1,14 +1,12 @@
 <template name="search">
-	Search Here: {{> EasySearch.Input index=partyIndex }}
-<br><br>
-    <ul class="list-group">
-        {{#EasySearch.Each index=partyIndex }}
-            <li class="list-group-item"><b>{{ClientName}} - </b>{{Telephone}}</li>
-        {{/EasySearch.Each}}
-    </ul>
-    {{> EasySearch.LoadMore index=partyIndex}}
-
-  {{#EasySearch.IfNoResults index=partyIndex}}
-    <div class="no-results">No results found!</div>
-  {{/EasySearch.IfNoResults}}
+<div class="btn-group btn-group-justified ">
+	<nav class = "master-nav">
+		<ul class = "nav nav-tabs nav-justified">
+			<li role="presentation" class="{{ activeIfTemplateIs 'searchpartymaster'}}"><a href="/searchpartymaster">Party Master</a></li>
+			<li role="presentation" class = "{{ activeIfTemplateIs 'searchshippingmaster'}}"><a href="/searchshippingmaster">Shipping Master</a></li>
+			<li role="presentation" class="{{ activeIfTemplateIs 'searchyardmaster'}}"><a href="/searchyardmaster">CFS Master</a></li>
+			<li role="presentation" class="{{ activeIfTemplateIs 'searchtransportmaster'}}"><a href="/searchtransportmaster">Transport Master</a></li>
+		</ul>
+	</nav>
+</div>
 </template>
