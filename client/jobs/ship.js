@@ -1,7 +1,8 @@
 Template.ship.onCreated(function(){
 var self =this;
 self.autorun(function(){
-	self.subscribe('shippingDetails');
+	var id = FlowRouter.getParam('id');
+	self.subscribe('shippingDetails',id);
 	self.subscribe('shippingMasterDetails');
 });
 });
@@ -37,5 +38,21 @@ AutoForm.addHooks('shipDetailsUpdate',{
 	onSuccess:function(id,doc)
 	{
 		Meteor.call('shipDetailsUpdateMethod',id);
+		alert('Data Updated');
+		window.history.back();
 	}
-})
+});
+
+AutoForm.addHooks('shipDetailsInsert', {
+  	onSubmit: function (insertDoc, updateDoc, currentDoc) {
+    console.log(arguments);
+    return false;
+  },
+	onSuccess:function(id,doc)
+	{
+		alert('Data Inserted');
+		window.history.back();
+		
+	}
+});
+SimpleSchema.debug = true;

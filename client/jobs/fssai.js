@@ -1,38 +1,38 @@
-Template.docDocks.onCreated(function(){
+Template.fssai.onCreated(function(){
 var self =this;
 self.autorun(function(){
 	var id = FlowRouter.getParam('id');
-	self.subscribe('docDocks',id);
+	self.subscribe('fssaiDetails',id);
 });
 });
-Template.docDocks.helpers({
-	docksMode:function(){
+
+Template.fssai.helpers({
+	fssaiMode:function(){
 		var id = FlowRouter.getParam('id');
-		var id1 = DocDocks.findOne({JobId:id});
-		//console.log(id1);
+		var id1 = FssaiDetails.findOne({JobId:id});
+		//console.log(id1._id);
 		if(typeof id1 == 'undefined')
 			return true;
 		else
 			return false;
 	},
-	docksId:function(){
+	fssaiId:function(){
 		var id = FlowRouter.getParam('id');
-		id1 = DocDocks.findOne({JobId:id});
-		//console.log(id1._id)
+		var id1 = FssaiDetails.findOne({JobId:id});
+		console.log(id1._id)
 		return id1;
 	},
 });
-AutoForm.addHooks('docDocksFormUpdate',{
+
+AutoForm.addHooks('fssaiDetailsUpdate',{
 	onSuccess:function(id,doc)
 	{
-		Meteor.call('updateDockDocsDoc',id);
+		Meteor.call('fssaiDetailsUpdateMethod',id);
 		alert('Data Updated');
-		window.history.back();
 	}
 });
 
-
-AutoForm.addHooks('docDocksFormInsert', {
+AutoForm.addHooks('fssaiDetailsInsert', {
   	onSubmit: function (insertDoc, updateDoc, currentDoc) {
     console.log(arguments);
     return false;
@@ -40,8 +40,7 @@ AutoForm.addHooks('docDocksFormInsert', {
 	onSuccess:function(id,doc)
 	{
 		alert('Data Inserted');
-		window.history.back();
-		
 	}
 });
 SimpleSchema.debug = true;
+

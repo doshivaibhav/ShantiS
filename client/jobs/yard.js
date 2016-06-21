@@ -1,8 +1,10 @@
 Template.yard.onCreated(function(){
 var self =this;
 self.autorun(function(){
-	self.subscribe('yardDetails');
+	var id = FlowRouter.getParam('id');
+	self.subscribe('yardDetails',id);
 	self.subscribe('yardMasterDetails');
+	self.subscribe('transportMasterDetails');
 });
 });
 
@@ -45,5 +47,21 @@ AutoForm.addHooks('yardDetailsUpdate',{
 	onSuccess:function(id,doc)
 	{
 		Meteor.call('yardDetailsUpdateMethod',id);
+		alert('Data Updated');
+		window.history.back();
 	}
-})
+});
+
+AutoForm.addHooks('yardDetailsInsert', {
+  	onSubmit: function (insertDoc, updateDoc, currentDoc) {
+    console.log(arguments);
+    return false;
+  },
+	onSuccess:function(id,doc)
+	{
+		alert('Data Inserted');
+		window.history.back();
+		
+	}
+});
+SimpleSchema.debug = true;

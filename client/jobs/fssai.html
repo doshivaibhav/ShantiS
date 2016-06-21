@@ -1,0 +1,11 @@
+<template name = "fssai">
+
+<h1>Enter FSSAI Details</h1>
+
+   {{#if fssaiMode}}
+    
+   {{> quickForm collection="FssaiDetails" id="fssaiDetailsInsert" type="insert"}}
+{{else}}
+{{> quickForm collection="FssaiDetails" id="fssaiDetailsUpdate" type="update" doc=fssaiId}}
+{{/if}}
+</template>

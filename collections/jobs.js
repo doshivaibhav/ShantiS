@@ -13,6 +13,9 @@ TransportMasterDetails = new Mongo.Collection('transportMasterDetails');
 BeDetails = new Mongo.Collection('beDetails');
 StampDutyDetails = new Mongo.Collection('stampDutyDetails');
 IGMDetails = new Mongo.Collection('iGMDetails');
+FssaiDetails = new Mongo.Collection('fssaiDetails');
+PqDetails = new Mongo.Collection('pqDetails');
+TextDetails = new Mongo.Collection('textDetails');
 
 PortsSchema = new SimpleSchema({
 	name:{
@@ -116,13 +119,23 @@ BESchema = new SimpleSchema({
 	}}
 	},
 	
-	AV:{type:String,label:"A/V Rs.", max: 10, defaultValue:""},
-	Duty:{type:String,label:"Duty Rs.", max: 9, defaultValue:""},
-	BndLic:{type:String,label:"Bond Amt. / Licence Amt. Rs.", max: 9, defaultValue:""},
+	AV:{type:String,label:"A/V Rs.", max: 10, defaultValue:"0.00"},
+	Duty:{type:String,label:"Duty Rs.", max: 9, defaultValue:"0.00"},
+	BndLic:{type:String,label:"Bond Amt. / Licence Amt. Rs.", max: 9, defaultValue:"0.00"},
 	TotalRs:{type:String,label:"Total Rs.", max: 9, defaultValue:"function by hook"},
 	Octroi:{type:String,label:"Octroi %", max: 3, defaultValue:""},
-	OctAmt:{type:String,label:"Octroi Amt. Rs.", max: 3, defaultValue:"function by hook"},
-	Insurance:{type:String,label:"Insurance", allowedValues:['By SSAPL','By Party']}
+	OctAmt:{type:String,label:"Octroi Amt. Rs.", max: 6, defaultValue:"function by hook"},
+	Insurance:{type:String,label:"Insurance", allowedValues:['By SSAPL','By Party']},
+	updatedBy:{
+			type:String,
+		label:"Prepared By",
+		autoValue:function(){
+			return this.userId
+		},
+		autoform:{
+			type:"hidden"
+		}
+		}
 });
 
 BLSchema = new SimpleSchema({
@@ -230,8 +243,135 @@ BLSchema = new SimpleSchema({
 		}
 });
 
+FssaiSchema = new SimpleSchema({
+	JobId:{
+	type:String,
+	autoValue:function(events,template)
+	{
+		if(Meteor.isClient)
+		{var id = FlowRouter.getParam('id');
+		console.log(id);
+		return id;
+		}
+	},
+  autoform:{
+  	type:"hidden",
+  },
+},	
+	AppNo:{type:String,label:"FSSAI Application No.", max: 30, defaultValue:""},
+	AppDate:{type:String,label:"FSSAI Application Date", autoform: {
+      afFieldInput: {
+        type: "date"
+      }}},
+    AptDate:{type:String,label:"FSSAI Appointment Date", autoform: {
+      afFieldInput: {
+        type: "date"
+      }}}, 
+    Fssichrgs:{type:String,label:"FSSAI Charges", max: 30, defaultValue:""},
+    SampleFwd:{type:String,label:"FSSAI Sample Forwarding Date", autoform: {
+      afFieldInput: {
+        type: "date"
+      }}},
+    FssaiRpt:{type:String,label:"FSSAI Report Date", autoform: {
+      afFieldInput:{
+        type: "date"
+      }}},
+    FssaiSts:{type:String,label:"FSSAI Report Status", allowedValues:['Pass','Fail']},  
+	updatedBy:{
+	type:String,
+	label:"Prepared By",
+	autoValue:function(){
+		return this.userId
+	},
+	autoform:{
+	type:"hidden"
+		}
+	}
+});
 
+PqSchema = new SimpleSchema({
+	JobId:{
+	type:String,
+	autoValue:function(events,template)
+	{
+		if(Meteor.isClient)
+		{var id = FlowRouter.getParam('id');
+		console.log(id);
+		return id;
+		}
+	},
+  autoform:{
+  	type:"hidden",
+  },
+},	
+	IroNo:{type:String,label:"PQ IRO No.", max: 30, defaultValue:""},
+	IroAppDate:{type:String,label:"IRO Application Date", autoform: {
+      afFieldInput: {
+        type: "date"
+      }}},
+    IroAptDate:{type:String,label:"PQ Appointment Date", autoform: {
+      afFieldInput: {
+        type: "date"
+      }}}, 
+    Irochrgs:{type:String,label:"PQ Charges Rs.", max: 30, defaultValue:""},
+    IroRpt:{type:String,label:"PQ Report Date", autoform: {
+      afFieldInput:{
+        type: "date"
+      }}},
+    IroSts:{type:String,label:"PQ Report Status", allowedValues:['Pass','Fail']},
+ 	updatedBy:{
+	type:String,
+	label:"Prepared By",
+	autoValue:function(){
+		return this.userId
+	},
+	autoform:{
+	type:"hidden"
+		}
+	}
+});
 
+TxtSchema = new SimpleSchema({
+	JobId:{
+	type:String,
+	autoValue:function(events,template)
+	{
+		if(Meteor.isClient)
+		{var id = FlowRouter.getParam('id');
+		console.log(id);
+		return id;
+		}
+	},
+  autoform:{
+  	type:"hidden",
+  },
+},	
+	TxtSampNo:{type:String,label:"Textile Sample No.", max: 30, defaultValue:""},
+	TxtAppDate:{type:String,label:"Sample Draw Date", autoform: {
+      afFieldInput: {
+        type: "date"
+      }}},
+    TxtRcdDate:{type:String,label:"Sample Received Date", autoform: {
+      afFieldInput: {
+        type: "date"
+      }}}, 
+    Txtchrgs:{type:String,label:"Textiles Committee Charges Rs.", max: 30, defaultValue:""},
+    TxtRpt:{type:String,label:"Textile Report Date", autoform: {
+      afFieldInput:{
+        type: "date"
+      }}},
+    TxtSts:{type:String,label:"Textile Report Status", allowedValues:['Pass','Fail']},
+ 	updatedBy:{
+	type:String,
+	label:"Prepared By",
+	autoValue:function(){
+		return this.userId
+	},
+	autoform:{
+	type:"hidden"
+		}
+	}
+});
 
 IGMSchema = new SimpleSchema({
 	JobId:{
@@ -425,7 +565,12 @@ YardSchema = new SimpleSchema({
       afFieldInput: {
         type: "date"
       }}},	
-	Containerhold:{type:String,label:"Container Hold",allowedValues: ['Yes', 'No'],optional:true},
+	Containerhold:{type:String,label:"Container Hold",allowedValues: ['Yes', 'No'],optional:true,
+	autoform:{
+		type:"select-radio-inline",
+		options:[{label:'Yes',value:'Yes'},{label:'No',value:'No'}]
+	}
+	},
 	YardPersonName:{type:String,label:"Yard Person's Name",defaultValue:""},
 	YardCharges:{type:String,label:"Yard Charges Rs.",defaultValue:0},
 	ValidTill:{type:String,label:"Yard Charges Valid Till",autoform: {
@@ -536,6 +681,13 @@ PartyMasterSchema = new SimpleSchema({
 
 });
 
+
+PartyMasterIndex = new EasySearch.Index({
+	collection: PartyMasterDetails,
+	fields:['ClientName','Telephone','Mobile','Email'],
+	engine:new EasySearch.Minimongo(),
+});
+
 ShippingMasterSchema = new SimpleSchema({
 	ScoName:{type:String,label:"Shipping Company Name", max: 50, defaultValue:""},
 	ScoTelephone:{type:String,label:"S.CO Telephone No.", max: 10, defaultValue:0},
@@ -557,6 +709,13 @@ ShippingMasterSchema = new SimpleSchema({
 	
 });
 
+
+ShippingMasterIndex = new EasySearch.Index({
+	collection: ShippingMasterDetails,
+	fields:['ScoName','ScoTelephone','ScoMobile','ScoEmail'],
+	engine:new EasySearch.Minimongo(),
+});
+
 YardMasterSchema = new SimpleSchema({
 	YrdName:{type:String,label:"CFS Name", max: 50, defaultValue:""},
 	YrdTelephone:{type:String,label:"CFS Telephone No.", max: 10, defaultValue:0},
@@ -570,6 +729,13 @@ YardMasterSchema = new SimpleSchema({
 	YrdIfsc:{type:String,label:"CFS IFSC Code", max: 15, defaultValue:""}
 });
 
+
+YardMasterIndex = new EasySearch.Index({
+	collection: YardMasterDetails,
+	fields:['YrdName','YrdTelephone','YrdEmail'],
+	engine:new EasySearch.Minimongo(),
+});
+
 TransportMasterSchema = new SimpleSchema({
 	TransName:{type:String,label:"Transporter Name", max: 50, defaultValue:""},
 	Transtelephone:{type:String,label:"Transporter Telephone No.", max: 12, defaultValue:0},
@@ -580,6 +746,13 @@ TransportMasterSchema = new SimpleSchema({
 	TransAcNo:{type:String,label:"Transporter A/C No", max: 20, defaultValue:""},
 	TransAccountType:{type:String,label:"Transporter Account Type", allowedValues: ['Savings', 'Current']},
 	TransIfsc:{type:String,label:"S.CO IFSC Code", max: 15, defaultValue:""},
+});
+
+
+TransportMasterIndex = new EasySearch.Index({
+	collection: TransportMasterDetails,
+	fields:['TransName','Transtelephone','TransMobile','TransEmail'],
+	engine:new EasySearch.Minimongo(),
 });
 
 jobCreationSchema = new SimpleSchema({
@@ -603,7 +776,7 @@ jobCreationSchema = new SimpleSchema({
 	Port:{
 		type: String,
 		label: "Port Name",
-		max: 15,
+		max: 30,
 		defaultValue:""
 	},
 
@@ -650,7 +823,9 @@ jobCreationSchema = new SimpleSchema({
 	},
 
 	PGASEL:{type:String,label:"Select Partner Government Agency",
-		allowedValues: ['FSSAI','PQ','FSSAI & PQ','ADC','WLRO','TEXTILE']},	
+		allowedValues: ['N/A','FSSAI','PQ','FSSAI - PQ','ADC','WLRO','TEXTILE'],
+		defaultValue:"N/A"
+	},	
 	/*PGA:{
 		type:PGASchema,
 		label:"Select PGA"
@@ -759,6 +934,9 @@ DocDocks.attachSchema(DocDocksSchema);
 DeliveryDetails.attachSchema(DeliverySchema);
 Ports.attachSchema(PortsSchema);
 IGMDetails.attachSchema(IGMSchema);
+FssaiDetails.attachSchema(FssaiSchema);
+PqDetails.attachSchema(PqSchema);
+TextDetails.attachSchema(TxtSchema);
 
 Jobs.allow({
 	insert: function(userId,doc){
@@ -792,6 +970,37 @@ IGMDetails.allow({
 	}		
 });
 
+FssaiDetails.allow({
+	insert: function(userId,doc){
+		console.log("Running");
+		return true;
+	},
+	update: function(userId,doc){
+		console.log("Running");
+		return !!userId;
+	}		
+}),
+
+TextDetails.allow({
+	insert: function(userId,doc){
+		console.log("Running");
+		return true;
+	},
+	update: function(userId,doc){
+		console.log("Running");
+		return !!userId;
+	}		
+}),
+PqDetails.allow({
+	insert: function(userId,doc){
+		console.log("Running");
+		return true;
+	},
+	update: function(userId,doc){
+		console.log("Running");
+		return !!userId;
+	}		
+}),
 StampDutyDetails.allow({
 	insert: function(userId,doc){
 		console.log("Running");
@@ -897,4 +1106,3 @@ Ports.allow({
 		return !!userId;
 	},
 });
-

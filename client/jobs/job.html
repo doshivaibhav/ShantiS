@@ -16,8 +16,10 @@
 			<li><b>MBL No. </b>{{jobs.BLDetails.MBLNo}}</li>
 			<li><b>HBL No. </b>{{jobs.BLDetails.HBLNo}}</li>
 			<li><b>Vessel In B/L Copy </b>{{jobs.BLDetails.VesselBL}}</li>
-			<li><b>Voyage </b>{{jobs.BLDetails.Voyage}}</li><br>
-			<li><b>Select Partner Government Agency</b>{{jobs.PGASEL}}</li>
+			<li><b>Voyage </b>{{jobs.BLDetails.Voyage}}</li>
+			
+			<li><b>Select Partner Government Agency </b>{{jobs.PGASEL}}</li>
+			<br>
 	</ul>
 	{{#if docMode}}
 <!--<a href="/{{jid}}/orDoc">Original Document Recieved? | </a>-->
@@ -25,6 +27,7 @@
 	{{else}}
 <p style="color:green"><b>Original Document Recieved</b></p>
 {{/if}}
+
 <br><button class="btn btn-default" name="btnShip" id="btnShip">Shipping Details</button>
 <br><button class="btn btn-default" name="btnYard" id="btnYard">Yard Details</button>
 <br><button class="btn btn-default" name="btnBe" id="btnBe">BOE Details</button>
@@ -33,34 +36,30 @@
 <br><button class="btn btn-default" name="btnDocDocks" id="btnDocDocks">Documents Checked by Docks </button>
 <br><button class="btn btn-default" name="btnDelivery" id="btnDelivery">Delivery Details </button>
 
-<!--{{#if (jobs.PGASEL) == FSSAI}}
+{{#if pgaselfssai}}
 	<br><button class="btn btn-default" name="btnFSSAI" id="btnFSSAI">ENTER FSSAI DETAILS</button>
-{{/if}}
-
-{{#if ((jobs.PGASEL) == ('PQ')) }}
-	<br><button class="btn btn-default" name="btnPQ" id="btnFSSAI">ENTER PQ DETAILS</button>
-{{/if}}	
-
-{{#if ((jobs.PGASEL) == ('FSSAI & PQ')) }}
-	<br><button class="btn btn-default" name="btnFSSAI" id="btnFSSAI">ENTER FSSAI DETAILS</button>
-	<br><button class="btn btn-default" name="btnPQ" id="btnPQ">ENTER PQ DETAILS</button>
-{{/if}}
-
-{{#if ((jobs.PGASEL) == ('ADC')) }}
-	<br><button class="btn btn-default" name="btnADC" id="btnADC">ENTER ADC DETAILS</button>
-{{/if}}
-
-{{#if ((jobs.PGASEL) == ('WLRO')) }}
-	<br><button class="btn btn-default" name="btnADC" id="btnADC">ENTER WLRO DETAILS</button>
-{{/if}}
-
-{{#if ((jobs.PGASEL) == ('TEXTILE')) }}	
-	<br><button class="btn btn-default" name="btnTXT" id="btnTXT">ENTER WLRO DETAILS</button>
-{{/if}}
-
 {{else}}
-<p style="color:green"><b>NO PGA INVOLVED</b></p>
-{{/if}}-->
-
-
+	{{#if pgaselpq}}
+		<br><button class="btn btn-default" name="btnPQ" id="btnPQ">ENTER PQ DETAILS</button>	
+	{{else}}
+		{{#if pgaselfssaipq}}
+			<br><button class="btn btn-default" name="btnFSSAI" id="btnFSSAI">ENTER FSSAI DETAILS</button>
+			<br><button class="btn btn-default" name="btnPQ" id="btnPQ">ENTER PQ DETAILS</button>
+		{{else}}
+			{{#if pgaseladc}}
+				<br><button class="btn btn-default" name="btnADC" id="btnADC">ENTER ADC DETAILS</button>
+			{{else}}
+				{{#if pgaselwlro}}
+					<br><button class="btn btn-default" name="btnWLRO" id="btnWLRO">ENTER WLRO DETAILS</button>
+				{{else}}
+					{{#if pgaseltextile}}
+						<br><button class="btn btn-default" name="btnTXT" id="btnTXT">ENTER TEXTILE DETAILS</button>
+					{{else}}
+					{{/if}}
+				{{/if}}
+			{{/if}}
+		{{/if}}
+	{{/if}}
+{{/if}}
+<!--<p style="color:green"><b>NO PGA INVOLVED</b></p>-->
 </template>
