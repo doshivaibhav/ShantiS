@@ -1,0 +1,16 @@
+<template name = "searchyardmaster">
+{{> search}}
+<br><br>
+Search Here: {{> EasySearch.Input index=yardIndex }}
+<br><br>
+    <ul class="list-group">
+        {{#EasySearch.Each index=yardIndex }}
+            <li class="list-group-item"><b>{{YrdName}} - </b>{{YrdTelephone}} - {{YrdEmail}}</li>
+        {{/EasySearch.Each}}
+    </ul>
+    {{> EasySearch.LoadMore index=yardIndex}}
+
+  {{#EasySearch.IfNoResults index=yardIndex}}
+    <div class="no-results">No results found!</div>
+  {{/EasySearch.IfNoResults}}
+</template>

@@ -1,7 +1,8 @@
 Template.delivery.onCreated(function(){
 var self =this;
 self.autorun(function(){
-	self.subscribe('deliveryDetails');
+	var id = FlowRouter.getParam('id');
+	self.subscribe('deliveryDetails',id);
 });
 });
 Template.delivery.helpers({
@@ -22,38 +23,25 @@ Template.delivery.helpers({
 	},
 });
 
-/*Template.delivery.events({
-'click submit':function(){
-		DeliveryDetails.update(this.id,{$set:{
-			JobId:function()
-			{
-				return FlowRouter.getParam('id');
-			},
-			updatedBy:function()
-			{
-				return Meteor.UserId;
-			},
-		}
-});
-	}
-});*/
-
-/*var hooksObject = {
-	onSuccess:function(){
-		var id = FlowRouter.getParam('id');
-		id1 = DeliveryDetails.update({JobId:id},{$set:{updatedBy:function(){return Meteor.userId();}}});
-
-	}
-}
-
-Autoform.hooks({
-deliveryDetailsUpdate:hooksObject
-});*/
-
-
 AutoForm.addHooks('deliveryDetailsUpdate',{
 	onSuccess:function(id,doc)
 	{
 		Meteor.call('updateDeliveryDoc',id);
+		alert('Data Updated');
+		window.history.back();
 	}
-})
+});
+
+AutoForm.addHooks('deliveryDetailsInsert', {
+  	onSubmit: function (insertDoc, updateDoc, currentDoc) {
+    console.log(arguments);
+    return false;
+  },
+	onSuccess:function(id,doc)
+	{
+		alert('Data Inserted');
+		window.history.back();
+		
+	}
+});
+SimpleSchema.debug = true;

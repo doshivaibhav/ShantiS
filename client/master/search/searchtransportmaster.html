@@ -1,0 +1,16 @@
+<template name = "searchtransportmaster">
+{{> search}}
+<br><br>
+Search Here: {{> EasySearch.Input index=transportIndex }}
+<br><br>
+    <ul class="list-group">
+        {{#EasySearch.Each index=transportIndex }}
+            <li class="list-group-item"><b>{{TransName}} - </b>{{Transtelephone}} - {{TransEmail}} - {{TransMobile}}</li>
+        {{/EasySearch.Each}}
+    </ul>
+    {{> EasySearch.LoadMore index=transportIndex}}
+
+  {{#EasySearch.IfNoResults index=transportIndex}}
+    <div class="no-results">No results found!</div>
+  {{/EasySearch.IfNoResults}}
+</template>

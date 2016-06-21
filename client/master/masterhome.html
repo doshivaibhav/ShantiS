@@ -1,10 +1,12 @@
 <template name="masterhome">
+<div class="btn-group btn-group-justified ">
 	<nav class = "master-nav">
-		<ul>
-			<li><a href="/partymaster"><i class="fa fa-plus-square"></i>Party Master</a></li>
-			<li><a href="/shippingmaster"><i class="fa fa-table"></i>Shipping Master</a></li>
-			<li><a href="/Yardmaster"><i class="fa fa-table"></i>CFS Master</a></li>
-			<li><a href="/transportmaster"><i class="fa fa-table"></i>Transport Master</a></li>
+		<ul class = "nav nav-tabs nav-justified">
+			<li role="presentation" class="{{ activeIfTemplateIs 'partymaster'}}"><a href="/partymaster">Party Master</a></li>
+			<li role="presentation" class = "{{ activeIfTemplateIs 'shippingmaster'}}"><a href="/shippingmaster">Shipping Master</a></li>
+			<li role="presentation" class="{{ activeIfTemplateIs 'yardmaster'}}"><a href="/yardmaster">CFS Master</a></li>
+			<li role="presentation" class="{{ activeIfTemplateIs 'transportmaster'}}"><a href="/transportmaster">Transport Master</a></li>
 		</ul>
 	</nav>
+</div>
 </template>

@@ -5,45 +5,6 @@ self.autorun(function(){
 	self.subscribe('ports');
 });
 });
-/*Template.newJob.events({
-	'submit form': function(event){
-		event.preventDefault();
-		var JobNoVar = event.target.JobNo.value;
-		var ImporterNameVar = event.target.ImporterName.value;
-		var PartyJobNoVar = event.target.PartyJobNo.value;
-		var PortVar = event.target.Port.value;
-		var MCVar = event.target.MC.value;
-		var MCDateVar = event.target.MCDate.value;
-		var DescriptionVar = event.target.Description.value;
-		var TypeCargoVar = event.target.TypeCargo.value;
-		var PkgNoVar = event.target.PkgNo.value;
-		var GrossWtVar = event.target.GrossWt.value;
-		var CBMVar = event.target.CBM.value;
-		var LoadPortVar = event.target.LoadPort.value;
-		var MBLNoVar = event.target.MBLNo.value;
-		var HBLNoVar = event.target.HBLNo.value;
-		var VesselBLVar = event.target.VesselBL.value;
-		var VoyageVar = event.target.Voyage.value;
-		
-		Job.insert({
-			JobNo:JobNoVar,
-			Port:PortVar,
-			PartyJob:PartyJobNoVar,
-			ImporterName:ImporterNameVar,
-			Doc:{
-				Rec: MCVar,
-				RecDate:MCDateVar,
-			},
-			BE:{
-				Desc: DescriptionVar
-			},
-			BL:{
-				TypeOfCargo:TypeOfCargo
-			},
-			
-		});
-	}
-});*/
 
 Template.newJob.helpers({
 	MC:function(){
@@ -62,7 +23,7 @@ Template.newJob.helpers({
 			return portarr;
 	},
 	poptions:function(){
-	return [{label:'FSSAI',value:'FSSAI'},{label:'PQ',value:'PQ'},{label:'FSSAI & PQ',value:'FSSAI & PQ'},
+	return [{label:'FSSAI',value:'FSSAI'},{label:'PQ',value:'PQ'},{label:'FSSAI - PQ',value:'FSSAI - PQ'},
 	{label:'ADC',value:'ADC'},{label:'WLRO',value:'WLRO'},{label:'TEXTILE',value:'TEXTILE'},{label:'N/A',value:'N/A'}]
 	}
 	

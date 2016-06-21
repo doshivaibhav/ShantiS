@@ -1,11 +1,12 @@
 Template.fssai.onCreated(function(){
 var self =this;
 self.autorun(function(){
-	//self.subscribe('fssaiDetails');
+	var id = FlowRouter.getParam('id');
+	self.subscribe('fssaiDetails',id);
 });
 });
 
-/*Template.fssai.helpers({
+Template.fssai.helpers({
 	fssaiMode:function(){
 		var id = FlowRouter.getParam('id');
 		var id1 = FssaiDetails.findOne({JobId:id});
@@ -22,9 +23,24 @@ self.autorun(function(){
 		return id1;
 	},
 });
+
 AutoForm.addHooks('fssaiDetailsUpdate',{
 	onSuccess:function(id,doc)
 	{
 		Meteor.call('fssaiDetailsUpdateMethod',id);
+		alert('Data Updated');
 	}
-})*/
+});
+
+AutoForm.addHooks('fssaiDetailsInsert', {
+  	onSubmit: function (insertDoc, updateDoc, currentDoc) {
+    console.log(arguments);
+    return false;
+  },
+	onSuccess:function(id,doc)
+	{
+		alert('Data Inserted');
+	}
+});
+SimpleSchema.debug = true;
+

@@ -1,7 +1,8 @@
 Template.docDocks.onCreated(function(){
 var self =this;
 self.autorun(function(){
-	self.subscribe('docDocks');
+	var id = FlowRouter.getParam('id');
+	self.subscribe('docDocks',id);
 });
 });
 Template.docDocks.helpers({
@@ -25,5 +26,22 @@ AutoForm.addHooks('docDocksFormUpdate',{
 	onSuccess:function(id,doc)
 	{
 		Meteor.call('updateDockDocsDoc',id);
+		alert('Data Updated');
+		window.history.back();
 	}
-})
+});
+
+
+AutoForm.addHooks('docDocksFormInsert', {
+  	onSubmit: function (insertDoc, updateDoc, currentDoc) {
+    console.log(arguments);
+    return false;
+  },
+	onSuccess:function(id,doc)
+	{
+		alert('Data Inserted');
+		window.history.back();
+		
+	}
+});
+SimpleSchema.debug = true;

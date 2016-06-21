@@ -21,18 +21,14 @@ Meteor.methods({
 	'yardDetailsUpdateMethod':function(id){
 		YardDetails.update({JobId:id},{$set:{updatedBy:function(){return Meteor.userId();}}});
 	},
-	/*'
-
-	fssaiDetailsUpdateMethod':function(id){
+	'fssaiDetailsUpdateMethod':function(id){
 		FssaiDetails.update({JobId:id},{$set:{updatedBy:function(){return Meteor.userId();}}});
 	},
 	'pqDetailsUpdateMethod':function(id){
 		PqDetails.update({JobId:id},{$set:{updatedBy:function(){return Meteor.userId();}}});
 	},
 	'textileDetailsUpdateMethod':function(id){
-		TextileDetails.update({JobId:id},{$set:{updatedBy:function(){return Meteor.userId();}}});
+		TextDetails.update({JobId:id},{$set:{updatedBy:function(){return Meteor.userId();}}});
 	},
 
-	*/
-	
 });

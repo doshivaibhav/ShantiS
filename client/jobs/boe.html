@@ -2,8 +2,40 @@
 
 <h1>Enter BOE Details</h1>
     {{#if boeMode}}
-    {{> quickForm collection="BeDetails" id="beDetailsInsert" type="insert"}}
+    <!--{{> quickForm collection="BeDetails" id="beDetailsInsert" type="insert"}}-->
+    {{#autoForm collection="BeDetails" id="beDetailsInsert" type="insert"}}
+
+		    {{> afQuickField name='Desc' options=port}}
+		    {{> afQuickField name='No'}}
+			{{> afQuickField name="Date"}}
+		    {{> afQuickField name="AV" defaultValue="0.00"}}
+		    {{> afQuickField name="Duty"}}
+		    {{> afQuickField name="BndLic"}}
+		    {{> afQuickField name="TotalRs" value=totalcost readonly=true}}
+		    {{> afQuickField name="Octroi" defaultValue="0.00"}}
+		    {{> afQuickField name="OctAmt" readonly=true value = octroiAmount}}
+		    {{> afQuickField name="Insurance" type="select-radio-inline" options="allowed"}}
+	<div class="form-group">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-default">Reset Form</button>
+  </div>
+    {{/autoForm}}
 {{else}}
-{{> quickForm collection="BeDetails" id="beDetailsUpdate" type="update" doc=boeId}}
-{{/if}}
+{{#autoForm collection="BeDetails" id="beDetailsUpdate" type="update" doc=boeId}}
+
+		    {{> afQuickField name='Desc' options=port}}
+		    {{> afQuickField name='No'}}
+			{{> afQuickField name="Date"}}
+		    {{> afQuickField name="AV" defaultValue="0.00"}}
+		    {{> afQuickField name="Duty"}}
+		    {{> afQuickField name="BndLic"}}
+		    {{> afQuickField name="TotalRs" value=totalcost readonly=true}}
+		    {{> afQuickField name="Octroi" defaultValue="0.00"}}
+		    {{> afQuickField name="OctAmt" readonly=true value = octroiAmount}}
+		    {{> afQuickField name="Insurance" type="select-radio-inline" options="allowed"}}
+	<div class="form-group">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-default">Reset Form</button>
+  </div>
+    {{/autoForm}}{{/if}}
 </template>

@@ -1,0 +1,16 @@
+<template name = "searchshippingmaster">
+{{> search}}
+<br><br>
+Search Here: {{> EasySearch.Input index=shippingIndex }}
+<br><br>
+    <ul class="list-group">
+        {{#EasySearch.Each index=shippingIndex }}
+            <li class="list-group-item"><b>{{ScoName}} - </b>{{ScoTelephone}} - {{ScoEmail}}</li>
+        {{/EasySearch.Each}}
+    </ul>
+    {{> EasySearch.LoadMore index=shippingIndex}}
+
+  {{#EasySearch.IfNoResults index=shippingIndex}}
+    <div class="no-results">No results found!</div>
+  {{/EasySearch.IfNoResults}}
+</template>
