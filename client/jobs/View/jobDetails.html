@@ -1,0 +1,64 @@
+<template name="jobDetails">
+	<ul class="list-group">
+        <div class="panel-group">
+				<div class="panel panel-default">
+				<div class="panel-heading">
+  					<h4 class="panel-title"><a data-toggle="collapse" href="#jobDet">Job Details: {{jobs.JobNo}}</a></h4>
+  				</div>
+        <!-- {{#if $Session.get 'showOther'}} -->
+		        <div id="jobDet" class="panel-collapse collapse">
+			        <li class="list-group-item">Date of Creation: {{jobs.DateOfCreation}}</li>
+			        <li class="list-group-item">Port:  {{jobs.Port}}</li>
+			        <li class="list-group-item">Party Job No: {{jobs.PartyJob}}</li>
+			        <li class="list-group-item"> ImporterName: {{jobs.ImporterName}}</li>
+			        <li class="list-group-item">Document Recieved By: {{jobs.Doc.Rec}}</li>
+			        <li class="list-group-item">Document Recieved On: {{jobs.Doc.RecDate}}</li>
+			        <li class="list-group-item">
+			        	Type of Cargo: {{jobs.BLDetails.TypeOfCargo}}
+			        </li>
+			        <li class="list-group-item">
+			        	Package No: {{jobs.BLDetails.PkgNo}}
+			        </li>
+			        <li class="list-group-item">
+			        	Gross Weight: {{jobs.BLDetails.GrossWt}}
+			        </li>
+			        <li class="list-group-item">
+			        	CBM: {{jobs.BLDetails.CBM}}
+			        </li>
+			        <li class="list-group-item">
+			        	Port Of Loading: {{jobs.BLDetails.LoadPort}}
+			        </li>
+			        <li class="list-group-item">
+			        	HBL No: {{jobs.BLDetails.HBLNo}}
+			        </li>
+			        <li class="list-group-item">
+			        	HBL Date: {{jobs.BLDetails.HBLDate}}
+			        </li>
+			        <li class="list-group-item">
+			        	MBL No: {{jobs.BLDetails.MBLNo}}
+			        </li>
+			        <li class="list-group-item">
+			        	MBL Date: {{jobs.BLDetails.MBLDate}}
+			        </li>
+			        <li class="list-group-item">
+			        	Container(s): 
+			        	{{#each  jobs.BLDetails.Container}}
+			        		{{containerNo}}
+			        	{{/each}}
+			        </li>
+			        <li class="list-group-item">
+			        	Vessel: {{jobs.BLDetails.VesselBL}}
+			        </li>
+			        <li class="list-group-item">
+			        	Voyage: {{jobs.BLDetails.Voyage}}
+			        </li>
+			        <li class="list-group-item">
+			        	PGASEL: {{jobs.PGASEL}}
+			        </li>
+		        <!-- {{/if}} -->
+
+    			</div>
+    		</div>
+		</div>
+    </ul>
+</template>

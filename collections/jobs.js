@@ -518,13 +518,13 @@ ShippingSchema = new SimpleSchema({
         type: "date"
       }}},
 	FreightCharges:{type:String, label:"Freight Charges Rs.",defaultValue:0},
-	NextAgent:{type:String, label:"Next Agent",defaultValue:""},
+	NextAgent:{type:String, label:"Next Agent",defaultValue:"",optional:true},
 	DaysFree:{type:Boolean,label:"14 days Free",defaultValue:0},
-	FreeDaysFrom:{type:String,label:"Free Days from",autoform: {
+	FreeDaysFrom:{type:String,label:"Free Days from",optional:true,autoform: {
       afFieldInput: {
         type: "date"
       }}},
-	FreeDaysTo:{type:String,label:"Free Days Till",autoform: {
+	FreeDaysTo:{type:String,label:"Free Days Till",optional:true,autoform: {
       afFieldInput: {
         type: "date"
       }}},
