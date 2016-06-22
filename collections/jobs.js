@@ -760,7 +760,6 @@ jobCreationSchema = new SimpleSchema({
 		type: String,
 		label: "Job No",
 		max: 4,
-		defaultValue:"",
 	},
 
 	DateOfCreation:{
@@ -805,7 +804,6 @@ jobCreationSchema = new SimpleSchema({
 		type:String,
 		label:"Importer M/s.",
 		max: 100,
-		defaultValue:""
 	},
 
 	Doc:{

@@ -9,3 +9,9 @@ Template.searchpartymaster.helpers({
   partyIndex: () => PartyMasterIndex,
   
 });
+
+/*Template.searchpartymaster.events({
+	'click h4': function(){
+		Session.set('showOther', !Session.get('showOther'));
+	}
+});*/
