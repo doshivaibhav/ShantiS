@@ -1,0 +1,31 @@
+<template name="boeDetails">
+	<ul class="list-group">
+        <div class="panel-group">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+  					<h4 class="panel-title"><a data-toggle="collapse" href="#boeDet">BOE Information</a><span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true" id="btnBe" style="cursor:pointer"></span></h4>
+  				</div>
+		        <div id="boeDet" class="panel-collapse collapse">
+			        <li class="list-group-item">Description: {{boe.Desc}}</li>
+			        <li class="list-group-item">BOE No:  {{boe.No}}</li>
+			        <li class="list-group-item">B/E Date: {{boe.Date}}</li>
+			        <li class="list-group-item"> A/V Rs: {{boe.AV}}</li>
+			        <li class="list-group-item">Duty Rs: {{boe.Duty}}</li>
+			        <li class="list-group-item">Bond Amt / Licence Amt: {{boe.BndLic}}</li>
+			        <li class="list-group-item">
+			        	Total Rs: {{boe.TotalRs}}
+			        </li>
+			        <li class="list-group-item">
+			        	Octroi %: {{boe.Octroi}} %
+			        </li>
+			        <li class="list-group-item">
+			        	Octroi Amt Rs: {{boe.OctAmt}}
+			        </li>
+			        <li class="list-group-item">
+			        	Insurance: {{boe.Insurance}}
+			        </li>
+    			</div>
+    		</div>
+    	</div>
+    </ul>
+</template>

@@ -1,0 +1,28 @@
+<template name="igmDet">
+	<ul class="list-group">
+        <div class="panel-group">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+  					<h4 class="panel-title"><a data-toggle="collapse" href="#igmDetc">IGM Information</a><span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true" id="btnIGM"></span></h4>
+  				</div>
+		        <div id="igmDetc" class="panel-collapse collapse">
+			        <li class="list-group-item">IGM No: {{igm.IGMNo}}</li>
+			        <li class="list-group-item">Date of Entry:  {{igm.Date}}</li>
+			        <li class="list-group-item">Item No: {{igm.ItemNo}}</li>
+			        <li class="list-group-item"> Inward Date: {{igm.InwardDate}}</li>
+			        <li class="list-group-item">Destuffing Yard: {{igm.DestuffingYard}}</li>
+			        <li class="list-group-item">Mumbai IGM No: {{igm.MumbaiIGMNo}}</li>
+			        <li class="list-group-item">
+			        	Date: {{igm.MumbaiDate}}
+			        </li>
+			        <li class="list-group-item">
+			        	Item No: {{igm.MumbaiItemNo}}
+			        </li>
+			        <li class="list-group-item">
+			        	Inward Date: {{igm.MumbaiInwardDate}}
+			        </li>
+    			</div>
+    		</div>
+    	</div>
+    </ul>
+</template>

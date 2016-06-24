@@ -3,7 +3,7 @@
         <div class="panel-group">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-  					<h4 class="panel-title"><a data-toggle="collapse" href="#shipDet">Shipping Information</a></h4>
+  					<h4 class="panel-title"><a data-toggle="collapse" href="#shipDet">Shipping Information</a><span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true" id="btnShip" style="cursor:pointer"></span></h4>
   				</div>
 		        <div id="shipDet" class="panel-collapse collapse">
 			        <li class="list-group-item">Shipping Co Name: {{ship.ShipCoName}}</li>
@@ -13,13 +13,14 @@
 			        <li class="list-group-item">Freight Charges: {{ship.FreightCharges}}</li>
 			        <li class="list-group-item">Next Agent: {{ship.NextAgent}}</li>
 			        <li class="list-group-item">
-			        	14 Days Free: {{#if DaysFree}}
-			        	<i class="fa fa-check"></i>
+			        	14 Days Free: 
+			        	{{#if ship.DaysFree}}
+			        		<i class="fa fa-check"></i>
 			        	{{else}}
-			        	<i class="fa fa-cross"></i>
+			        		<i class="fa fa-cross"></i>
 			        	{{/if}}
 			        </li>
-			        {{#if DaysFree}}
+			        {{#if ship.DaysFree}}
 			        <li class="list-group-item">
 			        	Days From: {{ship.FreeDaysFrom}}
 			        </li>

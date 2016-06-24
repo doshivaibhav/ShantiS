@@ -1,0 +1,34 @@
+<template name="yrdDetails">
+	<ul class="list-group">
+        <div class="panel-group">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+  					<h4 class="panel-title"><a data-toggle="collapse" href="#yrdDet">Yard Information</a><span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true" id="btnYard" style="cursor:pointer"></span></h4>
+  				</div>
+		        <div id="yrdDet" class="panel-collapse collapse">
+			        <li class="list-group-item">Yard Name: {{yard.YardName}}</li>
+			        <li class="list-group-item">Job Order:  {{yard.JobOrder}}</li>
+			        <li class="list-group-item">Container Arrived Date: {{yard.ContainerArr}}</li>
+			        <li class="list-group-item"> Container Destuffed Date: {{yard.ContainerDes}}</li>
+			        <li class="list-group-item">Container Hold: {{yard.Containerhold}}</li>
+			        <li class="list-group-item">Yard Person's Name: {{yard.YardPersonName}}</li>
+			        <li class="list-group-item">
+			        	Yard Charges: {{yard.YardCharges}}
+			        </li>
+			        <li class="list-group-item">
+			        	Valid Till: {{yard.ValidTill}}
+			        </li>
+			        <li class="list-group-item">
+			        Delivery Out On: {{yard.DeliveryOutOn}}
+			        </li>
+			        <li class="list-group-item">
+			        	Transporter Name: {{yard.TransporterName}}
+			        </li>
+			        <li class="list-group-item">
+			        	Empty Yard Name: {{yard.EmptyYardName}}
+			        </li>
+    			</div>
+    		</div>
+    	</div>
+    </ul>
+</template>

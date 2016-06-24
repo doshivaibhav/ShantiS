@@ -1,7 +1,7 @@
 Template.searchtransportmaster.onCreated(function(){
 var self =this;
 self.autorun(function(){
-  self.subscribe('TransportMasterDetails');
+  self.subscribe('transportMasterDetails');
 });
 });
 

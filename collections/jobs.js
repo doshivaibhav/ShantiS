@@ -409,9 +409,8 @@ IGMSchema = new SimpleSchema({
       afFieldInput: {
         type: "date"
       }}},
-
 	updatedBy:{
-		type:String,
+			type:String,
 		label:"Prepared By",
 		autoValue:function(){
 			return this.userId
@@ -419,7 +418,7 @@ IGMSchema = new SimpleSchema({
 		autoform:{
 			type:"hidden"
 		}
-	}
+		}
 });
 
 

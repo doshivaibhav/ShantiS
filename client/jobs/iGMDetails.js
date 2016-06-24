@@ -1,4 +1,4 @@
-Template.stampduty.onCreated(function(){
+Template.iGMDetails.onCreated(function(){
 var self =this;
 self.autorun(function(){
 	var id = FlowRouter.getParam('id');
@@ -6,8 +6,8 @@ self.autorun(function(){
 });
 });
 
-Template.stampduty.helpers({
-	stampMode:function(){
+Template.iGMDetails.helpers({
+	igmMode:function(){
 		var id = FlowRouter.getParam('id');
 		var id1 = IGMDetails.findOne({JobId:id});
 		//console.log(id1._id);
@@ -16,7 +16,7 @@ Template.stampduty.helpers({
 		else
 			return false;
 	},
-	stampId:function(){
+	igmId:function(){
 		var id = FlowRouter.getParam('id');
 		var id1 = IGMDetails.findOne({JobId:id});
 		console.log(id1._id)

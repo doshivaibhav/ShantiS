@@ -103,12 +103,6 @@ Template.job.events({
 		e.preventDefault();
 		window.location = "/"+id+"/delivery";
 	},
-	'click #btnDelivery':function(e)
-	{
-		var id = FlowRouter.getParam('id');
-		e.preventDefault();
-		window.location = "/"+id+"/delivery";
-	},
 	'click #btnStampDuty':function(e)
 	{
 		var id = FlowRouter.getParam('id');

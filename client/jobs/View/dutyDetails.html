@@ -1,0 +1,17 @@
+<template name="dutyDetails">
+	<ul class="list-group">
+        <div class="panel-group">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+  					<h4 class="panel-title"><a data-toggle="collapse" href="#dutyDet">Stamp Duty Information</a><span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true" id="btnStampDuty" style="cursor:pointer"></span></h4>
+  				</div>
+		        <div id="dutyDet" class="padutynel-collapse collapse">
+			        <li class="list-group-item">Shipping Co./BPT/Bank: {{duty.StampDuty}}</li>
+			        <li class="list-group-item">0.1% Stamp Duty Rs:  {{duty.Amount}}</li>
+			        <li class="list-group-item">GRN No: {{duty.GRNNo}}</li>
+			        <li class="list-group-item">Date: {{duty.Date}}</li>
+    			</div>
+    		</div>
+    	</div>
+    </ul>
+</template>
