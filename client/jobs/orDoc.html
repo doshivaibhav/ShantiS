@@ -1,3 +1,13 @@
 <template name = "orDoc">
-    {{> quickForm collection="OriginalDoc" id="orDocRec" type="insert"}}
+	{{#if docMode}}
+    {{#autoForm collection="OriginalDoc" id="orDocRec" type="insert" autosave=true}}
+	{{> afQuickField name="OrRec" type="boolean-select" trueLabel="Yes" falseLabel="No"}}
+		{{#if afFieldValueIs name="OrRec" value=true}}
+			{{> afQuickField name="OrRecDate"}}
+		{{/if}}
+	{{/autoForm}}
+    {{else}}
+    <p style="color:green"><b>Original Document Recieved On {{docDate.OrRecDate}}</b></p>
+    {{/if}}
+	
 </template>

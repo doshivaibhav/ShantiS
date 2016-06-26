@@ -1,5 +1,6 @@
 <template name="iGMDetails">
-	<h1>Enter BOE Details</h1>
+{{> header}}
+	<h1>Enter IGM Details</h1>
     {{#if igmMode}}
     {{> quickForm collection="IGMDetails" id="iGMDetailsInsert" type="insert"}}
 {{else}}

@@ -2,15 +2,7 @@ Template.view.onCreated(function(){
 	
 var self =this;
 self.autorun(function(){
-	var id = FlowRouter.getParam('id');
-	self.subscribe('originalDoc',id);
-	self.subscribe('yardDetails',id);
-	self.subscribe('docDocks',id);
-	self.subscribe('deliveryDetails',id);
-	self.subscribe('stampDutyDetails',id);
-	self.subscribe('iGMDetails',id);
-	self.subscribe('beDetails',id);
-	
+	self.subscribe('jobCreation');
 });
 });
 
@@ -21,15 +13,6 @@ Template.view.helpers({
 		//console.log(job1.PGASEL);
 		Session.set('PGASELVAL',job1.PGASEL);
 		return job1;
-	},
-	docMode:function(){
-		var id = FlowRouter.getParam('id');
-		var id1 = OriginalDoc.findOne({JobId:id});
-		//console.log(id1.length);
-		if(typeof id1 == 'undefined')
-			return true;
-		else
-			return false;
 	},
 	pgaselfssai:function(){
 			if(Session.get('PGASELVAL')=='FSSAI')
@@ -60,5 +43,29 @@ Template.view.helpers({
 		if(Session.get('PGASELVAL')=='TEXTILE')
 				{return true;}
 			return false;
+	},
+});
+
+Template.view.events({
+	'click #btnFSSAI':function(e)
+	{
+		var id = FlowRouter.getParam('id');
+		e.preventDefault();
+		//console.log('hi');
+		window.location = "/"+id+"/fssai";
+	},
+	
+	'click #btnPQ':function(e)
+	{
+		var id = FlowRouter.getParam('id');
+		e.preventDefault();
+		window.location = "/"+id+"/pq";
+	},
+	
+	'click #btnTXT':function(e)
+	{
+		var id = FlowRouter.getParam('id');
+		e.preventDefault();
+		window.location = "/"+id+"/textile";
 	},
 });

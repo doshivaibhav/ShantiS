@@ -36,21 +36,21 @@ ContainerSchema = new SimpleSchema({
 });
 
 OriginalDocSchema = new SimpleSchema({
-JobId:{
-	type:String,
-	autoValue:function(events,template)
-	{
-		if(Meteor.isClient)
-		{var id = FlowRouter.getParam('id');
-		console.log(id);
-		return id;
-  }
+		JobId:{
+			type:String,
+			autoValue:function(events,template)
+			{
+				if(Meteor.isClient)
+				{var id = FlowRouter.getParam('id');
+				console.log(id);
+				return id;
+		  }
+				},
+		  autoform:{
+		  	type:"hidden",
+		  },
 		},
-  autoform:{
-  	type:"hidden",
-  },
-},
-OrRec:{
+		OrRec:{
 			type:Boolean,
 			label:"Original Recieved?",
 			defaultValue:0
@@ -182,6 +182,7 @@ BLSchema = new SimpleSchema({
 		HBLDate:{
 			type:String,
 			label:"HBL Date",
+			optional: true,
 			defaultValue:function(){
 			return new Date();
 		},
@@ -518,7 +519,7 @@ ShippingSchema = new SimpleSchema({
       }}},
 	FreightCharges:{type:String, label:"Freight Charges Rs.",defaultValue:0},
 	NextAgent:{type:String, label:"Next Agent",defaultValue:"",optional:true},
-	DaysFree:{type:Boolean,label:"14 days Free",defaultValue:0},
+	DaysFree:{type:Boolean,label:"14 days Free"},
 	FreeDaysFrom:{type:String,label:"Free Days from",optional:true,autoform: {
       afFieldInput: {
         type: "date"

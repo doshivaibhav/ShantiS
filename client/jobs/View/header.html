@@ -1,0 +1,13 @@
+<template name="header">
+<div class = "page-header">
+<div class="row">
+	
+  <div class="col-sm-4 text-center">Port: {{jobs.Port}}</div>
+  <div class="col-sm-4 text-center">Job No: {{jobs.JobNo}}</div>
+  {{#if partyJobMode}}
+  {{else}}
+  <div class="col-sm-4 text-center">Party Job No: {{jobs.PartyJob}}</div>
+  {{/if}}
+  </div>
+</div>
+</template>
