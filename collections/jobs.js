@@ -16,6 +16,7 @@ IGMDetails = new Mongo.Collection('iGMDetails');
 FssaiDetails = new Mongo.Collection('fssaiDetails');
 PqDetails = new Mongo.Collection('pqDetails');
 TextDetails = new Mongo.Collection('textDetails');
+BillingDetails = new Mongo.Collection('billingDetails');
 
 PortsSchema = new SimpleSchema({
 	name:{
@@ -121,6 +122,9 @@ BESchema = new SimpleSchema({
 	
 	AV:{type:String,label:"A/V Rs.", max: 10, defaultValue:"0.00"},
 	Duty:{type:String,label:"Duty Rs.", max: 9, defaultValue:"0.00"},
+	DutyDate:{type:String,label:"Duty Date",defaultValue:"",optional:true, autoform: { afFieldInput: 
+		{ type: "date"
+	}}},
 	BndLic:{type:String,label:"Bond Amt. / Licence Amt. Rs.", max: 9, defaultValue:"0.00"},
 	TotalRs:{type:String,label:"Total Rs.", max: 9, defaultValue:"function by hook"},
 	Octroi:{type:String,label:"Octroi %", max: 3, defaultValue:""},

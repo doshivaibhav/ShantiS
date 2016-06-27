@@ -14,3 +14,12 @@ Template.boeDetails.helpers({
 		return id1;
 	},
 });
+
+Template.boeDetails.events({
+	'click #btnBe':function(e)
+	{
+		var id = FlowRouter.getParam('id');
+		e.preventDefault();
+		window.location = "/"+id+"/boe";
+	},
+});
