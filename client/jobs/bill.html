@@ -1,0 +1,9 @@
+<template name = "bill">
+{{> header}}
+<h1>Enter Bill Details</h1>
+{{#if billMode}}
+    {{> quickForm collection="BillingDetails" id="billDetailsInsert" type="insert"}}
+{{else}}
+	{{> quickForm collection="BillingDetails" id="billDetailsUpdate" type="update" doc=billId}}
+{{/if}}
+</template>

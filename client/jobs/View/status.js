@@ -92,4 +92,15 @@ Template.status.helpers({
     	}
     	else{return false;}
 	},
+	bill:function(){
+		var id = FlowRouter.getParam('id');
+		//console.log('abv');
+    	bil = BillingDetails.findOne({JobId:id},{fields:{CourierDate:1}});
+    	console.log(bil);
+    	if(typeof bil == 'undefined' || bil.CourierDate == '')
+    	{
+    		return true;
+    	}
+    	else{return false;}	
+	}
 });

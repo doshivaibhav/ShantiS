@@ -34,6 +34,10 @@ Meteor.publish('beDetails',function(id){
 return BeDetails.find({JobId:id});
 });
 
+Meteor.publish('billingDetails',function(id){
+return BillingDetails.find({JobId:id});
+});
+
 Meteor.publish('fssaiDetails',function(id){
 return FssaiDetails.find({JobId:id});
 });

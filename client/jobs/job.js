@@ -13,7 +13,7 @@ self.autorun(function(){
 	self.subscribe('stampDutyDetails',id);
 	self.subscribe('iGMDetails',id);
 	self.subscribe('beDetails',id);
-	
+	self.subscribe('billingDetails',id)
 });
 });
 Template.job.helpers({
@@ -88,7 +88,6 @@ Template.job.events({
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		console.log('hi');
 		window.location = "/"+id+"/boe";
 	},
 	'click #btnDocDocks':function(e)
@@ -102,6 +101,12 @@ Template.job.events({
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
 		window.location = "/"+id+"/delivery";
+	},
+	'click #btnBill':function(e)
+	{
+		var id = FlowRouter.getParam('id');
+		e.preventDefault();
+		window.location = "/"+id+"/bill";
 	},
 	'click #btnStampDuty':function(e)
 	{

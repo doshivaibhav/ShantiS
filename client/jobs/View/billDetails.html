@@ -1,0 +1,20 @@
+<template name="billDetails">
+	<ul class="list-group">
+        <div class="panel-group">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+  					<h4 class="panel-title"><a data-toggle="collapse" href="#billDet">Billing Information</a><span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true" id="btnbill" style="cursor:pointer"></span></h4>
+  				</div>
+		        <div id="billDet" class="panel-collapse collapse">
+			        <li class="list-group-item">Bill No: {{bill.BillNo}}</li>
+			        <li class="list-group-item">Bill Date:  {{bill.BillDate}}</li>
+			        <li class="list-group-item">Bill Made By: {{bill.BillMadeBy}}</li>
+			        <li class="list-group-item">Courier Name: {{bill.CourierName}}</li>
+			        <li class="list-group-item">Tracking No: {{bill.TrackingNo}}</li>
+			        <li class="list-group-item">Bill Amount: {{bill.BillAmt}}</li>
+			        <li class="list-group-item">Courier Date: {{bill.CourierDate}}</li>
+    			</div>
+    		</div>
+    	</div>
+    </ul>
+</template>

@@ -30,5 +30,7 @@ Meteor.methods({
 	'textileDetailsUpdateMethod':function(id){
 		TextDetails.update({JobId:id},{$set:{updatedBy:function(){return Meteor.userId();}}});
 	},
-
+	'updatebillDoc':function(id){
+		BillingDetails.update({JobId:id},{$set:{updatedBy:function(){return Meteor.userId();}}});
+	},
 });

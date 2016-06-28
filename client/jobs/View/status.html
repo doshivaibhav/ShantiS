@@ -1,27 +1,28 @@
 <template name="status">
 	<div class="row">
-  		<div class="col-sm-3">{{#if vessel}}x{{else}}yes{{/if}}</div>
-  		<div class="col-sm-3">{{#if orD}}x{{else}}yes{{/if}}</div>
-  		<div class="col-sm-3">{{#if DOCollected}}x{{else}}yes{{/if}}</div>	
-  		<div class="col-sm-3">{{#if Arr}}x{{else}}yes{{/if}}</div>
+  		<div class="col-sm-3 text-center">{{#if vessel}}<span class="glyphicon glyphicon-remove" style="color:red"></span>{{else}}<span class="glyphicon glyphicon-ok" style="color:green"></span>{{/if}}</div>
+  		<div class="col-sm-3 text-center">{{#if orD}}<span class="glyphicon glyphicon-remove" style="color:red"></span>{{else}}<span class="glyphicon glyphicon-ok" style="color:green"></span>{{/if}}</div>
+  		<div class="col-sm-3 text-center">{{#if DOCollected}}<span class="glyphicon glyphicon-remove" style="color:red"></span>{{else}}<span class="glyphicon glyphicon-ok" style="color:green"></span>{{/if}}</div>	
+  		<div class="col-sm-3 text-center">{{#if Arr}}<span class="glyphicon glyphicon-remove" style="color:red"></span>{{else}}<span class="glyphicon glyphicon-ok" style="color:green"></span>{{/if}}</div>
   	</div>
 	<div class="row">
-  		<div class="col-sm-3">Vessel Arrived</div>
-  		<div class="col-sm-3">Original Received</div>
-  		<div class="col-sm-3">DO Collected</div>	
-  		<div class="col-sm-3">Container Arrived</div>
+  		<div class="col-sm-3 text-center">Vessel Arrived</div>
+  		<div class="col-sm-3 text-center">Original Received</div>
+  		<div class="col-sm-3 text-center">DO Collected</div>	
+  		<div class="col-sm-3 text-center">Container Arrived</div>
   	</div>
+    <br>
 	<div class="row">
-  		<div class="col-sm-3">{{#if thoka}}x{{else}}yes{{/if}}</div>
-  		<div class="col-sm-3">{{#if dutyPaid}}x{{else}}yes{{/if}}</div>
-  		<div class="col-sm-3">{{#if delivery}}x{{else}}yes{{/if}}</div>	
-  		<div class="col-sm-3">{{#if Arr}}x{{else}}yes{{/if}}</div>
+  		<div class="col-sm-3 text-center">{{#if thoka}}<span class="glyphicon glyphicon-remove" style="color:red"></span>{{else}}<span class="glyphicon glyphicon-ok" style="color:green"></span>{{/if}}</div>
+  		<div class="col-sm-3 text-center">{{#if dutyPaid}}<span class="glyphicon glyphicon-remove" style="color:red"></span>{{else}}<span class="glyphicon glyphicon-ok" style="color:green"></span>{{/if}}</div>
+  		<div class="col-sm-3 text-center">{{#if delivery}}<span class="glyphicon glyphicon-remove" style="color:red"></span>{{else}}<span class="glyphicon glyphicon-ok" style="color:green"></span>{{/if}}</div>	
+  		<div class="col-sm-3 text-center">{{#if bill}}<span class="glyphicon glyphicon-remove" style="color:red"></span>{{else}}<span class="glyphicon glyphicon-ok" style="color:green"></span>{{/if}}</div>
   	</div>
   	<div class="row">
-  		<div class="col-sm-3">Thoka Taken</div>
-  		<div class="col-sm-3">Custom Duty Paid</div>
-  		<div class="col-sm-3">Delivery Completed</div>
-  		<div class="col-sm-3">Billing Done</div>
+  		<div class="col-sm-3 text-center">Thoka Taken</div>
+  		<div class="col-sm-3 text-center">Custom Duty Paid</div>
+  		<div class="col-sm-3 text-center">Delivery Completed</div>
+  		<div class="col-sm-3 text-center">Billing Done</div>
 	</div>
 
 </template>

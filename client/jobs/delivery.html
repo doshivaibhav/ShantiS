@@ -3,16 +3,7 @@
 <h1>Enter Delivery Details</h1>
 {{#if deliveryMode}}
     {{> quickForm collection="DeliveryDetails" id="deliveryDetailsInsert" type="insert"}}
-   {{else}}
+{{else}}
 	{{> quickForm collection="DeliveryDetails" id="deliveryDetailsUpdate" type="update" doc=deliveryId}}
-<!--	<form>
-		Delivery Address: <input type="text" name="DeliveryAddress">
-		Truck No: <input type = "text" name = "TruckNo">
-		Mobile No: <input type="text" name = "MobileNo">
-		Seal No: <input type="text" name="SealNo">
-		Delivery Out By: <input type="text" name="DeliveryOutBy">
-		Delivery Out On: <input type="Date" name="DeliveryOutOn">
-		<button type=submit name="submit">Submit</button>
-	</form>-->
-	{{/if}}
+{{/if}}
 </template>

@@ -13,10 +13,10 @@ TransportMasterDetails = new Mongo.Collection('transportMasterDetails');
 BeDetails = new Mongo.Collection('beDetails');
 StampDutyDetails = new Mongo.Collection('stampDutyDetails');
 IGMDetails = new Mongo.Collection('iGMDetails');
+BillingDetails = new Mongo.Collection('billingDetails');
 FssaiDetails = new Mongo.Collection('fssaiDetails');
 PqDetails = new Mongo.Collection('pqDetails');
 TextDetails = new Mongo.Collection('textDetails');
-BillingDetails = new Mongo.Collection('billingDetails');
 
 PortsSchema = new SimpleSchema({
 	name:{
@@ -671,6 +671,45 @@ DeliverySchema = new SimpleSchema({
 	
 });
 
+BillingSchema = new SimpleSchema({
+	JobId:{
+	type:String,
+	autoValue:function(events,template)
+	{
+		if(Meteor.isClient)
+		{var id = FlowRouter.getParam('id');
+		console.log(id);
+		return id;
+  		}
+	},
+  	autoform:{
+  		type:"hidden",
+  		},
+	},
+	BillNo:{type:String,label:"Bill No."},
+	BillDate:{type:String,label:"Bill Date",autoform: {
+      afFieldInput: {
+        type: "date"
+      }}},
+    BillMadeBy:{type:String,label:"Bill Made By",defaultValue:""},
+    CourierName:{type:String,label:"Courier Name",defaultValue:""},
+    TrackingNo:{type:String,label:"Tracking No.",defaultValue:""},
+    CourierDate:{type:String,label:"Courier Date",autoform: {
+      afFieldInput: {
+        type: "date"
+      }}},
+    BillAmt:{type:String,label:"Bill Amount",defaultValue:"0"},
+    updatedBy:{type:String,
+		label:"Prepared By",
+		autoValue:function(){
+			return this.userId
+		},
+		autoform:{
+			type:"hidden"
+		}}
+	
+});
+
 PartyMasterSchema = new SimpleSchema({
 	ClientName:{type:String,label:"Client Name", max: 50, defaultValue:""},
 	IECCode:{type:String,label:"IEC NO.",max:10,defaultValue:""},
@@ -934,6 +973,7 @@ ShippingDetails.attachSchema(ShippingSchema);
 YardDetails.attachSchema(YardSchema);
 DocDocks.attachSchema(DocDocksSchema);
 DeliveryDetails.attachSchema(DeliverySchema);
+BillingDetails.attachSchema(BillingSchema);
 Ports.attachSchema(PortsSchema);
 IGMDetails.attachSchema(IGMSchema);
 FssaiDetails.attachSchema(FssaiSchema);
@@ -1102,6 +1142,18 @@ DeliveryDetails.allow({
 		return !!userId;
 	}
 });
+
+BillingDetails.allow({
+	insert: function(userId,doc){
+		console.log("Running");
+		return !!userId;
+	},
+	update: function(userId,doc){
+		console.log("Running");
+		return !!userId;
+	}
+});
+
 Ports.allow({
 	insert: function(userId,doc){
 		console.log("Running");
