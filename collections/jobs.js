@@ -2,6 +2,7 @@ Jobs = new Mongo.Collection('jobs');
 JobCreation = new Mongo.Collection('jobCreation');
 OriginalDoc = new Mongo.Collection('originalDoc');
 ShippingDetails = new Mongo.Collection('shippingDetails');
+DODetails = new Mongo.Collection('dODetails');
 YardDetails = new Mongo.Collection('yardDetails');
 DocDocks = new Mongo.Collection('docDocks');
 DeliveryDetails = new Mongo.Collection('deliveryDetails');
@@ -107,12 +108,14 @@ BESchema = new SimpleSchema({
 	Desc:{
 		type:String,
 		label:"Product Description",
-		defaultValue:""
+		defaultValue:"",
+		max:100
 	},
 	No:{
 		type:String,
 		label:"BOE No.",
-		defaultValue:""
+		defaultValue:"",
+		max:8
 	},
 	Date:{type:String,label:"B/E Date.",defaultValue:"",
 	autoform: { afFieldInput: 
@@ -120,16 +123,40 @@ BESchema = new SimpleSchema({
 	}}
 	},
 	
-	AV:{type:String,label:"A/V Rs.", max: 10, defaultValue:"0.00"},
-	Duty:{type:String,label:"Duty Rs.", max: 9, defaultValue:"0.00"},
-	DutyDate:{type:String,label:"Duty Date",defaultValue:"",optional:true, autoform: { afFieldInput: 
+	AV:{type:String,label:"A/V Rs.", max: 15, defaultValue:"0.00",autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+	Duty:{type:String,label:"Duty Rs.", max: 10, defaultValue:"0.00",autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+	DutyDate:{type:String,label:"Duty Payment Date",defaultValue:"",optional:true, autoform: { afFieldInput: 
 		{ type: "date"
 	}}},
-	BndLic:{type:String,label:"Bond Amt. / Licence Amt. Rs.", max: 9, defaultValue:"0.00"},
-	TotalRs:{type:String,label:"Total Rs.", max: 9, defaultValue:"function by hook"},
-	Octroi:{type:String,label:"Octroi %", max: 3, defaultValue:""},
-	OctAmt:{type:String,label:"Octroi Amt. Rs.", max: 6, defaultValue:"function by hook"},
-	Insurance:{type:String,label:"Insurance", allowedValues:['By SSAPL','By Party']},
+	BndLic:{type:String,label:"Bond Amt. / Licence Amt. Rs.", max: 9, defaultValue:"0.00",autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+	TotalRs:{type:String,label:"Total Rs.", max: 9, defaultValue:"0.00",autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+	Octroi:{type:String,label:"Octroi %", max: 4, defaultValue:"0.00",autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+	OctAmt:{type:String,label:"Octroi Amt. Rs.", max: 6, defaultValue:"0.00",autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+	Insurance:{type:String,label:"Insurance", allowedValues:['By SSAPL','By Party'],defaultValue:'By SSAPL'},
 	updatedBy:{
 			type:String,
 		label:"Prepared By",
@@ -153,43 +180,57 @@ BLSchema = new SimpleSchema({
 			type:String,
 			label:"No. Of Packages",
 			max: 4,
-			defaultValue:""
+			defaultValue:"",
+			autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }
 		},
 
 		GrossWt:{
 			type:String,
 			label:"Gross Weight (Kgs)",
-			max: 5,
-			defaultValue:""
+			max: 8,
+			defaultValue:"",
+			autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }
 		},
 
 		CBM:{
 			type:String,
 			label:"CBM",
 			max: 7,
-			defaultValue:""
+			defaultValue:"",
+			autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }
 		},	
 
 		LoadPort:{
 			type:String,
 			label:"Port of Loading",
-			defaultValue:""
+			defaultValue:"",
+			max: 30,
 		},
 
 		HBLNo:{
 			type:String,
 			label:"HBL No.",
 			optional: true,
-			max: 20,
+			max: 30,
 			defaultValue:""
 		},
 		HBLDate:{
 			type:String,
 			label:"HBL Date",
 			optional: true,
-			defaultValue:function(){
-			return new Date();
-		},
+			defaultValue:'',
 			autoform: {
       		afFieldInput: {
         	type: "date"
@@ -200,7 +241,7 @@ BLSchema = new SimpleSchema({
 		MBLNo:{
 			type:String,
 			label:"MBL No.",
-			max: 20,
+			max: 30,
 			defaultValue:""
 		},
 		MBLDate:{
@@ -232,7 +273,7 @@ BLSchema = new SimpleSchema({
 		Voyage:{
 			type:String,
 			label:"Voyage",
-			max: 5,
+			max: 6,
 			defaultValue:""
 		},
 
@@ -393,23 +434,39 @@ IGMSchema = new SimpleSchema({
   	type:"hidden",
   },
 },
-	IGMNo:{type:String,label:"IGM No.",defaultValue:""},
+	IGMNo:{type:String,label:"IGM No.",defaultValue:"",max:7,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
 	Date:{type:String,label:"Date of Entry",autoform: {
       afFieldInput: {
         type: "date"
       }}},
-	ItemNo:{type:String,label:"Item No.",defaultValue:""},
+	ItemNo:{type:String,label:"Item No.",defaultValue:"",max:5,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
 	InwardDate:{type:String,label:"Inward Date",autoform: {
       afFieldInput: {
         type: "date"
       }}},
-	DestuffingYard:{type:String,label:"Destuffing Yard",defaultValue:""},
-	MumbaiIGMNo:{type:String,label:"Mumbai IGM No",defaultValue:"",optional:true},
+	DestuffingYard:{type:String,label:"CFS Name",defaultValue:"",optional:true},
+	MumbaiIGMNo:{type:String,label:"Mumbai IGM No",defaultValue:"",optional:true,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
 	MumbaiDate:{type:String,label:"Date",optional:true,autoform: {
       afFieldInput: {
         type: "date",
       }}},
-	MumbaiItemNo:{type:String,label:"Item No",optional:true,defaultValue:""},
+	MumbaiItemNo:{type:String,label:"Item No",optional:true,defaultValue:"",autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
 	MumbaiInwardDate:{type:String,label:"Inward Date",optional:true,autoform: {
       afFieldInput: {
         type: "date"
@@ -432,35 +489,6 @@ PGASEL:{type:String,label:"Select Partner Government Agency",
 allowedValues: ['FSSAI','PQ','FSSAI & PQ','ADC','WLRO','TEXTILE']},
 });*/
 
-DOSchema = new SimpleSchema({
-SurRel:{type:String,label:"B/L Type",allowedValues: ['Surrender', 'Telex' , 'OBL']},
-Charges:{type:String,label:"D/O Charges Rs.", max: 7, defaultValue:0},
-InFavourOf:{type:String,label:"In favour of",defaultValue:""},
-ValidTill:{type:String, label:"Valid Till",autoform: {
-      afFieldInput: {
-        type: "date"
-      }}},
-CoPersonName1:{type:String,label:"S. Co. Person Name 1",defaultValue:""},
-CoPersonName2:{type:String,label:"S. Co. Person Name 2",defaultValue:""},
-CollectedBy:{type:String,label:"D O Collected By",defaultValue:""},
-CollectedDate:{type:String,label:"Date of Collection",defaultValue:""},
-CourieredTo:{type:String,label:"Couriered To",defaultValue:""},
-DateofCourier:{type:String,label:"Date of Courier",autoform: {
-      afFieldInput: {
-        type: "date"
-      }}},
-updatedBy:{
-	type:String,
-		label:"Prepared By",
-		autoValue:function(){
-			return this.userId
-		},
-		autoform:{
-			type:"hidden"
-		}
-}
-});
-
 StampDutySchema = new SimpleSchema({
 	JobId:{
 	type:String,
@@ -478,7 +506,11 @@ StampDutySchema = new SimpleSchema({
 },
 	StampDuty:{type:String,label:"Shipping Co./BPT/Bank",allowedValues: ['Shipping co.', 'BPT' , 'Bank' , 'GRAS Online']},
 	//SurRel:{type:String,label:"B/L Type",allowedValues: ['Surrender', 'Telex' , 'OBL']},
-	Amount:{type:String,label:"0.1% Stamp Duty Rs.",defaultValue:0},
+	Amount:{type:String,label:"0.1% Stamp Duty Rs.",defaultValue:0,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
 	GRNNo:{type:String,label:"GRN No.",defaultValue:""},
 	Date:{type:String,label:"Date of Paymnet",autoform: {
       afFieldInput: {
@@ -492,6 +524,71 @@ StampDutySchema = new SimpleSchema({
 		autoform:{
 			type:"hidden"
 		}}
+});
+
+DOSchema = new SimpleSchema({
+	JobId:{
+		type:String,
+		autoValue:function(events,template)
+		{
+			if(Meteor.isClient)
+			{var id = FlowRouter.getParam('id');
+			console.log(id);
+			return id;
+	  }
+			},
+	  autoform:{
+	  	type:"hidden",
+	  },
+	},
+	DaysFree:{type:Boolean,label:"14 days Free"},
+	FreeDaysFrom:{type:String,label:"Free Days from",optional:true,autoform: {
+      afFieldInput: {
+        type: "date"
+      }}},
+	FreeDaysTo:{type:String,label:"Free Days Till",optional:true,autoform: {
+      afFieldInput: {
+        type: "date"
+      }}},
+    
+	Charges:{type:String,label:"D/O Charges Rs.", max: 7, defaultValue:0,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+/*ValidTill:{type:String, label:"Valid Till",autoform: {
+      afFieldInput: {
+        type: "date"
+      }}},
+
+*/
+	FreightCharges:{type:String, label:"Freight Charges Rs.",defaultValue:0,optional:true,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+	CollectedBy:{type:String,label:"D O Collected By",defaultValue:""},
+	CollectedDate:{type:String,label:"Date of Collection",defaultValue:"",autoform: {
+	      afFieldInput: {
+	        type: "date"
+	      }}},
+	CourieredTo:{type:String,label:"Couriered To",defaultValue:""},
+	DateofCourier:{type:String,label:"Date of Courier",autoform: {
+	      afFieldInput: {
+	        type: "date"
+	      }}},
+	EmptyYardName:{type:String,label:"Empty Yard's Name",defaultValue:""},
+	
+	updatedBy:{
+		type:String,
+			label:"Prepared By",
+			autoValue:function(){
+				return this.userId
+			},
+			autoform:{
+				type:"hidden"
+			}
+	}
 });
 
 ShippingSchema = new SimpleSchema({
@@ -509,6 +606,7 @@ ShippingSchema = new SimpleSchema({
 	  	type:"hidden",
 	  },
 	},
+	SurRel:{type:String,label:"B/L Type",allowedValues: ['Surrender', 'Telex' , 'OBL']},
 	/*PQRIRONo:{type:String,label:"PQR IRO No.",defaultValue:""},
 	DateIRO:{type:String, label:"Date of IRO",autoform: {
       afFieldInput: {
@@ -516,23 +614,14 @@ ShippingSchema = new SimpleSchema({
       }}},*/
 	ShipCoName:{type:String, label:"Shipping Company Name",defaultValue:""},
 	LocatedAt:{type:String, label:"Located At Mumbai/Andheri/JNPT",defaultValue:""},
-	VesselName:{type:String, label:"Vessel Name",defaultValue:""},
+	VesselName:{type:String, label:"Vessel Name",defaultValue:"",optional:true},
 	ETA:{type:String,label:"Estimated Time of Arrival (ETA)",autoform: {
       afFieldInput: {
         type: "date"
       }}},
-	FreightCharges:{type:String, label:"Freight Charges Rs.",defaultValue:0},
+    CoPersonName1:{type:String,label:"S. Co. Person Name 1",defaultValue:"",optional:true},
+	CoPersonName2:{type:String,label:"S. Co. Person Name 2",defaultValue:"",optional:true},
 	NextAgent:{type:String, label:"Next Agent",defaultValue:"",optional:true},
-	DaysFree:{type:Boolean,label:"14 days Free"},
-	FreeDaysFrom:{type:String,label:"Free Days from",optional:true,autoform: {
-      afFieldInput: {
-        type: "date"
-      }}},
-	FreeDaysTo:{type:String,label:"Free Days Till",optional:true,autoform: {
-      afFieldInput: {
-        type: "date"
-      }}},
-    DO:{type:DOSchema, label:"Delivery Order (DO)"},
 	updatedBy:{type:String,
 		label:"Prepared By",
 		autoValue:function(){
@@ -560,12 +649,15 @@ YardSchema = new SimpleSchema({
   },
 },
 	YardName:{type:String,label:"Yard Name",defaultValue:""},
-	JobOrder:{type:Boolean,label:"Job Order",defaultValue:0},
+	JobOrder:{type:Boolean,label:"Job Order",defaultValue:0,autoform:{
+		type:"select-radio-inline",
+		options:[{label:'Yes',value:true},{label:'No',value:false}]
+	}},
 	ContainerArr:{type:String,label:"Container Arrived On",autoform: {
       afFieldInput: {
         type: "date"
       }}},	
-	ContainerDes:{type:String,label:"Container Destuffed On",autoform: {
+	ContainerDes:{type:String,label:"Container Destuffed On",optional:true,autoform: {
       afFieldInput: {
         type: "date"
       }}},	
@@ -575,18 +667,16 @@ YardSchema = new SimpleSchema({
 		options:[{label:'Yes',value:'Yes'},{label:'No',value:'No'}]
 	}
 	},
-	YardPersonName:{type:String,label:"Yard Person's Name",defaultValue:""},
-	YardCharges:{type:String,label:"Yard Charges Rs.",defaultValue:0},
+	YardPersonName:{type:String,label:"Yard Person's Name",defaultValue:"",optional:true},
+	YardCharges:{type:String,label:"Yard Charges Rs.",defaultValue:0,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
 	ValidTill:{type:String,label:"Yard Charges Valid Till",autoform: {
       afFieldInput: {
         type: "date"
       }}},
-	DeliveryOutOn:{type:String,label:"Delivery Out On",autoform: {
-      afFieldInput: {
-        type: "date"
-      }}},
-	TransporterName:{type:String,label:"Transporter's Name",defaultValue:""},
-	EmptyYardName:{type:String,label:"Empty Yard's Name",defaultValue:""},
 	updatedBy:{type:String,
 		label:"Prepared By",
 		autoValue:function(){
@@ -618,8 +708,16 @@ DocDocksSchema = new SimpleSchema({
         type: "date"
       }}},
 	/*PknListBy:{type:String, label:"Packing List Checked By",defaultValue:""},*/
-	WLRO:{type:Boolean,label:"WLRO",defaultValue:0},
+	WLRO:{type:Boolean,label:"WLRO",defaultValue:0,autoform:{
+		type:"select-radio-inline",
+		options:[{label:'Yes',value:true},{label:'No',value:false}]
+	}},
 	/*ExamOrderBy:{type:String,label:"Examination Order Checked By",defaultValue:""},*/
+	BLPL:{type:Boolean,label:"Invoice/BL/PL Matching?",defaultValue:0,autoform:{
+		type:"select-radio-inline",
+		options:[{label:'Yes',value:true},{label:'No',value:false}]
+	}},
+	Comment:{type:String,label:"If No Comment",defaultValue:"",optional:true,max:100},
 	ExamOrderOn:{type:String,label:"Examination Order checked On",autoform: {
       afFieldInput: {
         type: "date"
@@ -651,10 +749,14 @@ DeliverySchema = new SimpleSchema({
   	type:"hidden",
   },
 },
-	Address:{type:String,label:"Delivery Address",defaultValue:""},
-	TruckNo:{type:String, label:"Truck No",defaultValue:""},
-	MobileNo:{type:String,label:"Mobile No",defaultValue:""},
-	SealNo:{type:String, label:"Seal No",defaultValue:""},
+	Address:{type:String,label:"Delivery Address",defaultValue:"",max:100},
+	TruckNo:{type:String, label:"Truck No",defaultValue:"",max:10},
+	MobileNo:{type:String,label:"Mobile No",defaultValue:"",max:10,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+	SealNo:{type:String, label:"Seal No",defaultValue:"",max:10},
 	DeliveryOutBy:{type:String, label:"Delivery Out By",defaultValue:""},
 	DeliveryOutOn:{type:String, label:"Delivery Out On",autoform: {
       afFieldInput: {
@@ -667,7 +769,8 @@ DeliverySchema = new SimpleSchema({
 		},
 		autoform:{
 			type:"hidden"
-		}}
+		}},
+	TransporterName:{type:String,label:"Transporter's Name",defaultValue:""},
 	
 });
 
@@ -686,7 +789,11 @@ BillingSchema = new SimpleSchema({
   		type:"hidden",
   		},
 	},
-	BillNo:{type:String,label:"Bill No."},
+	BillNo:{type:String,label:"Bill No.",autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
 	BillDate:{type:String,label:"Bill Date",autoform: {
       afFieldInput: {
         type: "date"
@@ -698,7 +805,11 @@ BillingSchema = new SimpleSchema({
       afFieldInput: {
         type: "date"
       }}},
-    BillAmt:{type:String,label:"Bill Amount",defaultValue:"0"},
+    BillAmt:{type:String,label:"Bill Amount",defaultValue:"0",autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
     updatedBy:{type:String,
 		label:"Prepared By",
 		autoValue:function(){
@@ -713,9 +824,21 @@ BillingSchema = new SimpleSchema({
 PartyMasterSchema = new SimpleSchema({
 	ClientName:{type:String,label:"Client Name", max: 50, defaultValue:""},
 	IECCode:{type:String,label:"IEC NO.",max:10,defaultValue:""},
-	Telephone:{type:String,label:"Telephone No.",defaultValue:0},
-	Mobile:{type:String,label:"Mobile",defaultValue:0},
-	Email:{type:String,label:"Email ID", max: 30, defaultValue:""},
+	Telephone:{type:String,label:"Telephone No.",defaultValue:0,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+	Mobile:{type:String,label:"Mobile",defaultValue:0,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+	Email:{type:String,label:"Email ID", max: 30, defaultValue:"",autoform: {
+      afFieldInput: {
+        type: "email"
+      }
+    }},
 	BankName:{type:String,label:"Bank Name", max: 50, defaultValue:""},
 	BankBranch:{type:String,label:"Bank Branch", max: 50, defaultValue:""},
 	AcNo:{type:String,label:"A/C No", max: 15, defaultValue:""},
@@ -736,7 +859,11 @@ ShippingMasterSchema = new SimpleSchema({
 	ScoTelephone:{type:String,label:"S.CO Telephone No.", max: 10, defaultValue:0},
 	ScoLocated:{type:String,label:"S.CO Location", max: 50, defaultValue:""},
 	ScoMobile:{type:String,label:"S.CO Mobile No.", max: 10, defaultValue:0},
-	ScoEmail:{type:String,label:"S.CO Email ID", max: 30, defaultValue:""},
+	ScoEmail:{type:String,label:"S.CO Email ID", max: 30, defaultValue:"",autoform: {
+      afFieldInput: {
+        type: "email"
+      }
+    }},
 	ScoBankName:{type:String,label:"S.CO Bank Name", max: 50, defaultValue:""},
 	ScoBankBranch:{type:String,label:"S.CO Bank Branch", max: 50, defaultValue:""},
 	ScoAcNo:{type:String,label:"S.CO A/C No", max: 20, defaultValue:""},
@@ -764,7 +891,11 @@ YardMasterSchema = new SimpleSchema({
 	YrdTelephone:{type:String,label:"CFS Telephone No.", max: 10, defaultValue:0},
 	YrdLocation:{type:String,label:"CFS Location", max: 50, allowedValues: ['JNPT/Nhavasheva', 'Panvel'] },
 	/*ScoMobile:{type:String,label:"S.CO Mobile No.", max: 10, defaultValue:0},*/
-	YrdEmail:{type:String,label:"CFS Email ID", max: 30, defaultValue:""},
+	YrdEmail:{type:String,label:"CFS Email ID", max: 30, defaultValue:"",autoform: {
+      afFieldInput: {
+        type: "email"
+      }
+    }},
 	YrdBankName:{type:String,label:"CFS Bank Name", max: 50, defaultValue:""},
 	YrdBankBranch:{type:String,label:"CFS Bank Branch", max: 50, defaultValue:""},
 	YrdAcNo:{type:String,label:"CFS A/C No", max: 20, defaultValue:""},
@@ -783,7 +914,12 @@ TransportMasterSchema = new SimpleSchema({
 	TransName:{type:String,label:"Transporter Name", max: 50, defaultValue:""},
 	Transtelephone:{type:String,label:"Transporter Telephone No.", max: 12, defaultValue:0},
 	TransMobile:{type:String,label:"Transporter Mobile No.", max: 10, defaultValue:0},
-	TransEmail:{type:String,label:"Transporter Email ID", max: 30, defaultValue:""},
+	TransEmail:{type:String,label:"Transporter Email ID", max: 30, defaultValue:"",
+	autoform: {
+      afFieldInput: {
+        type: "email"
+      }
+    }},
 	TransBankName:{type:String,label:"Transporter Bank Name", max: 50, defaultValue:""},
 	TransBankBranch:{type:String,label:"Transporter Branch", max: 50, defaultValue:""},
 	TransAcNo:{type:String,label:"Transporter A/C No", max: 20, defaultValue:""},
@@ -970,6 +1106,7 @@ TransportMasterDetails.attachSchema(TransportMasterSchema);
 JobCreation.attachSchema(jobCreationSchema);
 OriginalDoc.attachSchema(OriginalDocSchema);
 ShippingDetails.attachSchema(ShippingSchema);
+DODetails.attachSchema(DOSchema);
 YardDetails.attachSchema(YardSchema);
 DocDocks.attachSchema(DocDocksSchema);
 DeliveryDetails.attachSchema(DeliverySchema);
@@ -990,6 +1127,7 @@ Jobs.allow({
 		return !!userId;
 	}
 });
+
 BeDetails.allow({
 	insert: function(userId,doc){
 		console.log("Running");
@@ -1000,6 +1138,17 @@ BeDetails.allow({
 		return !!userId;
 	}		
 });
+
+DODetails.allow({
+	insert: function(userId,doc){
+		console.log("Running");
+		return true;
+	},
+	update: function(userId,doc){
+		console.log("Running");
+		return !!userId;
+	}
+})
 
 IGMDetails.allow({
 	insert: function(userId,doc){

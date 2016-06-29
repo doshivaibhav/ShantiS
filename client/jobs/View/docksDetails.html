@@ -3,16 +3,27 @@
         <div class="panel-group">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-  					<h4 class="panel-title"><a data-toggle="collapse" href="#docksDet">Docks Information</a><span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true" id="btnDockDocks" style="cursor:pointer"></span></h4>
+  					<h4 class="panel-title"><a data-toggle="collapse" href="#docksDet">Docks Information</a><span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true" id="btnDocDocks" style="cursor:pointer"></span></h4>
   				</div>
 		        <div id="docksDet" class="panel-collapse collapse">
-			        <li class="list-group-item">Packing List Checked On: {{docks.PknListOn}}</li><li class="list-group-item">
+			        <li class="list-group-item">Packing List Checked On: {{docks.PknListOn}}</li>
+			        <li class="list-group-item">
 			        	WLRO: {{#if docks.WLRO}}
 			        	<i class="fa fa-check"></i>
 			        	{{else}}
 			        	<i class="fa fa-cross"></i>
 			        	{{/if}}
 			        </li>
+			        <li class="list-group-item">
+			        	Invoice/BL/PL: {{#if docks.BLPL}}
+			        	<i class="fa fa-check"></i>
+			        	{{else}}
+			        	<i class="fa fa-cross"></i>
+			        	{{/if}}
+			        </li>
+			        {{#if docks.BLPL}}
+			        <li class="list-group-item">Comment (Why No): {{docks.Comment}}</li>
+			        {{/if}}
 			        <li class="list-group-item">Examination Order checked On: {{docks.ExamOrderOn}}</li>
     			</div>
     		</div>

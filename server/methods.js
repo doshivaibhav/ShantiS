@@ -9,8 +9,11 @@ Meteor.methods({
 	'shipDetailsUpdateMethod':function(id){
 		ShippingDetails.update({JobId:id},{$set:{updatedBy:function(){return Meteor.userId();}}});
 	},
+	'DODetailsUpdateMethod':function(id){
+		DODetails.update({JobId:id},{$set:{updatedBy:function(){return Meteor.userId();}}});
+	},
 	'stampDutyFormUpdateMethod':function(id){
-		ShippingDetails.update({JobId:id},{$set:{updatedBy:function(){return Meteor.userId();}}});
+		StampDutyDetails.update({JobId:id},{$set:{updatedBy:function(){return Meteor.userId();}}});
 	},
 	'beDetailsUpdateMethod':function(id){
 		BeDetails.update({JobId:id},{$set:{updatedBy:function(){return Meteor.userId();}}});

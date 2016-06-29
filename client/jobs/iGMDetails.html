@@ -2,9 +2,40 @@
 {{> header}}
 	<h1>Enter IGM Details</h1>
     {{#if igmMode}}
-    {{> quickForm collection="IGMDetails" id="iGMDetailsInsert" type="insert"}}
+   {{#autoForm collection="IGMDetails" id="iGMDetailsInsert" type="insert"}}
+		  	
+    {{> afQuickField name ='IGMNo'}}
+    {{> afQuickField name='Date'}}
+    {{> afQuickField name='ItemNo'}}
+
+    {{> afQuickField name="InwardDate"}}
+    {{> afQuickField name="DestuffingYard" options=yardNames}}
+    {{> afQuickField name="MumbaiIGMNo"}}
+    {{> afQuickField name="MumbaiDate"}}
+    {{> afQuickField name="MumbaiItemNo"}}
+    {{> afQuickField name="MumbaiInwardDate"}}
+     <div class="form-group">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-default">Reset Form</button>
+  </div>
+  {{/autoForm}}
 {{else}}
-{{> quickForm collection="IGMDetails" id="iGMDetailsUpdate" type="update" doc=igmId}}
+{{#autoForm collection="IGMDetails" id="iGMDetailsUpdate" type="update" doc=igmId}}
+    {{> afQuickField name ='IGMNo'}}
+    {{> afQuickField name='Date'}}
+    {{> afQuickField name='ItemNo'}}
+
+    {{> afQuickField name="InwardDate"}}
+    {{> afQuickField name="DestuffingYard" options=yardNames}}
+    {{> afQuickField name="MumbaiIGMNo"}}
+    {{> afQuickField name="MumbaiDate"}}
+    {{> afQuickField name="MumbaiItemNo"}}
+    {{> afQuickField name="MumbaiInwardDate"}}
+     <div class="form-group">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-default">Reset Form</button>
+  </div>
+  {{/autoForm}}
 {{/if}}
 
 </template>

@@ -13,7 +13,8 @@ self.autorun(function(){
 	self.subscribe('stampDutyDetails',id);
 	self.subscribe('iGMDetails',id);
 	self.subscribe('beDetails',id);
-	self.subscribe('billingDetails',id)
+	self.subscribe('billingDetails',id);
+	self.subscribe('dODetails',id)
 });
 });
 Template.job.helpers({
@@ -82,7 +83,12 @@ Template.job.events({
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/yard";
+		var id = FlowRouter.getParam('id');
+		var id1 = iGMDetails.findOne({JobId:id});
+		if(typeof id1 == 'undefined')
+			alert("Please Fill IGM Details First");
+		else
+			window.location = "/"+id+"/yard";
 	},
 	'click #btnBe':function(e)
 	{
@@ -107,6 +113,12 @@ Template.job.events({
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
 		window.location = "/"+id+"/bill";
+	},
+	'click #btnDO':function(e)
+	{
+		var id = FlowRouter.getParam('id');
+		e.preventDefault();
+		window.location = "/"+id+"/dorder";
 	},
 	'click #btnStampDuty':function(e)
 	{

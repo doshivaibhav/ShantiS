@@ -3,7 +3,7 @@ Template.status.onCreated(function(){
 var self =this;
 self.autorun(function(){
 	var id = FlowRouter.getParam('id');
-	self.subscribe('shippingDetails',id);
+	self.subscribe('dODetails',id);
 	self.subscribe('originalDoc',id);
 	self.subscribe('yardDetails',id);
 	self.subscribe('deliveryDetails',id);
@@ -37,9 +37,9 @@ Template.status.helpers({
 	},
 	DOCollected:function(){
 		var id = FlowRouter.getParam('id');
-    	DOCol = ShippingDetails.findOne({JobId:id},{fields:{DO:1}});
+    	DOCol = DODetails.findOne({JobId:id},{fields:{DOCollectedBy:1}});
     	//console.log(DOCol);
-    	if(typeof DOCol == 'undefined' || DOCol.DO.CollectedBy=='')
+    	if(typeof DOCol == 'undefined' || DOCol.CollectedBy=='')
     	{
     		return true;
     	}

@@ -1,0 +1,10 @@
+<template name='dorder'>
+{{> header}}
+<h1>Enter DO Details</h1>
+    {{#if DOMode}}
+    {{> quickForm collection="DODetails" id="DODetailsInsert" type="insert"}}
+{{else}}
+{{> quickForm collection="DODetails" id="DODetailsUpdate" type="update" doc=DOId}}
+{{/if}}
+
+</template>

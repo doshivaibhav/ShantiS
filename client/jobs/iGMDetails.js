@@ -3,6 +3,7 @@ var self =this;
 self.autorun(function(){
 	var id = FlowRouter.getParam('id');
 	self.subscribe('iGMDetails',id);
+	self.subscribe('yardMasterDetails');
 });
 });
 
@@ -21,6 +22,15 @@ Template.iGMDetails.helpers({
 		var id1 = IGMDetails.findOne({JobId:id});
 		console.log(id1._id)
 		return id1;
+	},
+	yardNames:function(){
+		var yardCol = YardMasterDetails.find({},{fields:{YrdName:1}});
+			var yardarr = [];
+			yardCol.forEach(function(obj){
+				yardarr.push({label:obj.YrdName,value:obj.YrdName});
+			})
+			//console.log(portarr);
+			return yardarr;
 	},
 });
 AutoForm.addHooks('iGMDetailsUpdate',{

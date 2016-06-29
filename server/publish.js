@@ -14,6 +14,10 @@ Meteor.publish('shippingDetails',function(id){
 return ShippingDetails.find({JobId:id});
 });
 
+Meteor.publish('dODetails',function(id){
+return DODetails.find({JobId:id});
+});
+
 Meteor.publish('iGMDetails',function(id){
 return IGMDetails.find({JobId:id});
 });

@@ -1,0 +1,50 @@
+<template name="dorderDetails">
+	<ul class="list-group">
+        <div class="panel-group">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+  					<h4 class="panel-title"><a data-toggle="collapse" href="#dorderDet">DO Information</a><span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true" id="btnDO" style="cursor:pointer"></span></h4>
+  				</div>
+		        <div id="dorderDet" class="panel-collapse collapse">
+			        <li class="list-group-item">
+			        	14 Days Free: 
+			        	{{#if dorder.DaysFree}}
+			        		<i class="fa fa-check"></i>
+			        	{{else}}
+			        		<i class="fa fa-cross"></i>
+			        	{{/if}}
+			        </li>
+			        {{#if dorder.DaysFree}}
+			        <li class="list-group-item">
+			        	Days From: {{dorder.FreeDaysFrom}}
+			        </li>
+			        <li class="list-group-item">
+			        	Days Till: {{dorder.FreeDaysTo}}
+			        </li>
+			        {{/if}}
+			        <li class="list-group-item">
+			        	Charges: {{dorder.Charges}}
+			        </li>
+			        <li class="list-group-item">
+			        	Freight Charges: {{dorder.FreightCharges}}
+			        </li>
+			        <li class="list-group-item">
+			        	Collected By: {{dorder.CollectedBy}}
+			        </li>
+			        <li class="list-group-item">
+			        	CollectedDate: {{dorder.CollectedDate}}
+			        </li>
+			        <li class="list-group-item">
+			        	Couriered To: {{dorder.CourieredTo}}
+			        </li>
+			        <li class="list-group-item">
+			        	Date of Courier: {{dorder.DateofCourier}}
+			        </li>
+			        <li class="list-group-item">
+			        	Empty Yard Name: {{dorder.EmptyYardName}}
+			        </li>
+    			</div>
+    		</div>
+    	</div>
+    </ul>
+</template>

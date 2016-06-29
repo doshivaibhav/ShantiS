@@ -1,9 +1,38 @@
 <template name = "delivery">
 {{> header}}
-<h1>Enter Delivery Details</h1>
 {{#if deliveryMode}}
-    {{> quickForm collection="DeliveryDetails" id="deliveryDetailsInsert" type="insert"}}
+    <!--{{> quickForm collection="deliveryDetails" id="deliveryDetailsInsert" type="insert"}}-->
+    {{#autoForm collection="DeliveryDetails" id="deliveryDetailsInsert" type="insert"}}
+		  	
+    {{> afQuickField name ='Address'}}
+    {{> afQuickField name='TruckNo'}}
+    {{> afQuickField name='MobileNo'}}
+
+    {{> afQuickField name="SealNo"}}
+    {{> afQuickField name="DeliveryOutBy"}}
+    {{> afQuickField name="DeliveryOutOn"}}
+    {{> afQuickField name="TransporterName" options = transNames}}
+     <div class="form-group">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-default">Reset Form</button>
+  </div>
+  {{/autoForm}}
 {{else}}
-	{{> quickForm collection="DeliveryDetails" id="deliveryDetailsUpdate" type="update" doc=deliveryId}}
-{{/if}}
+	<!--{{> quickForm collection="deliveryDetails" id="deliveryDetailsUpdate" type="update" doc=deliveryId}}-->
+	{{#autoForm collection="DeliveryDetails" id="deliveryDetailsUpdate" type="update" doc=deliveryId}}
+		  	
+    {{> afQuickField name ='Address'}}
+    {{> afQuickField name='TruckNo'}}
+    {{> afQuickField name='MobileNo'}}
+
+    {{> afQuickField name="SealNo"}}
+    {{> afQuickField name="DeliveryOutBy"}}
+    {{> afQuickField name="DeliveryOutOn"}}
+    {{> afQuickField name="TransporterName" options = transNames}}
+     <div class="form-group">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-default">Reset Form</button>
+  </div>
+  {{/autoForm}}
+	{{/if}}
 </template>

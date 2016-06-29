@@ -5,7 +5,7 @@
     <!--{{> quickForm collection="YardDetails" id="yardDetailsInsert" type="insert"}}-->
     {{#autoForm collection="YardDetails" id="yardDetailsInsert" type="insert"}}
 		  	
-    {{> afQuickField name ='YardName' options=yardNames}}
+    {{> afQuickField name ='YardName' value=yardNames readonly=true}}
     {{> afQuickField name='JobOrder'}}
     {{> afQuickField name='ContainerArr'}}
 
@@ -14,9 +14,6 @@
     {{> afQuickField name="YardPersonName"}}
     {{> afQuickField name="YardCharges"}}
     {{> afQuickField name="ValidTill"}}
-    {{> afQuickField name="DeliveryOutOn"}}
-    {{> afQuickField name="TransporterName" options=transNames}}
-    {{> afQuickField name="EmptyYardName"}}
      <div class="form-group">
     <button type="submit" class="btn btn-primary">Submit</button>
     <button type="reset" class="btn btn-default">Reset Form</button>
@@ -35,9 +32,6 @@
     {{> afQuickField name="YardPersonName"}}
     {{> afQuickField name="YardCharges"}}
     {{> afQuickField name="ValidTill"}}
-    {{> afQuickField name="DeliveryOutOn"}}
-    {{> afQuickField name="TransporterName" options=transNames}}
-    {{> afQuickField name="EmptyYardName"}}
      <div class="form-group">
     <button type="submit" class="btn btn-primary">Submit</button>
     <button type="reset" class="btn btn-default">Reset Form</button>

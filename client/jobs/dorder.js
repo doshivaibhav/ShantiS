@@ -1,44 +1,39 @@
-Template.yard.onCreated(function(){
+Template.dorder.onCreated(function(){
 var self =this;
 self.autorun(function(){
 	var id = FlowRouter.getParam('id');
-	self.subscribe('yardDetails',id);
-	self.subscribe('iGMDetails',id)
+	self.subscribe('dODetails',id);
 });
 });
 
-Template.yard.helpers({
-	yardMode:function(){
+Template.dorder.helpers({
+	DOMode:function(){
 		var id = FlowRouter.getParam('id');
-		var id1 = YardDetails.findOne({JobId:id});
+		var id1 = DODetails.findOne({JobId:id});
 		//console.log(id1._id);
 		if(typeof id1 == 'undefined')
 			return true;
 		else
 			return false;
 	},
-	yardId:function(){
+	DOId:function(){
 		var id = FlowRouter.getParam('id');
-		var id1 = YardDetails.findOne({JobId:id});
-		//console.log(id1._id);
+		var id1 = DODetails.findOne({JobId:id});
+		console.log(id1._id)
 		return id1;
 	},
-	yardNames:function(){
-		var id = FlowRouter.getParam('id');
-		var yardCol = IGMDetails.findOne({JobId:id},{fields:{DestuffingYard:1}});
-			return yardCol.DestuffingYard;
-	},
 });
-AutoForm.addHooks('yardDetailsUpdate',{
+AutoForm.addHooks('DODetailsUpdate',{
 	onSuccess:function(id,doc)
 	{
-		Meteor.call('yardDetailsUpdateMethod',id);
+		Meteor.call('DODetailsUpdateMethod',id);
 		alert('Data Updated');
 		window.history.back();
+		
 	}
 });
 
-AutoForm.addHooks('yardDetailsInsert', {
+AutoForm.addHooks('DODetailsInsert', {
   	onSubmit: function (insertDoc, updateDoc, currentDoc) {
     console.log(arguments);
     return false;

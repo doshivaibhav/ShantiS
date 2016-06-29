@@ -6,58 +6,14 @@
   					<h4 class="panel-title"><a data-toggle="collapse" href="#shipDet">Shipping Information</a><span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true" id="btnShip" style="cursor:pointer"></span></h4>
   				</div>
 		        <div id="shipDet" class="panel-collapse collapse">
+			        <li class="list-group-item">B/L Type: {{ship.SurRel}}</li>
 			        <li class="list-group-item">Shipping Co Name: {{ship.ShipCoName}}</li>
 			        <li class="list-group-item">Located At:  {{ship.LocatedAt}}</li>
 			        <li class="list-group-item">Vessel Name: {{ship.VesselName}}</li>
 			        <li class="list-group-item"> ETA: {{ship.ETA}}</li>
-			        <li class="list-group-item">Freight Charges: {{ship.FreightCharges}}</li>
+			        <li class="list-group-item">Contact Person Name 1: {{ship.CoPersonName1}}</li>
+			        <li class="list-group-item">Contact Person Name 2: {{ship.CoPersonName2}}</li>
 			        <li class="list-group-item">Next Agent: {{ship.NextAgent}}</li>
-			        <li class="list-group-item">
-			        	14 Days Free: 
-			        	{{#if ship.DaysFree}}
-			        		<i class="fa fa-check"></i>
-			        	{{else}}
-			        		<i class="fa fa-cross"></i>
-			        	{{/if}}
-			        </li>
-			        {{#if ship.DaysFree}}
-			        <li class="list-group-item">
-			        	Days From: {{ship.FreeDaysFrom}}
-			        </li>
-			        <li class="list-group-item">
-			        	Days Till: {{ship.FreeDaysTo}}
-			        </li>
-			        {{/if}}
-			        <li class="list-group-item">
-			        	B/L Type: {{ship.DO.SurRel}}
-			        </li>
-			        <li class="list-group-item">
-			        	Charges: {{ship.DO.Charges}}
-			        </li>
-			        <li class="list-group-item">
-			        	In Favour Of: {{ship.DO.InFavourOf}}
-			        </li>
-			        <li class="list-group-item">
-			        	Valid Till: {{ship.DO.ValidTill}}
-			        </li>
-			        <li class="list-group-item">
-			        	Contact Person 1: {{ship.DO.CoPersonName1}}
-			        </li>
-			        <li class="list-group-item">
-			        	Contact Person 2: {{ship.DO.CoPersonName2}}
-			        </li>
-			        <li class="list-group-item">
-			        	Collected By: {{ship.DO.CollectedBy}}
-			        </li>
-			        <li class="list-group-item">
-			        	CollectedDate: {{ship.DO.CollectedDate}}
-			        </li>
-			        <li class="list-group-item">
-			        	Couriered To: {{ship.DO.CourieredTo}}
-			        </li>
-			        <li class="list-group-item">
-			        	Date of Courier: {{ship.DO.DateofCourier}}
-			        </li>
     			</div>
     		</div>
     	</div>

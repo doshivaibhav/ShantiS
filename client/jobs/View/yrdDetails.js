@@ -3,6 +3,7 @@ var self =this;
 self.autorun(function(){
 	var id = FlowRouter.getParam('id');
 	self.subscribe('yardDetails',id);
+	self.subscribe('iGMDetails',id);
 });
 });
 
@@ -16,10 +17,16 @@ Template.yrdDetails.helpers({
 });
 
 Template.yrdDetails.events({
+	
 	'click #btnYard':function(e)
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/yard";
+		var id = FlowRouter.getParam('id');
+		var id1 = IGMDetails.findOne({JobId:id});
+		if(typeof id1 == 'undefined')
+			alert("Please Fill IGM Details First");
+		else
+			window.location = "/"+id+"/yard";
 	},
 });
