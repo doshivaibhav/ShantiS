@@ -1,8 +1,9 @@
-Template.alljobs.onCreated(function(){
+Template.newJob.onCreated(function(){
 var self =this;
 self.autorun(function(){
 	self.subscribe('jobCreation');
 	self.subscribe('ports');
+	self.subscribe('partyMasterDetails');
 });
 });
 
@@ -21,6 +22,16 @@ Template.newJob.helpers({
 			})
 			//console.log(portarr);
 			return portarr;
+	},
+	party:function(){
+		var partyCol = PartyMasterDetails.find({},{fields:{ClientName:1}});
+			var partyarr = [];
+			console.log(partyCol);
+			partyCol.forEach(function(obj){
+				partyarr.push({label:obj.ClientName,value:obj.ClientName});
+			})
+			//console.log(portarr);
+			return partyarr;
 	},
 	poptions:function(){
 	return [{label:'FSSAI',value:'FSSAI'},{label:'PQ',value:'PQ'},{label:'FSSAI - PQ',value:'FSSAI - PQ'},

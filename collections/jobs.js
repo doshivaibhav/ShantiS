@@ -33,7 +33,12 @@ ContainerSchema = new SimpleSchema({
 		type:String,
 		label:"Container",
 		max: 11,
-		defaultValue:""
+		defaultValue:"",
+		regEx:/[A-Z]{4}\d{7}/,
+		autoform:{
+			placeholder:"ABCD1234567",
+			autocomplete:'off'
+		}
 	}
 });
 
@@ -650,8 +655,8 @@ YardSchema = new SimpleSchema({
 },
 	YardName:{type:String,label:"Yard Name",defaultValue:""},
 	JobOrder:{type:Boolean,label:"Job Order",defaultValue:0,autoform:{
-		type:"select-radio-inline",
-		options:[{label:'Yes',value:true},{label:'No',value:false}]
+		afFieldInput:{
+		type:"boolean-radios",}
 	}},
 	ContainerArr:{type:String,label:"Container Arrived On",autoform: {
       afFieldInput: {
@@ -663,8 +668,8 @@ YardSchema = new SimpleSchema({
       }}},	
 	Containerhold:{type:String,label:"Container Hold",allowedValues: ['Yes', 'No'],optional:true,
 	autoform:{
-		type:"select-radio-inline",
-		options:[{label:'Yes',value:'Yes'},{label:'No',value:'No'}]
+		afFieldInput:{
+		type:"boolean-radios",}
 	}
 	},
 	YardPersonName:{type:String,label:"Yard Person's Name",defaultValue:"",optional:true},
@@ -709,13 +714,13 @@ DocDocksSchema = new SimpleSchema({
       }}},
 	/*PknListBy:{type:String, label:"Packing List Checked By",defaultValue:""},*/
 	WLRO:{type:Boolean,label:"WLRO",defaultValue:0,autoform:{
-		type:"select-radio-inline",
-		options:[{label:'Yes',value:true},{label:'No',value:false}]
+		afFieldInput:{
+		type:"boolean-radios",}
 	}},
 	/*ExamOrderBy:{type:String,label:"Examination Order Checked By",defaultValue:""},*/
 	BLPL:{type:Boolean,label:"Invoice/BL/PL Matching?",defaultValue:0,autoform:{
-		type:"select-radio-inline",
-		options:[{label:'Yes',value:true},{label:'No',value:false}]
+		afFieldInput:{
+		type:"boolean-radios",}
 	}},
 	Comment:{type:String,label:"If No Comment",defaultValue:"",optional:true,max:100},
 	ExamOrderOn:{type:String,label:"Examination Order checked On",autoform: {
@@ -939,6 +944,11 @@ jobCreationSchema = new SimpleSchema({
 		type: String,
 		label: "Job No",
 		max: 4,
+		autoform:{
+			afFieldInput: {
+        		type: "number"
+      		}
+		},
 	},
 
 	DateOfCreation:{
