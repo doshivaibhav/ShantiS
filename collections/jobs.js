@@ -674,7 +674,7 @@ YardSchema = new SimpleSchema({
       afFieldInput: {
         type: "date"
       }}},	
-	Containerhold:{type:String,label:"Container Hold",allowedValues: ['Yes', 'No'],optional:true,
+	Containerhold:{type:String,label:"Container Hold",optional:true,
 	autoform:{
 		afFieldInput:{
 		type:"boolean-radios",}
@@ -968,34 +968,15 @@ YardMasterIndex = new EasySearch.Index({
 
 EmptyYardMasterSchema = new SimpleSchema({
 	EYrdName:{type:String,label:"Empty Yard Name", max: 50, defaultValue:""},
-	EYrdTelephone:{type:String,label:"Empty Yard Telephone No.", max: 11, defaultValue:0},
-	EYrdTelephone2:{type:String,label:"Telephone No. 2 (optional)",max:11,optional:true,autoform: {
-      afFieldInput: {
-        type: "number"
-      }
-    }},
-    EYrdTelephone3:{type:String,label:"Telephone No. 3 (optional)",max:11,optional:true,autoform: {
-      afFieldInput: {
-        type: "number"
-      }
-    }},
-    EYrdTelephone4:{type:String,label:"Telephone No. 4 (optional)",max:11,optional:true,autoform: {
-      afFieldInput: {
-        type: "number"
-      }
-    }},
-	EYrdLocation:{type:String,label:"Empty Yard Location", max: 50, allowedValues: ['JNPT/Nhavasheva', 'Panvel'] },
+	EYrdTelephone:{type:String,label:"Empty Yard Telephone No.", max: 11, defaultValue:0,optional:true},
+	
+	EYrdLocation:{type:String,label:"Empty Yard Location", max: 50},
 	/*ScoMobile:{type:String,label:"S.CO Mobile No.", max: 10, defaultValue:0},*/
-	EYrdEmail:{type:String,label:"Empty Yard Email ID", max: 30, defaultValue:"",autoform: {
+	EYrdEmail:{type:String,label:"Empty Yard Email ID", max: 30, defaultValue:"",optional:true,autoform: {
       afFieldInput: {
         type: "email"
       }
     }},
-	EYrdBankName:{type:String,label:"Empty Yard Bank Name", max: 50, defaultValue:""},
-	EYrdBankBranch:{type:String,label:"Empty Yard Bank Branch", max: 50, defaultValue:""},
-	EYrdAcNo:{type:String,label:"Empty Yard A/C No", max: 20, defaultValue:""},
-	EYrdAccountType:{type:String,label:"Empty Yard Account Type", allowedValues: ['Savings', 'Current']},
-	EYrdIfsc:{type:String,label:"Empty Yard IFSC Code", max: 15, defaultValue:""}
 });
 
 

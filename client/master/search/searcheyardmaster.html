@@ -12,18 +12,8 @@ Search Here: {{> EasySearch.Input index=eyardIndex }}
       				</div>
             <!-- {{#if $Session.get 'showOther'}} -->
 			        <div id="{{_id}}" class="panel-collapse collapse">
-                <li class="list-group-item">Tel 2: {{EYrdTelephone2}}</li>
-                <li class="list-group-item">Tel 3: {{EYrdTelephone3}}</li>
-                <li class="list-group-item">Tel 4: {{EYrdTelephone4}}</li>
-                  
-				        <li class="list-group-item">Bank Name: {{EYrdBankName}}</li>
-				        <li class="list-group-item"> Bank Branch: {{EYrdBankBranch}}</li>
-				        <li class="list-group-item">Account No.: {{EYrdAcNo}}</li>
-				        <li class="list-group-item">Account Type: {{EYrdAccountType}}</li>
-				        <li class="list-group-item">IFSC Code: {{EYrdIfsc}}</li>
-			        <!-- {{/if}} -->
-
-        			</div>
+                <li class="list-group-item">Location: {{EYrdLocation}}</li>
+            	</div>
         		</div>
     		</div>
         {{/EasySearch.Each}}
