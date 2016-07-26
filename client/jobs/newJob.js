@@ -26,7 +26,7 @@ Template.newJob.helpers({
 	party:function(){
 		var partyCol = PartyMasterDetails.find({},{fields:{ClientName:1}});
 			var partyarr = [];
-			console.log(partyCol);
+			//console.log(partyCol);
 			partyCol.forEach(function(obj){
 				partyarr.push({label:obj.ClientName,value:obj.ClientName});
 			})

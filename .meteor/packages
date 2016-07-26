@@ -38,3 +38,6 @@ mrt:bootstrap-3
 session
 bootswatch:readable
 easy:search
+
+ api.use(['ecmascript'], 'server');
+  api.addFiles(['intercom-server.js'], 'server');

@@ -70,6 +70,10 @@ Meteor.publish('yardMasterDetails',function(){
 return YardMasterDetails.find({});
 });
 
+Meteor.publish('emptyYardMasterDetails',function(){
+return EmptyYardMasterDetails.find({});
+});
+
 Meteor.publish('transportMasterDetails',function(){
 return TransportMasterDetails.find({});
 });

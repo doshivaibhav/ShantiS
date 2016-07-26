@@ -10,6 +10,7 @@ Ports = new Mongo.Collection('ports');
 PartyMasterDetails = new Mongo.Collection('partyMasterDetails');
 ShippingMasterDetails = new Mongo.Collection('shippingMasterDetails');
 YardMasterDetails = new Mongo.Collection('yardMasterDetails');
+EmptyYardMasterDetails = new Mongo.Collection('emptyYardMasterDetails');
 TransportMasterDetails = new Mongo.Collection('transportMasterDetails');
 BeDetails = new Mongo.Collection('beDetails');
 StampDutyDetails = new Mongo.Collection('stampDutyDetails');
@@ -611,7 +612,14 @@ ShippingSchema = new SimpleSchema({
 	  	type:"hidden",
 	  },
 	},
-	SurRel:{type:String,label:"B/L Type",allowedValues: ['Surrender', 'Telex' , 'OBL']},
+	SurRel:{type:String,label:"B/L Type",allowedValues: ['Surrender', 'Telex' , 'OBL'],
+	/*autoform:{
+		options:function()
+		{
+			return [{label:'Surrender',value:'Surrender'},{label:'Telex',value:'Telex'},{label:'OBL',value:'OBL'}];
+		}
+	},*/
+	},
 	/*PQRIRONo:{type:String,label:"PQR IRO No.",defaultValue:""},
 	DateIRO:{type:String, label:"Date of IRO",autoform: {
       afFieldInput: {
@@ -810,11 +818,6 @@ BillingSchema = new SimpleSchema({
       afFieldInput: {
         type: "date"
       }}},
-    BillAmt:{type:String,label:"Bill Amount",defaultValue:"0",autoform: {
-      afFieldInput: {
-        type: "number"
-      }
-    }},
     updatedBy:{type:String,
 		label:"Prepared By",
 		autoValue:function(){
@@ -829,12 +832,27 @@ BillingSchema = new SimpleSchema({
 PartyMasterSchema = new SimpleSchema({
 	ClientName:{type:String,label:"Client Name", max: 50, defaultValue:""},
 	IECCode:{type:String,label:"IEC NO.",max:10,defaultValue:""},
-	Telephone:{type:String,label:"Telephone No.",defaultValue:0,autoform: {
+	Telephone:{type:String,label:"Telephone No.",max:11,defaultValue:0,autoform: {
       afFieldInput: {
         type: "number"
       }
     }},
-	Mobile:{type:String,label:"Mobile",defaultValue:0,autoform: {
+    Telephone2:{type:String,label:"Telephone No. 2 (optional)",max:11,optional:true,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+    Telephone3:{type:String,label:"Telephone No. 3 (optional)",max:11,optional:true,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+    Telephone4:{type:String,label:"Telephone No. 4 (optional)",max:11,optional:true,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+	Mobile:{type:String,label:"Mobile",defaultValue:0,max:11,autoform: {
       afFieldInput: {
         type: "number"
       }
@@ -861,9 +879,26 @@ PartyMasterIndex = new EasySearch.Index({
 
 ShippingMasterSchema = new SimpleSchema({
 	ScoName:{type:String,label:"Shipping Company Name", max: 50, defaultValue:""},
-	ScoTelephone:{type:String,label:"S.CO Telephone No.", max: 10, defaultValue:0},
+	ScoAddress:{type:String,label:"Shipping Company Address",defaultValue:"",max:100},
+	ScoTelephone:{type:String,label:"S.CO Telephone No.", max: 11, defaultValue:0},
+	ScoTelephone2:{type:String,label:"Telephone No. 2 (optional)",max:11,optional:true,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+    ScoTelephone3:{type:String,label:"Telephone No. 3 (optional)",max:11,optional:true,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+    ScoTelephone4:{type:String,label:"Telephone No. 4 (optional)",max:11,optional:true,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+
 	ScoLocated:{type:String,label:"S.CO Location", max: 50, defaultValue:""},
-	ScoMobile:{type:String,label:"S.CO Mobile No.", max: 10, defaultValue:0},
+	ScoMobile:{type:String,label:"S.CO Mobile No.", max: 11, defaultValue:0},
 	ScoEmail:{type:String,label:"S.CO Email ID", max: 30, defaultValue:"",autoform: {
       afFieldInput: {
         type: "email"
@@ -876,6 +911,7 @@ ShippingMasterSchema = new SimpleSchema({
 	ScoIfsc:{type:String,label:"S.CO IFSC Code", max: 15, defaultValue:""},
 	WorkingSat:{type:Boolean,label:"Saturday Working?",defaultValue:0},
 	Bond:{type:Boolean, label:"Rs 100/- Bond",defaultValue:0},
+	Bond2:{type:Boolean, label:"Rs 500/- Bond",defaultValue:0},
 	LetterHead:{type:Boolean,label: "Letter Head",defaultValue:0},
 	Insurance:{type:Boolean,label:"Insurance",defaultValue:0},
 	BlankCheque:{type:Boolean, label:"BLANK Cheque",defaultValue:0},
@@ -893,7 +929,22 @@ ShippingMasterIndex = new EasySearch.Index({
 
 YardMasterSchema = new SimpleSchema({
 	YrdName:{type:String,label:"CFS Name", max: 50, defaultValue:""},
-	YrdTelephone:{type:String,label:"CFS Telephone No.", max: 10, defaultValue:0},
+	YrdTelephone:{type:String,label:"CFS Telephone No.", max: 11, defaultValue:0},
+	YrdTelephone2:{type:String,label:"Telephone No. 2 (optional)",max:11,optional:true,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+    YrdTelephone3:{type:String,label:"Telephone No. 3 (optional)",max:11,optional:true,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+    YrdTelephone4:{type:String,label:"Telephone No. 4 (optional)",max:11,optional:true,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
 	YrdLocation:{type:String,label:"CFS Location", max: 50, allowedValues: ['JNPT/Nhavasheva', 'Panvel'] },
 	/*ScoMobile:{type:String,label:"S.CO Mobile No.", max: 10, defaultValue:0},*/
 	YrdEmail:{type:String,label:"CFS Email ID", max: 30, defaultValue:"",autoform: {
@@ -915,10 +966,66 @@ YardMasterIndex = new EasySearch.Index({
 	engine:new EasySearch.Minimongo(),
 });
 
+EmptyYardMasterSchema = new SimpleSchema({
+	EYrdName:{type:String,label:"Empty Yard Name", max: 50, defaultValue:""},
+	EYrdTelephone:{type:String,label:"Empty Yard Telephone No.", max: 11, defaultValue:0},
+	EYrdTelephone2:{type:String,label:"Telephone No. 2 (optional)",max:11,optional:true,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+    EYrdTelephone3:{type:String,label:"Telephone No. 3 (optional)",max:11,optional:true,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+    EYrdTelephone4:{type:String,label:"Telephone No. 4 (optional)",max:11,optional:true,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+	EYrdLocation:{type:String,label:"Empty Yard Location", max: 50, allowedValues: ['JNPT/Nhavasheva', 'Panvel'] },
+	/*ScoMobile:{type:String,label:"S.CO Mobile No.", max: 10, defaultValue:0},*/
+	EYrdEmail:{type:String,label:"Empty Yard Email ID", max: 30, defaultValue:"",autoform: {
+      afFieldInput: {
+        type: "email"
+      }
+    }},
+	EYrdBankName:{type:String,label:"Empty Yard Bank Name", max: 50, defaultValue:""},
+	EYrdBankBranch:{type:String,label:"Empty Yard Bank Branch", max: 50, defaultValue:""},
+	EYrdAcNo:{type:String,label:"Empty Yard A/C No", max: 20, defaultValue:""},
+	EYrdAccountType:{type:String,label:"Empty Yard Account Type", allowedValues: ['Savings', 'Current']},
+	EYrdIfsc:{type:String,label:"Empty Yard IFSC Code", max: 15, defaultValue:""}
+});
+
+
+EmptyYardMasterIndex = new EasySearch.Index({
+	collection: EmptyYardMasterDetails,
+	fields:['EYrdName','EYrdTelephone','EYrdEmail'],
+	engine:new EasySearch.Minimongo(),
+});
+
+
 TransportMasterSchema = new SimpleSchema({
 	TransName:{type:String,label:"Transporter Name", max: 50, defaultValue:""},
-	Transtelephone:{type:String,label:"Transporter Telephone No.", max: 12, defaultValue:0},
-	TransMobile:{type:String,label:"Transporter Mobile No.", max: 10, defaultValue:0},
+	Transtelephone:{type:String,label:"Transporter Telephone No.", max: 11, defaultValue:0},
+	Transtelephone2:{type:String,label:"Telephone No. 2 (optional)",max:11,optional:true,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+    Transtelephone3:{type:String,label:"Telephone No. 3 (optional)",max:11,optional:true,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+    Transtelephone4:{type:String,label:"Telephone No. 4 (optional)",max:11,optional:true,autoform: {
+      afFieldInput: {
+        type: "number"
+      }
+    }},
+
+	TransMobile:{type:String,label:"Transporter Mobile No.", max: 11, defaultValue:0},
 	TransEmail:{type:String,label:"Transporter Email ID", max: 30, defaultValue:"",
 	autoform: {
       afFieldInput: {
@@ -1112,6 +1219,7 @@ StampDutyDetails.attachSchema(StampDutySchema);
 PartyMasterDetails.attachSchema(PartyMasterSchema);
 ShippingMasterDetails.attachSchema(ShippingMasterSchema);
 YardMasterDetails.attachSchema(YardMasterSchema);
+EmptyYardMasterDetails.attachSchema(EmptyYardMasterSchema);
 TransportMasterDetails.attachSchema(TransportMasterSchema);
 JobCreation.attachSchema(jobCreationSchema);
 OriginalDoc.attachSchema(OriginalDocSchema);
@@ -1226,6 +1334,14 @@ YardMasterDetails.allow({
 		return true;
 	},		
 });
+
+EmptyYardMasterDetails.allow({
+	insert: function(userId,doc){
+		console.log("Running");
+		return true;
+	},		
+});
+
 
 TransportMasterDetails.allow({
 	insert: function(userId,doc){

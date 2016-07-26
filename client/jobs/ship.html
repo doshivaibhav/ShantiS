@@ -5,7 +5,7 @@
 		    <!--{{> quickForm collection="ShippingDetails" id="shipDetailsInsert" type="insert"}}-->
 		    {{#autoForm collection="ShippingDetails" id="shipDetailsInsert" type="insert"}}
 		  	{{> afQuickField name ='ShipCoName' options=shipPartyName}}
-		  	{{> afQuickField name='SurRel' options=allowed}}
+		  	{{> afQuickField name='SurRel' options="allowed"}}
 		    {{> afQuickField name='LocatedAt' options=port}}
 		    {{> afQuickField name='VesselName'}}
 			{{> afQuickField name="ETA"}}
@@ -22,7 +22,7 @@
 		    <!--{{> quickForm collection="ShippingDetails" id="shipDetailsUpdate" type="update" doc=shipId}}-->
 		    {{#autoForm collection="ShippingDetails" id="shipDetailsUpdate" type="update" doc=shipId}}
 		  	{{> afQuickField name ='ShipCoName' options=shipPartyName}}
-		  	{{> afQuickField name='SurRel' options=allowed}}
+		  	{{> afQuickField name='SurRel' options="allowed"}}
 		    {{> afQuickField name='LocatedAt' options=port}}
 		    {{> afQuickField name='VesselName'}}
 			{{> afQuickField name="ETA"}}

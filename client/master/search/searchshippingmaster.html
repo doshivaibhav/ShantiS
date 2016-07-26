@@ -12,7 +12,11 @@ Search Here: {{> EasySearch.Input index=shippingIndex }}
       				</div>
       				<div id="{{_id}}" class="panel-collapse collapse">
             			<li class="list-group-item">Location: {{ScoLocated}}</li>
+                        <li class="list-group-item">Address: {{ScoAddress}}</li>
             			<li class="list-group-item">Mobile: {{ScoMobile}}</li>
+                        <li class="list-group-item">Tel 2: {{ScoTelephone2}}</li>
+                        <li class="list-group-item">Tel 3: {{ScoTelephone3}}</li>
+                        <li class="list-group-item">Tel 4: {{ScoTelephone4}}</li>
             			<li class="list-group-item">Bank Name: {{ScoBankName}}</li>
             			<li class="list-group-item">Bank Branch: {{ScoBankBranch}}</li>
             			<li class="list-group-item">
@@ -32,12 +36,19 @@ Search Here: {{> EasySearch.Input index=shippingIndex }}
             				{{/if}}
             			</li>
             			<li class="list-group-item">
-            				Bond: {{#if Bond}}
+            				Rs. 100 Bond: {{#if Bond}}
 								<i class="fa fa-check"></i>
             				{{else}}
 								<i class="fa fa-times"></i>
             				{{/if}}
             			</li>
+                        <li class="list-group-item">
+                            Rs. 500 Bond: {{#if Bond2}}
+                                <i class="fa fa-check"></i>
+                            {{else}}
+                                <i class="fa fa-times"></i>
+                            {{/if}}
+                        </li>
             			<li class="list-group-item">
             				Letter Head: {{#if LetterHead}}
             				<i class="fa fa-check"></i>

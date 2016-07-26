@@ -1,10 +1,38 @@
 <template name='dorder'>
 {{> header}}
 <h1>Enter DO Details</h1>
-    {{#if DOMode}}
-    {{> quickForm collection="DODetails" id="DODetailsInsert" type="insert"}}
+{{#if DOMode}}
+    {{#autoForm collection="DODetails" id="DODetailsInsert" type="insert"}}
+		{{> afQuickField name="DaysFree"}}
+		{{> afQuickField name="FreeDaysFrom"}}
+		Free Till Estimate : {{DispDays}} (inclusive of From Date)
+		{{> afQuickField name="FreeDaysTo" value=DispDays}}
+		{{> afQuickField name="Charges"}}
+		{{> afQuickField name="FreightCharges"}}
+		{{> afQuickField name="CourieredTo"}}
+		{{> afQuickField name="DateofCourier"}}
+		{{> afQuickField name="EmptyYardName" options=eyardNames}}
+		<div class="form-group">
+	    <button type="submit" class="btn btn-primary">Submit</button>
+	    <button type="reset" class="btn btn-default">Reset Form</button>
+	  </div>
+	{{/autoForm}}
 {{else}}
-{{> quickForm collection="DODetails" id="DODetailsUpdate" type="update" doc=DOId}}
+	{{#autoForm collection="DODetails" id="DODetailsUpdate" type="update" doc=DOId}}
+		{{> afQuickField name="DaysFree"}}
+		{{> afQuickField name="FreeDaysFrom"}}
+		Free Till Estimate : {{DispDays}} (inclusive of From Date)
+		{{> afQuickField name="FreeDaysTo"}}
+		{{> afQuickField name="Charges"}}
+		{{> afQuickField name="FreightCharges"}}
+		{{> afQuickField name="CourieredTo"}}
+		{{> afQuickField name="DateofCourier"}}
+		{{> afQuickField name="EmptyYardName" options=eyardNames}}
+		<div class="form-group">
+	    <button type="submit" class="btn btn-primary">Submit</button>
+	    <button type="reset" class="btn btn-default">Reset Form</button>
+	  </div>
+	{{/autoForm}}
 {{/if}}
 
 </template>
