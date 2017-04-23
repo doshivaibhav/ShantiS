@@ -81,3 +81,7 @@ return TransportMasterDetails.find({});
 Meteor.publish('ports',function(){
 return Ports.find({});
 });
+
+Meteor.publish('getDocDetails',function(){
+return GetDocDetails.find({});
+});

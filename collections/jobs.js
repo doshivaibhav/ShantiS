@@ -19,6 +19,7 @@ BillingDetails = new Mongo.Collection('billingDetails');
 FssaiDetails = new Mongo.Collection('fssaiDetails');
 PqDetails = new Mongo.Collection('pqDetails');
 TextDetails = new Mongo.Collection('textDetails');
+GetDocDetails = new Mongo.Collection('getDocDetails');
 
 PortsSchema = new SimpleSchema({
 	name:{
@@ -979,6 +980,10 @@ EmptyYardMasterSchema = new SimpleSchema({
     }},
 });
 
+GetDocSchema = new SimpleSchema({
+	DocName:{type:String,label:"Document Name", max: 50, defaultValue:""},
+	DocLink:{type:String,label:"Document Link", defaultValue:""}
+});
 
 EmptyYardMasterIndex = new EasySearch.Index({
 	collection: EmptyYardMasterDetails,
@@ -986,6 +991,11 @@ EmptyYardMasterIndex = new EasySearch.Index({
 	engine:new EasySearch.Minimongo(),
 });
 
+GetDocIndex = new EasySearch.Index({
+	collection: GetDocDetails,
+	fields:['DocName'],
+	engine:new EasySearch.Minimongo(),
+});
 
 TransportMasterSchema = new SimpleSchema({
 	TransName:{type:String,label:"Transporter Name", max: 50, defaultValue:""},
@@ -1215,6 +1225,7 @@ IGMDetails.attachSchema(IGMSchema);
 FssaiDetails.attachSchema(FssaiSchema);
 PqDetails.attachSchema(PqSchema);
 TextDetails.attachSchema(TxtSchema);
+GetDocDetails.attachSchema(GetDocSchema);
 
 Jobs.allow({
 	insert: function(userId,doc){
@@ -1317,6 +1328,13 @@ YardMasterDetails.allow({
 });
 
 EmptyYardMasterDetails.allow({
+	insert: function(userId,doc){
+		console.log("Running");
+		return true;
+	},		
+});
+
+GetDocDetails.allow({
 	insert: function(userId,doc){
 		console.log("Running");
 		return true;
