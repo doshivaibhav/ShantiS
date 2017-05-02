@@ -20,7 +20,7 @@ Template.igmDet.events({
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/iGMDetails";
+		FlowRouter.go("/:id/iGMDetails",{id:id});
 	
 	},
 });

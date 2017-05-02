@@ -5,6 +5,14 @@ Template.rowjobs.events({
 },*/
 'click .Show':function(events)
 {	
-	window.location = "/job/view/"+this._id;
+	FlowRouter.go("/job/view/:id",{id: this._id});
+	// window.location = "/job/view/"+this._id;
 }
+});
+
+Template.rowjobs.helpers({
+	jobid: function()
+	{
+		return _id;
+	}
 });

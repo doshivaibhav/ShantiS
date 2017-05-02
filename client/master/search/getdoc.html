@@ -5,7 +5,7 @@ Search Here: {{> EasySearch.Input index=getDocIndex }}
     <ul class="list-group">
         {{#EasySearch.Each index=getDocIndex }}
     				<div class="panel-heading">
-      					<h4 class="panel-title"><a href="http://docs.google.com/gview?url={{DocLink}}" target="_blank">{{DocName}}</a></h4>
+                <h4 class="panel-title"><a href="http://docs.google.com/gview?url={{DocLink}}" target="_blank">{{DocName}}</a></h4>
       				</div>
         {{/EasySearch.Each}}
     </ul>

@@ -20,6 +20,6 @@ Template.shipDetails.events({
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/ship";
+		FlowRouter.go("/:id/ship",{id:id});
 	},
 });

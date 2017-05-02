@@ -27,6 +27,6 @@ Template.yrdDetails.events({
 		if(typeof id1 == 'undefined')
 			alert("Please Fill IGM Details First");
 		else
-			window.location = "/"+id+"/yard";
+			FlowRouter.go("/:id/yard",{id:id});
 	},
 });

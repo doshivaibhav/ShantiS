@@ -20,6 +20,6 @@ Template.deliveryDetails.events({
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/delivery";
+		FlowRouter.go("/:id/delivery",{id:id});;
 	},
 });

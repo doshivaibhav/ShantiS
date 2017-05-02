@@ -71,13 +71,15 @@ Template.job.events({
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/orDoc";	
+		//window.location = "/"+id+"/orDoc";
+		FlowRouter.go("/:id/orDoc",{id:id});
 	},
 	'click #btnShip':function(e)
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/ship";
+		//window.location = "/"+id+"/ship";
+		FlowRouter.go("/:id/ship");
 	},
 	'click #btnYard':function(e)
 	{
@@ -88,37 +90,37 @@ Template.job.events({
 		if(typeof id1 == 'undefined')
 			alert("Please Fill IGM Details First");
 		else
-			window.location = "/"+id+"/yard";
+			FlowRouter.go("/:id/yard",{id:id});
 	},
 	'click #btnBe':function(e)
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/boe";
+		FlowRouter.go("/:id/boe",{id:id});;
 	},
 	'click #btnDocDocks':function(e)
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/checked";
+		FlowRouter.go("/:id/checked",{id:id});;
 	},
 	'click #btnDelivery':function(e)
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/delivery";
+		FlowRouter.go("/:id/delivery",{id:id});;
 	},
 	'click #btnBill':function(e)
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/bill";
+		FlowRouter.go("/:id/bill",{id:id});;
 	},
 	'click #btnDO':function(e)
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/dorder";
+		FlowRouter.go("/:id/dorder",{id:id});;
 	},
 	'click #btnStampDuty':function(e)
 	{
@@ -129,13 +131,13 @@ Template.job.events({
 		if(typeof id1 == 'undefined')
 			alert("Please Fill BE Details First");
 		else
-			window.location = "/"+id+"/stampduty";
+			FlowRouter.go("/:id/stampduty",{id:id});;
 	},
 	'click #btnIGM':function(e)
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/iGMDetails";
+		FlowRouter.go("/:id/iGMDetails",{id:id});;
 	
 	},
 
@@ -144,20 +146,20 @@ Template.job.events({
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
 		//console.log('hi');
-		window.location = "/"+id+"/fssai";
+		FlowRouter.go("/:id/fssai",{id:id});;
 	},
 	
 	'click #btnPQ':function(e)
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/pq";
+		FlowRouter.go("/:id/pq",{id:id});;
 	},
 	
 	'click #btnTXT':function(e)
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/textile";
+		FlowRouter.go("/:id/textile",{id:id});;
 	},
 });

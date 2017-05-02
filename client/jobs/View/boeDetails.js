@@ -20,6 +20,6 @@ Template.boeDetails.events({
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/boe";
+		FlowRouter.go("/:id/boe",{id:id});
 	},
 });

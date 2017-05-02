@@ -20,6 +20,6 @@ Template.docksDetails.events({
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/checked";
+		FlowRouter.go("/:id/checked",{id:id});;
 	},
 });

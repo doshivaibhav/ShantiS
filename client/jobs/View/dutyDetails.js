@@ -25,6 +25,6 @@ Template.dutyDetails.events({
 		if(typeof id1 == 'undefined')
 			alert("Please Fill BE Details First");
 		else
-			window.location = "/"+id+"/stampduty";
+			FlowRouter.go("/:id/stampduty",{id:id});
 	},
 });

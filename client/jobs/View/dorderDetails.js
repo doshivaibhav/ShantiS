@@ -20,6 +20,6 @@ Template.dorderDetails.events({
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/dorder";
+		FlowRouter.go("/:id/dorder",{id:id});;;
 	},
 });

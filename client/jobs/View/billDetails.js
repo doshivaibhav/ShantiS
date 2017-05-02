@@ -20,6 +20,6 @@ Template.billDetails.events({
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/bill";
+		FlowRouter.go("/:id/bill",{id:id});;;
 	},
 });

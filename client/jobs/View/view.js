@@ -9,6 +9,8 @@ self.autorun(function(){
 Template.view.helpers({
     jobs:(event,template)=>{
     	var id = FlowRouter.getParam('id');
+
+    	console.log(id);
     	job1 = JobCreation.findOne({_id:id});
 		//console.log(job1.PGASEL);
 		Session.set('PGASELVAL',job1.PGASEL);
@@ -52,20 +54,20 @@ Template.view.events({
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
 		//console.log('hi');
-		window.location = "/"+id+"/fssai";
+		FlowRouter.go("/:id/fssai",{id:id});
 	},
 	
 	'click #btnPQ':function(e)
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/pq";
+		FlowRouter.go("/:id/pq",{id:id});
 	},
 	
 	'click #btnTXT':function(e)
 	{
 		var id = FlowRouter.getParam('id');
 		e.preventDefault();
-		window.location = "/"+id+"/textile";
+		FlowRouter.go("/:id/textile",{id:id});
 	},
 });
