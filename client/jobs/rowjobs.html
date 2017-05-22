@@ -1,11 +1,34 @@
 <template name = "rowjobs">
 
-	<tr>
+	<tr data-mongo>
 	<td class="Show"><span style="cursor:pointer;text-decoration:underline;">{{JobNo}}</span></td><td>{{Port}}</td>
 	<td>{{ImporterName}}</td>
-	{{#hovercard template="status" direction="vertical" trigger="click" data=id}}
-	<td class="Add"><span style="cursor:pointer; text-decoration:underline;"><i class="fa fa-plus"></i></span></td>
-	{{/hovercard}}
-	</tr>
+	 <div class="row">
+  		<div class="col-sm-3 text-center">{{#if vessel}}<span class="glyphicon glyphicon-remove" style="color:red"></span>{{else}}<span class="glyphicon glyphicon-ok" style="color:green"></span>{{/if}}</div>
+  		<div class="col-sm-3 text-center">{{#if orD}}<span class="glyphicon glyphicon-remove" style="color:red"></span>{{else}}<span class="glyphicon glyphicon-ok" style="color:green"></span>{{/if}}</div>
+  		<div class="col-sm-3 text-center">{{#if DOCollected}}<span class="glyphicon glyphicon-remove" style="color:red"></span>{{else}}<span class="glyphicon glyphicon-ok" style="color:green"></span>{{/if}}</div>	
+  		<div class="col-sm-3 text-center">{{#if Arr}}<span class="glyphicon glyphicon-remove" style="color:red"></span>{{else}}<span class="glyphicon glyphicon-ok" style="color:green"></span>{{/if}}</div>
+  	</div>
+	<div class="row">
+  		<div class="col-sm-3 text-center">Vessel Arrived</div>
+  		<div class="col-sm-3 text-center">Original Received</div>
+  		<div class="col-sm-3 text-center">DO Collected</div>	
+  		<div class="col-sm-3 text-center">Container Arrived</div>
+  	</div>
+    <br>
+	<div class="row">
+  		<div class="col-sm-3 text-center">{{#if thoka}}<span class="glyphicon glyphicon-remove" style="color:red"></span>{{else}}<span class="glyphicon glyphicon-ok" style="color:green"></span>{{/if}}</div>
+  		<div class="col-sm-3 text-center">{{#if dutyPaid}}<span class="glyphicon glyphicon-remove" style="color:red"></span>{{else}}<span class="glyphicon glyphicon-ok" style="color:green"></span>{{/if}}</div>
+  		<div class="col-sm-3 text-center">{{#if delivery}}<span class="glyphicon glyphicon-remove" style="color:red"></span>{{else}}<span class="glyphicon glyphicon-ok" style="color:green"></span>{{/if}}</div>	
+  		<div class="col-sm-3 text-center">{{#if bill}}<span class="glyphicon glyphicon-remove" style="color:red"></span>{{else}}<span class="glyphicon glyphicon-ok" style="color:green"></span>{{/if}}</div>
+  	</div>
+  	<div class="row">
+  		<div class="col-sm-3 text-center">Thoka Taken</div>
+  		<div class="col-sm-3 text-center">Custom Duty Paid</div>
+  		<div class="col-sm-3 text-center">Delivery Completed</div>
+  		<div class="col-sm-3 text-center">Billing Done</div>
+	</div>
+
+	 </tr>
 
 </template>

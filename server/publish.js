@@ -58,6 +58,60 @@ Meteor.publish('stampDutyDetails',function(id){
 return StampDutyDetails.find({JobId:id});
 });
 
+/////////////////////////////////
+Meteor.publish('originalDocAll',function(){
+return OriginalDoc.find({});
+});
+
+Meteor.publish('shippingDetailsAll',function(){
+return ShippingDetails.find({});
+});
+
+Meteor.publish('dODetailsAll',function(){
+return DODetails.find({});
+});
+
+Meteor.publish('iGMDetailsAll',function(){
+return IGMDetails.find({});
+});
+
+Meteor.publish('yardDetailsAll',function(){
+return YardDetails.find({JobId:id});
+});
+
+Meteor.publish('docDocksAll',function(){
+return DocDocks.find({});
+});
+
+Meteor.publish('deliveryDetailsAll',function(){
+return DeliveryDetails.find({});
+});
+
+Meteor.publish('beDetailsAll',function(){
+return BeDetails.find({});
+});
+
+Meteor.publish('billingDetailsAll',function(){
+return BillingDetails.find({});
+});
+
+Meteor.publish('fssaiDetailsAll',function(){
+return FssaiDetails.find({});
+});
+
+Meteor.publish('pqDetailsAll',function(){
+return PqDetails.find({});
+});
+
+Meteor.publish('textDetailsAll',function(){
+return TextDetails.find({});
+});
+
+Meteor.publish('stampDutyDetailsAll',function(){
+return StampDutyDetails.find({});
+});
+////////////////////////////////
+
 Meteor.publish('partyMasterDetails',function(){
 return PartyMasterDetails.find({});
 });
