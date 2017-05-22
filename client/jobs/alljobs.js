@@ -11,6 +11,7 @@ self.autorun(function(){
 	self.subscribe('deliveryDetailsAll');
 	self.subscribe('iGMDetailsAll');
 	self.subscribe('beDetailsAll');
+    self.subscribe('billingDetailsAll');
 });
 });
 Template.alljobs.helpers({

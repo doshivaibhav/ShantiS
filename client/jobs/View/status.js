@@ -9,6 +9,7 @@ self.autorun(function(){
 	self.subscribe('deliveryDetails',id);
 	self.subscribe('iGMDetails',id);
 	self.subscribe('beDetails',id);
+    self.subscribe('billingDetails',id);
 });
 });
 
@@ -49,7 +50,7 @@ Template.status.helpers({
 		var id = FlowRouter.getParam('id');
 		//console.log('abv');
     	contAr = YardDetails.findOne({JobId:id},{fields:{ContainerArr:1}});
-    	//console.log(contAr);
+    	console.log(contAr);
     	if(typeof contAr == 'undefined' || contAr.ContainerArr=='')
     	{
     		return true;

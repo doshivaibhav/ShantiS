@@ -10,6 +10,8 @@ self.autorun(function(){
 	self.subscribe('deliveryDetails',id);
 	self.subscribe('iGMDetails',id);
 	self.subscribe('beDetails',id);
+    self.subscribe('billingDetails',id);
+
 });
 });
 
@@ -49,9 +51,9 @@ Template.rowjobs.helpers({
 	},
 	Arr:function(){
 		var id = this._id;
-		//console.log('abv');
+		console.log('abv');
     	contAr = YardDetails.findOne({JobId:id},{fields:{ContainerArr:1}});
-    	//console.log(contAr);
+    	console.log(contAr);
     	if(typeof contAr == 'undefined' || contAr.ContainerArr=='')
     	{
     		return true;
@@ -96,7 +98,7 @@ Template.rowjobs.helpers({
 	},
 	bill:function(){
 		var id = this._id;
-		//console.log('abv');
+		console.log(id);
     	bil = BillingDetails.findOne({JobId:id},{fields:{CourierDate:1}});
     	console.log(bil);
     	if(typeof bil == 'undefined' || bil.CourierDate == '')
@@ -123,3 +125,4 @@ Template.rowjobs.events({
 	// window.location = "/job/view/"+this._id;
 }
 });
+

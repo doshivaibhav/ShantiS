@@ -76,7 +76,7 @@ return IGMDetails.find({});
 });
 
 Meteor.publish('yardDetailsAll',function(){
-return YardDetails.find({JobId:id});
+return YardDetails.find({});
 });
 
 Meteor.publish('docDocksAll',function(){
